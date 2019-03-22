@@ -40,8 +40,9 @@ Here is a citation [@Marwick2017]
 
 # Background
 
-```{r demo, eval = FALSE}
-1 + 1
+```{r read-in-the-data, eval = FALSE}
+library(here)
+kwl_upper <- readxl::read_excel(here("analysis", "data", "raw_data", "Kiwulan_Ornament_Upper.xlsx"))
 ```
 
 # Methods
