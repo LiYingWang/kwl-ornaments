@@ -73,11 +73,13 @@ kwl_upper %>%
 
 ornaments_count <-
   ornaments_period %>% 
-  filter(!is.na(`6-layers`)) %>% 
+  filter(!is.na(`6-layers`),
+         Categories != "Unknown Metal") %>% 
+  mutate(Categories = fct_lump(Categories, 
+                               n = 4))  %>% 
   group_by(period, Categories) %>%
   count() %>% 
   ungroup() %>% 
-  mutate(Categories = fct_lump(as.factor(Categories), n = 5)) %>% 
   mutate(Categories = fct_reorder(Categories, n))
   
 ggplot(transform(ornaments_count,
@@ -88,7 +90,9 @@ ggplot(transform(ornaments_count,
   geom_col(aes(Categories, n)) +
   facet_wrap(~ period) +
   coord_flip() +
-  labs(y = "Frequency")
+  labs(y = "Frequency",
+       x = "") +
+  theme_minimal(base_size = 14)
 ```
 
 # Discussion
