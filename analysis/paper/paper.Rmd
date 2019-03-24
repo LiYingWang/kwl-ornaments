@@ -48,8 +48,6 @@ kwl_upper <- readxl::read_excel(here("analysis", "data", "raw_data", "Kiwulan_Or
 
 # Results
 
-<<<<<<< HEAD
-=======
 ```{r get-data, eval = FALSE}
 # summarise the ornaments by layers
 library(tidyverse)
@@ -92,7 +90,6 @@ ggplot(transform(ornaments_count,
   coord_flip() +
   labs(y = "Frequency")
 ```
->>>>>>> c9a168813398de2d3da3dd2ef84c4556668bdfe9
 
 # Discussion
 
