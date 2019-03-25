@@ -48,7 +48,7 @@ kwl_upper <- readxl::read_excel(here("analysis", "data", "raw_data", "Kiwulan_Or
 
 # Results
 
-```{r get-data, eval = FALSE}
+```{r tidy-data, eval = FALSE}
 # summarise the ornaments by layers
 library(tidyverse)
 library(ggplot2)
@@ -67,10 +67,14 @@ kwl_upper %>%
      TRUE ~ "other"
   )) %>% 
   filter(period != "other")
+```
 
+
+```{r plot-counts}
 # need to reorder, try https://forcats.tidyverse.org/reference/index.html
 # reorder factor for categories (by frequency) and period (manually)
 # total number of ornaments for each categories 
+
 ornaments_count_test <-
   ornaments_period %>% 
   filter(!is.na(`6-layers`),
@@ -89,7 +93,10 @@ ggplot(ornaments_count_test,
   labs(y = "Frequency",
        x = "Categories") +
   theme_minimal(base_size = 14)
+```
 
+
+```{r plot-counts-by-period}
 # categories of ornaments by period
 ornaments_count <-
   ornaments_period %>% 
@@ -97,10 +104,11 @@ ornaments_count <-
          Categories != "Unknown Metal") %>% 
   mutate(Categories = fct_lump(Categories, 
                                n = 5)) %>% 
+  mutate(Categories = fct_infreq(Categories)) %>% 
+  mutate(Categories = fct_rev(Categories)) %>% 
   group_by(period, Categories) %>%
   count() %>% 
-  ungroup() %>% 
-  mutate(Categories = fct_reorder(Categories, n))
+  ungroup() 
   
 
 ggplot(transform(ornaments_count,
