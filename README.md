@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-master.paper
+kwlornaments
 ============
 
 This repository contains the data and code for our paper:
@@ -25,7 +25,7 @@ Or you can install this compendium as an R package, master.paper, from GitHub wi
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("LiYingWang/master.paper")
+devtools::install_github("LiYingWang/kwlornaments")
 ```
 
 ### Licenses
