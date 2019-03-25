@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 Title <- "Title of your paper goes here"
 ```
 
-# master.paper
+# kwlornaments
 
 This repository contains the data and code for our paper:
 
@@ -38,7 +38,7 @@ You can download the compendium as a zip from from this URL: <https://github.com
 Or you can install this compendium as an R package, master.paper, from GitHub with:
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
-devtools::install_github("LiYingWang/master.paper")
+devtools::install_github("LiYingWang/kwlornaments")
 ```
 ### Licenses
 
