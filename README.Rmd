@@ -15,6 +15,7 @@ Title <- "Title of your paper goes here"
 ```
 
 # kwlornaments
+[![Build Status](https://travis-ci.org/LiYingWang/kwl-ornaments.svg?branch=master)](https://travis-ci.org/LiYingWang/kwl-ornaments)
 
 This repository contains the data and code for our paper:
 
