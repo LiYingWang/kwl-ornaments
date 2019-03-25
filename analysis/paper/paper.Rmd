@@ -70,6 +70,27 @@ kwl_upper %>%
 
 # need to reorder, try https://forcats.tidyverse.org/reference/index.html
 # reorder factor for categories (by frequency) and period (manually)
+# total number of ornaments for each categories 
+ornaments_count_test <-
+  ornaments_period %>% 
+  filter(!is.na(`6-layers`),
+         Categories != "Unknown Metal") %>% 
+  mutate(Categories = fct_lump(Categories, 
+                               n = 5)) %>% 
+  group_by(Categories) %>%
+  count() %>% 
+  ungroup() %>% 
+  mutate(Categories = fct_reorder(Categories, n))
+
+ggplot(ornaments_count_test,
+       aes(Categories, n)) +
+  geom_col() +
+  coord_flip() +
+  labs(y = "Frequency",
+       x = "Categories") +
+  theme_minimal(base_size = 14)
+
+# categories of ornaments by period
 ornaments_count <-
   ornaments_period %>% 
   filter(!is.na(`6-layers`),
@@ -80,6 +101,7 @@ ornaments_count <-
   count() %>% 
   ungroup() %>% 
   mutate(Categories = fct_reorder(Categories, n))
+  
 
 ggplot(transform(ornaments_count,
                  period = factor(period, 
@@ -90,9 +112,11 @@ ggplot(transform(ornaments_count,
   facet_wrap(~ period) +
   coord_flip() +
   labs(y = "Frequency",
-       x = "") +
+       x = "Categories") +
   theme_minimal(base_size = 14)
+```
 
+```{r get-data, eval = FALSE}
 # plot for intact golden bead by period
 ornaments_intact_gold <-
   ornaments_period %>% 
@@ -112,9 +136,10 @@ ggplot(transform(ornaments_intact_gold,
                                                 "Chinese Contact")))) +
   geom_point(aes(Length, Width, col = Perforation_average)) +
   facet_wrap(~ period) +
-  labs(x = "Length(mm)",
-       y = "Width(mm)",
+  labs(x = "Length (mm)",
+       y = "Width (mm)",
        title = "Golden beads") +
+  coord_fixed(ratio = 1) +
   theme_minimal() +
   theme(plot.title = element_text(hjust=0.5))
 
@@ -133,9 +158,10 @@ ornaments_intact_agate <-
 ggplot(ornaments_intact_agate, 
        aes(Length, Width, col = period))+
   geom_point() +
-  labs(x = "Length(mm)",
-       y = "Width(mm)",
+  labs(x = "Length (mm)",
+       y = "Width (mm)",
        title = "Agate beads") +
+  coord_fixed(ratio = 1) +
   theme_minimal() +
   theme(plot.title = element_text(hjust=0.5))
 ```
