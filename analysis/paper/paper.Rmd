@@ -70,18 +70,17 @@ kwl_upper %>%
 
 # need to reorder, try https://forcats.tidyverse.org/reference/index.html
 # reorder factor for categories (by frequency) and period (manually)
-
 ornaments_count <-
   ornaments_period %>% 
   filter(!is.na(`6-layers`),
          Categories != "Unknown Metal") %>% 
   mutate(Categories = fct_lump(Categories, 
-                               n = 4))  %>% 
+                               n = 5)) %>% 
   group_by(period, Categories) %>%
   count() %>% 
   ungroup() %>% 
   mutate(Categories = fct_reorder(Categories, n))
-  
+
 ggplot(transform(ornaments_count,
                  period = factor(period, 
                                      levels = c("Before European Contact", 
@@ -93,6 +92,52 @@ ggplot(transform(ornaments_count,
   labs(y = "Frequency",
        x = "") +
   theme_minimal(base_size = 14)
+
+# plot for intact golden bead by period
+ornaments_intact_gold <-
+  ornaments_period %>% 
+  filter(Condition == 'complete',
+         Categories == 'Golden bead') %>% 
+  mutate(Length = as.numeric(`Length(mm)`),
+         Thick = as.numeric(`Thick(mm)`),
+         Width = as.numeric(`Width(mm)`)) %>% 
+  rowwise() %>% 
+  mutate(Perforation_average = mean(c(`Perforation1(mm)`, `Perforation2(mm)`), 
+                               na.rm = TRUE))
+  
+ggplot(transform(ornaments_intact_gold,
+                 period = factor(period, 
+                                     levels = c("Before European Contact", 
+                                                "European Contact", 
+                                                "Chinese Contact")))) +
+  geom_point(aes(Length, Width, col = Perforation_average)) +
+  facet_wrap(~ period) +
+  labs(x = "Length(mm)",
+       y = "Width(mm)",
+       title = "Golden beads") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust=0.5))
+
+# plot for intact agate bead by period
+ornaments_intact_agate <-
+  ornaments_period %>% 
+  filter(Condition == c('complete','near-complete'),
+         Categories == 'Agate bead') %>% 
+  mutate(Length = as.numeric(`Length(mm)`),
+         Thick = as.numeric(`Thick(mm)`),
+         Width = as.numeric(`Width(mm)`)) %>% 
+  rowwise() %>% 
+  mutate(Perforation_average = mean(c(`Perforation1(mm)`, `Perforation2(mm)`), 
+                               na.rm = TRUE))
+  
+ggplot(ornaments_intact_agate, 
+       aes(Length, Width, col = period))+
+  geom_point() +
+  labs(x = "Length(mm)",
+       y = "Width(mm)",
+       title = "Agate beads") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust=0.5))
 ```
 
 # Discussion
