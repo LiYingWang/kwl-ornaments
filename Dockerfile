@@ -4,7 +4,7 @@ FROM rocker/verse:3.5.2
 # required
 Liying Wang <liying15@uw.edu>
 
-COPY . /master.paper
+COPY . /kwlornaments
 
 # go into the repo directory
 RUN . /etc/environment \
@@ -15,8 +15,8 @@ RUN . /etc/environment \
   && sudo apt-get install libudunits2-dev -y \
 
   # build this compendium package
-  && R -e "devtools::install('/master.paper', dep=TRUE)" \
+  && R -e "devtools::install('/kwlornaments', dep=TRUE)" \
 
  # render the manuscript into a docx, you'll need to edit this if you've
  # customised the location and name of your main Rmd file
-  && R -e "rmarkdown::render('/master.paper/analysis/paper/paper.Rmd')"
+  && R -e "rmarkdown::render('/kwlornaments/analysis/paper/paper.Rmd')"
