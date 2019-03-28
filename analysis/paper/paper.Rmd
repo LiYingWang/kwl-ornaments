@@ -174,6 +174,38 @@ ggplot(ornaments_intact_agate,
   theme(plot.title = element_text(hjust=0.5))
 ```
 
+```{r get-data, eval = FALSE}
+# plot for different shape of agate bead by period
+agate_bead_shape <-
+  ornaments_period %>% 
+  filter(Categories == 'Agate bead') %>% 
+  mutate(Type = ifelse(Type == 'prism/octagonal', 
+                       str_remove(Type, '/octagonal'), Type)) %>% 
+  mutate(Type = ifelse(Type == 'prism/pentagonal', 
+                       str_remove(Type, '/pentagonal'), Type)) %>% 
+  mutate(Type = ifelse(Type == 'prism/hexagonal', 
+                       str_remove(Type, 'prism/'), Type)) %>% 
+  mutate(Type = fct_infreq(Type)) %>% 
+  mutate(Type = fct_rev(Type)) %>% 
+  group_by(period, Type) %>% 
+  count()
+
+ggplot(transform(agate_bead_shape,
+                 period = factor(period, 
+                                     levels = c("Before European Contact", 
+                                                "European Contact", 
+                                                "Chinese Contact")))) +
+  geom_col(aes(Type, n)) +
+  facet_wrap(~ period) +
+  coord_flip() +
+  labs(y = "Frequency",
+       x = "Shape of Agate bead") +
+  theme_minimal(base_size = 14)
+```
+
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = clarity), position = "dodge")
+
 # Discussion
 
 # Conclusion
