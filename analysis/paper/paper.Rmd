@@ -124,12 +124,38 @@ ggplot(transform(ornaments_count,
   theme_minimal(base_size = 14)
 ```
 
-```{r get-data, eval = FALSE}
+```{r scatter-plot-bead-by-period}
 # plot for intact golden bead by period
 ornaments_intact_gold <-
   ornaments_period %>% 
-  filter(Condition == 'complete',
+  filter(Condition %in% c('complete', 'near-complete'),
          Categories == 'Golden bead') %>% 
+  mutate(Length = as.numeric(`Length(mm)`),
+         Thick = as.numeric(`Thick(mm)`),
+         Width = as.numeric(`Width(mm)`)) %>% 
+  rowwise() %>% 
+  mutate(Perforation_average = mean(c(`Perforation1(mm)`, `Perforation2(mm)`), 
+                               na.rm = TRUE))
+  
+ggplot(transform(ornaments_intact_gold,
+                 period = factor(period, 
+                                     levels = c("Before European Contact", 
+                                                "European Contact", 
+                                                "Chinese Contact")))) +
+  geom_point(aes(Length, Width, col = Perforation_average)) +
+  facet_wrap(~ period) +
+  labs(x = "Length (mm)",
+       y = "Width (mm)",
+       title = "Golden beads") +
+  coord_fixed(ratio = 1) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust=0.5))
+
+# plot for intact glass bead by period
+ornaments_intact_glass <-
+  ornaments_period %>% 
+  filter(Condition %in% c('complete', 'near-complete'),
+         Categories == 'Glass bead') %>% 
   mutate(Length = as.numeric(`Length(mm)`),
          Thick = as.numeric(`Thick(mm)`),
          Width = as.numeric(`Width(mm)`)) %>% 
@@ -154,7 +180,7 @@ ggplot(transform(ornaments_intact_gold,
 # plot for intact agate bead by period
 ornaments_intact_agate <-
   ornaments_period %>% 
-  filter(Condition == c('complete','near-complete'),
+  filter(Condition %in% c('complete','near-complete'),
          Categories == 'Agate bead') %>% 
   mutate(Length = as.numeric(`Length(mm)`),
          Thick = as.numeric(`Thick(mm)`),
@@ -174,7 +200,7 @@ ggplot(ornaments_intact_agate,
   theme(plot.title = element_text(hjust=0.5))
 ```
 
-```{r get-data, eval = FALSE}
+```{r plot-count-type-by-period}
 # plot for different shape of agate bead by period
 agate_bead_shape <-
   ornaments_period %>% 
@@ -201,10 +227,144 @@ ggplot(transform(agate_bead_shape,
   labs(y = "Frequency",
        x = "Shape of Agate bead") +
   theme_minimal(base_size = 14)
+
+# plot for different shape of metal bell by period
+bell_shape <-
+  ornaments_period %>% 
+  filter(Categories == 'Bell',
+         Type != 'unclassified') %>% 
+  mutate(Type = fct_infreq(Type)) %>% 
+  mutate(Type = fct_rev(Type)) %>% 
+  group_by(period, Type) %>% 
+  count()
+
+ggplot(transform(bell_shape,
+                 period = factor(period, 
+                                     levels = c("Before European Contact", 
+                                                "European Contact", 
+                                                "Chinese Contact")))) +
+  geom_col(aes(Type, n)) +
+  facet_wrap(~ period) +
+  coord_flip() +
+  labs(y = "Frequency",
+       x = "Shape of Bell") +
+  theme_minimal(base_size = 14)
+
+# plot for different shape of metal ring by period
+ring_shape <-
+  ornaments_period %>% 
+  filter(Categories == 'Metal ring') %>% 
+  mutate(Type = fct_infreq(Type)) %>% 
+  mutate(Type = fct_rev(Type)) %>% 
+  group_by(period, Type) %>% 
+  count()
+
+ggplot(transform(ring_shape,
+                 period = factor(period, 
+                                     levels = c("Before European Contact", 
+                                                "European Contact", 
+                                                "Chinese Contact")))) +
+  geom_col(aes(Type, n)) +
+  facet_wrap(~ period) +
+  coord_flip() +
+  labs(y = "Frequency",
+       x = "Shape of Metal ring") +
+  theme_minimal(base_size = 14)
 ```
 
-ggplot(data = diamonds) + 
-  geom_bar(mapping = aes(x = cut, fill = clarity), position = "dodge")
+```{r scatter-plot-metal-by-period}
+# plot for intact bell by period
+ornaments_intact_bell <-
+  ornaments_period %>% 
+  filter(Condition %in% c('complete', 'near-complete'),
+         Categories == 'Bell',
+         Type != 'unclassified') %>% 
+  mutate(Length = as.numeric(gsub("\\+", "", `Length(mm)`)), #remove +
+         Thick = as.numeric(`Thick(mm)`),
+         Width = as.numeric(`Width(mm)`))
+  
+ggplot(transform(ornaments_intact_bell,
+                 period = factor(period, 
+                                     levels = c("Before European Contact", 
+                                                "European Contact", 
+                                                "Chinese Contact")))) +
+  geom_point(aes(Length, Width, col = Type)) +
+  facet_wrap(~ period) +
+  labs(x = "Length (mm)",
+       y = "Width (mm)",
+       title = "Bell") +
+  coord_fixed(ratio = 1) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust=0.5))
+
+# plot for intact ring by period
+ornaments_intact_ring <-
+  ornaments_period %>% 
+  filter(Condition %in% c('complete', 'near-complete'),
+         Categories == 'Metal ring') %>% 
+  mutate(Length = as.numeric(gsub("\\+|\\-", "", `Length(mm)`)), #remove + -
+         Thick = as.numeric(`Thick(mm)`),
+         Width = as.numeric(`Width(mm)`))
+  
+ggplot(transform(ornaments_intact_ring,
+                 period = factor(period, 
+                                     levels = c("Before European Contact", 
+                                                "European Contact", 
+                                                "Chinese Contact")))) +
+  geom_point(aes(Length, Width, col = Type)) +
+  facet_wrap(~ period) +
+  labs(x = "Length (mm)",
+       y = "Width (mm)",
+       title = "Metal ring") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust=0.5))
+```
+
+```{r read-in-the-spatial-data, eval = FALSE}
+library(sf)
+library(cartography)
+burial <- st_read(here("analysis", "data", "raw_data", "AD_burial.shp"))
+AD <- st_read(here("analysis", "data", "raw_data", "AD_zone.shp"))
+AD_data <- st_read(here("analysis", "data", "raw_data", "AD_withdata.shp"))
+location <- st_read(here("analysis", "data", "raw_data", "location.shp"))
+units_40 <- read.csv(here("analysis", "data", "raw_data", "kwl-list-of-sampling-squares.csv"))
+```
+
+```{r tidy-data, eval = FALSE}
+# 40 sampling units
+sample_units <-
+  AD_data %>% 
+  semi_join(units_40, by = c (`坑號` = "the_sq"))
+
+# join two dataset to get coordinate
+ornaments_period_join <-
+  ornaments_period %>%
+  mutate(period = as.factor(period)) %>% # seems need this line first 
+  group_by(Pit_No, period) %>% 
+  count(Categories) %>% 
+  inner_join(AD_data, by = c("Pit_No" = "坑號"))
+
+# filter golden bead
+ornaments_period_join_gold <-
+  ornaments_period_join %>% 
+  filter(Categories %in% 'Golden bead')
+
+# plot by period
+ggplot(transform(ornaments_period_join_gold,
+                 period = factor(period, 
+                                     levels = c("Before European Contact", 
+                                                "European Contact", 
+                                                "Chinese Contact")))) +
+  geom_sf(data = sample_units) +
+  geom_sf(data = ornaments_period_join_gold, aes(fill = n)) +
+  facet_wrap(~ period) +
+  labs(title = "Spatial Distribution of Golden Beads",
+       fill = "frequency") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust=0.5),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank())
+```
 
 # Discussion
 
