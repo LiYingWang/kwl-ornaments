@@ -2,7 +2,7 @@
 FROM rocker/verse:3.5.2
 
 # required
-Liying Wang <liying15@uw.edu>
+MAINTAINER Liying Wang <liying15@uw.edu>
 
 COPY . /kwlornaments
 
