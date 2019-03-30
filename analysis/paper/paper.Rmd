@@ -70,7 +70,14 @@ kwl_upper %>%
   mutate(period = factor(period,
                        level = c("Before European Contact", 
                                                 "European Contact", 
-                                                "Chinese Contact")))
+                                                "Chinese Contact"))) %>% 
+  mutate(Length = as.numeric(`Length(mm)`),
+         Thick = as.numeric(`Thick(mm)`),
+         Width = as.numeric(`Width(mm)`),
+         Perforation1 = as.numeric(`Perforation1(mm)`)) %>% 
+  rowwise() %>% 
+  mutate(Perforation_average = mean(c(`Perforation1`, `Perforation2(mm)`), 
+                               na.rm = TRUE))
 ```
 
 
@@ -83,6 +90,7 @@ ornaments_count_test <-
   ornaments_period %>% 
   filter(!is.na(`6-layers`),
          Categories != "Unknown Metal") %>% 
+  mutate(Categories = as.factor(Categories)) %>% 
   mutate(Categories = fct_lump(Categories, 
                                n = 5)) %>% 
   group_by(Categories) %>%
@@ -113,7 +121,6 @@ ornaments_count <-
   group_by(period, Categories) %>%
   count() %>% 
   ungroup() 
-  
 
 ggplot(ornaments_count) +
   geom_col(aes(Categories, n)) +
@@ -129,14 +136,7 @@ ggplot(ornaments_count) +
 ornaments_intact_gold <-
   ornaments_period %>% 
   filter(Condition %in% c('complete', 'near-complete'),
-         Categories == 'Golden bead') %>% 
-  mutate(Length = as.numeric(`Length(mm)`),
-         Thick = as.numeric(`Thick(mm)`),
-         Width = as.numeric(`Width(mm)`),
-         Perforation1 = as.numeric(`Perforation1(mm)`)) %>% 
-  rowwise() %>% 
-  mutate(Perforation_average = mean(c(`Perforation1`, `Perforation2(mm)`), 
-                               na.rm = TRUE))
+         Categories == 'Golden bead')
   
 ggplot(ornaments_intact_gold) +
   geom_point(aes(Length, Width, col = Perforation_average)) +
@@ -155,13 +155,7 @@ ggplot(ornaments_intact_gold) +
 ornaments_intact_agate <-
   ornaments_period %>% 
   filter(Condition %in% c('complete','near-complete'),
-         Categories == 'Agate bead') %>% 
-  mutate(Length = as.numeric(`Length(mm)`),
-         Thick = as.numeric(`Thick(mm)`),
-         Width = as.numeric(`Width(mm)`)) %>% 
-  rowwise() %>% 
-  mutate(Perforation_average = mean(c(`Perforation1(mm)`, `Perforation2(mm)`), 
-                               na.rm = TRUE))
+         Categories == 'Agate bead')
   
 ggplot(ornaments_intact_agate, 
        aes(Length, Width, col = period))+
@@ -241,9 +235,7 @@ ornaments_intact_bell <-
   filter(Condition %in% c('complete', 'near-complete'),
          Categories == 'Bell',
          Type != 'unclassified') %>% 
-  mutate(Length = as.numeric(gsub("\\+", "", `Length(mm)`)), #remove +
-         Thick = as.numeric(`Thick(mm)`),
-         Width = as.numeric(`Width(mm)`))
+  mutate(Length = as.numeric(gsub("\\+", "", `Length(mm)`))) #remove +
   
 ggplot(ornaments_intact_bell) +
   geom_point(aes(Length, Width, col = Type)) +
@@ -260,9 +252,7 @@ ornaments_intact_ring <-
   ornaments_period %>% 
   filter(Condition %in% c('complete', 'near-complete'),
          Categories == 'Metal ring') %>% 
-  mutate(Length = as.numeric(gsub("\\+|\\-", "", `Length(mm)`)), #remove + -
-         Thick = as.numeric(`Thick(mm)`),
-         Width = as.numeric(`Width(mm)`))
+  mutate(Length = as.numeric(gsub("\\+|\\-", "", `Length(mm)`))) #remove + -
   
 ggplot(ornaments_intact_ring) +
   geom_point(aes(Length, Width, col = Type)) +
@@ -359,6 +349,7 @@ ggplot(ornaments_period_join_gold) +
 ```
 
 ```{r-gganimate}
+# test gganimate for measurement of beads by period
 devtools::install_github('thomasp85/gganimate')
 library(gganimate)
 
@@ -371,6 +362,7 @@ anim_gold_bead <-
        x ='Length (mm) of golden bead',
        y ='Width (mm) of golden bead')
 
+# does not work
 anim_gold_bead_spatial <-
   ggplot(ornaments_period_join_gold) +
   geom_sf(data = sample_units, fill = NA) +
