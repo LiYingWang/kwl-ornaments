@@ -89,8 +89,8 @@ kwl_upper %>%
 ornaments_count_test <-
   ornaments_period %>% 
   filter(!is.na(`6-layers`),
-         Categories != "Unknown Metal") %>% 
-  mutate(Categories = as.factor(Categories)) %>% 
+         Categories != "Unknown Metal") %>%
+  ungroup() %>% # need to upgroup because of rowwise or factor in previous chunk?
   mutate(Categories = fct_lump(Categories, 
                                n = 5)) %>% 
   group_by(Categories) %>%
@@ -113,14 +113,14 @@ ggplot(ornaments_count_test,
 ornaments_count <-
   ornaments_period %>% 
   filter(!is.na(`6-layers`),
-         Categories != "Unknown Metal") %>% 
+         Categories != "Unknown Metal") %>%
+  ungroup() %>% 
   mutate(Categories = fct_lump(Categories, 
                                n = 5)) %>% 
   mutate(Categories = fct_infreq(Categories)) %>% 
   mutate(Categories = fct_rev(Categories)) %>% 
   group_by(period, Categories) %>%
-  count() %>% 
-  ungroup() 
+  count()
 
 ggplot(ornaments_count) +
   geom_col(aes(Categories, n)) +
@@ -172,14 +172,15 @@ ggplot(ornaments_intact_agate,
 # plot for different shape of agate bead by period
 agate_bead_shape <-
   ornaments_period %>% 
-  filter(Categories == 'Agate bead') %>% 
+  filter(Categories == 'Agate bead') %>%
+  ungroup() %>% 
   mutate(Type = ifelse(Type == 'prism/octagonal', 
                        str_remove(Type, '/octagonal'), Type)) %>% 
   mutate(Type = ifelse(Type == 'prism/pentagonal', 
                        str_remove(Type, '/pentagonal'), Type)) %>% 
   mutate(Type = ifelse(Type == 'prism/hexagonal', 
-                       str_remove(Type, 'prism/'), Type)) %>% 
-  mutate(Type = fct_infreq(Type)) %>% 
+                       str_remove(Type, 'prism/'), Type)) %>%
+  mutate(Type = fct_infreq(Type)) %>%
   mutate(Type = fct_rev(Type)) %>% 
   group_by(period, Type) %>% 
   count()
@@ -197,7 +198,7 @@ bell_shape <-
   ornaments_period %>% 
   filter(Categories == 'Bell',
          Type != 'unclassified') %>% 
-  mutate(Type = fct_infreq(Type)) %>% 
+  ungroup() %>% 
   mutate(Type = fct_rev(Type)) %>% 
   group_by(period, Type) %>% 
   count()
@@ -213,8 +214,9 @@ ggplot(bell_shape) +
 # plot for different shape of metal ring by period
 ring_shape <-
   ornaments_period %>% 
-  filter(Categories == 'Metal ring') %>% 
-  mutate(Type = fct_infreq(Type)) %>% 
+  filter(Categories == 'Metal ring') %>%
+  ungroup() %>% 
+  mutate(Type = fct_infreq(Type)) %>%
   mutate(Type = fct_rev(Type)) %>% 
   group_by(period, Type) %>% 
   count()
