@@ -16,7 +16,7 @@ BugReports: https://github.com/LiYingWang/master.paper/issues
 Imports: 
     bookdown,
     here,
-    tidyverse 
+    tidyverse, 
     sf,
     cartography,
     gganimate
