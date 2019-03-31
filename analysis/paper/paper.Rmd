@@ -274,7 +274,7 @@ location <- st_read(here("analysis", "data", "raw_data", "location.shp"))
 units_40 <- read.csv(here("analysis", "data", "raw_data", "kwl-list-of-sampling-squares.csv"))
 ```
 
-```{r tidy-data, eval = FALSE}
+```{r tidy-data2, eval = FALSE}
 # 40 sampling units
 sample_units <-
   AD_data %>% 
