@@ -8,21 +8,13 @@ COPY . /kwlornaments
 
 # go into the repo directory
 RUN . /etc/environment \
-
   # Install linux depedendencies here
   # e.g. need this for ggforce::geom_sina
   && sudo apt-get update \
   && sudo apt-get install libudunits2-dev -y \
-
   # build this compendium package
   && R -e "devtools::install('/kwlornaments', dep=TRUE)" \
-
  # render the manuscript into a docx, you'll need to edit this if you've
  # customised the location and name of your main Rmd file
   && R -e "rmarkdown::render('/kwlornaments/analysis/paper/paper.Rmd')"
-  
-# For Binder: Copy repo into ${HOME}, make user own $HOME
-USER root
-COPY . ${HOME}
-RUN chown -R ${NB_USER} ${HOME}
-USER ${NB_USER}
+ 
