@@ -39,7 +39,7 @@ Here is a citation [@Marwick2017]
 
 # Background
 
-```{r read-in-the-data, eval = FALSE}
+```{r read-in-the-data}
 library(here)
 kwl_upper <- readxl::read_excel(here("analysis", "data", "raw_data", "Kiwulan_Ornament_Upper.xlsx"))
 ```
@@ -48,7 +48,7 @@ kwl_upper <- readxl::read_excel(here("analysis", "data", "raw_data", "Kiwulan_Or
 
 # Results
 
-```{r tidy-data, eval = FALSE}
+```{r tidy-data}
 # summarise the ornaments by layers
 library(tidyverse)
 library(ggplot2)
@@ -264,7 +264,7 @@ ggplot(ornaments_intact_ring) +
   theme(plot.title = element_text(hjust=0.5))
 ```
 
-```{r read-in-the-spatial-data, eval = FALSE}
+```{r read-in-the-spatial-data}
 library(sf)
 library(cartography)
 burial <- st_read(here("analysis", "data", "raw_data", "AD_burial.shp"))
@@ -274,7 +274,7 @@ location <- st_read(here("analysis", "data", "raw_data", "location.shp"))
 units_40 <- read.csv(here("analysis", "data", "raw_data", "kwl-list-of-sampling-squares.csv"))
 ```
 
-```{r tidy-data2, eval = FALSE}
+```{r tidy-data2}
 # 40 sampling units
 sample_units <-
   AD_data %>% 
