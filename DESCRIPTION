@@ -19,4 +19,6 @@ Imports:
     tidyverse, 
     sf,
     cartography,
-    gganimate
+    gganimate,
+    git2r,
+    devtools
