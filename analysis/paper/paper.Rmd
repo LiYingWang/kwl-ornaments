@@ -41,9 +41,7 @@ Compared to other places in Asia and Oceania, the impact of European colonialism
 
 We ask whether colonial influence on indigenous populations can be detected in ornaments recovered from the archaeological record at Kiwulan (1400-1900 AD), a large Iron Age settlement in northeastern Taiwan.  Our hypothesis is that there was a greater diversity of ornaments types and materials at Kiwulan after European contact. We hypothesize that after Chinese contact there was a decline in the production, use and discard of ornaments at Kiwulan. We hypothesise that there is no change in the spatial distribution of ornaments at Kiwulan relating to these international contacts. 
 
-<<<<<<< HEAD
-```{r read-in-the-data, eval = TRUE}
-=======
+
 # Cultural context of Ornaments in Northeastern Taiwan
 
 Historical records from Spanish and Dutch provide rich information about the historical and cultural background both for Europeans and indigenous people in the early 17th century. Spanish occupied and built forts in Northern Taiwan since 1624, from which Spanish missionaries often went to indigenous settlement and left behind numerous records from those places. The report of the Dominican Jacinto Esquivel in 1632 mentioned that the Taparri, an indigenous tribe from northern Taiwan, usually used cuentas (agate beads) as a materials to exchange with necessities they need with other indigenous people. This trend then gradually spread to other areas, and even the Spanish soldiers used agate as bargaining chips for gambling, since agate equaled money (Li 2006: 132-149).  European contact was focused on trading with indigenous communities in northeastern Taiwan. Trading activity of many types of goode among these indigenous communities increased with the arrival of European colonisers. Thus, we predict that this trading activity resulted in an increase in the amount and diversity of ornaments coming into indigenous communities in northeastern Taiwan.
@@ -85,17 +83,14 @@ Sketch of results section, should have some graphs and tables for these:
 
 
 ```{r read-in-the-data}
->>>>>>> 2e93107551460aba7536abe8fe4ba4ed85208ea3
 library(here)
 kwl_upper <- readxl::read_excel(here("analysis", "data", "raw_data", "Kiwulan_Ornament_Upper.xlsx"))
 ```
 
 
-<<<<<<< HEAD
+
 ```{r tidy-data, eval = TRUE}
-=======
-```{r tidy-data}
->>>>>>> 2e93107551460aba7536abe8fe4ba4ed85208ea3
+
 # summarise the ornaments by layers
 library(tidyverse)
 library(ggplot2)
@@ -315,11 +310,9 @@ ggplot(ornaments_intact_ring) +
   theme(plot.title = element_text(hjust=0.5))
 ```
 
-<<<<<<< HEAD
+
 ```{r read-in-the-spatial-data, eval = TRUE}
-=======
-```{r read-in-the-spatial-data}
->>>>>>> 2e93107551460aba7536abe8fe4ba4ed85208ea3
+
 library(sf)
 library(cartography)
 burial <- st_read(here("analysis", "data", "raw_data", "AD_burial.shp"))
@@ -329,11 +322,8 @@ location <- st_read(here("analysis", "data", "raw_data", "location.shp"))
 units_40 <- read.csv(here("analysis", "data", "raw_data", "kwl-list-of-sampling-squares.csv"))
 ```
 
-<<<<<<< HEAD
+
 ```{r tidy-data2, eval = TRUE}
-=======
-```{r tidy-data2}
->>>>>>> 2e93107551460aba7536abe8fe4ba4ed85208ea3
 # 40 sampling units
 sample_units <-
   AD_data %>% 
