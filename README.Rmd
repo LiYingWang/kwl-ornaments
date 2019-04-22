@@ -15,7 +15,7 @@ Title <- "Title of your paper goes here"
 ```
 
 # kwlornaments
-[![Build Status](https://travis-ci.org/LiYingWang/kwl-ornaments.svg?branch=master)](https://travis-ci.org/LiYingWang/kwl-ornaments)
+[![Build Status](https://travis-ci.org/LiYingWang/kwl-ornaments.svg?branch=master)](https://travis-ci.org/LiYingWang/kwl-ornaments) [![Launch Binder](https://mybinder.org/badge_logo.svg)](http://beta.mybinder.org/v2/gh/LiYingWang/kwl-ornaments/master?urlpath=rstudio)
 
 This repository contains the data and code for our paper:
 
