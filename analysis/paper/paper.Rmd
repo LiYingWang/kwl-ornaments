@@ -39,7 +39,7 @@ Here is a citation [@Marwick2017]
 
 # Background
 
-```{r read-in-the-data, eval = FALSE}
+```{r read-in-the-data}
 library(here)
 kwl_upper <- readxl::read_excel(here("analysis", "data", "raw_data", "Kiwulan_Ornament_Upper.xlsx"))
 ```
@@ -48,7 +48,7 @@ kwl_upper <- readxl::read_excel(here("analysis", "data", "raw_data", "Kiwulan_Or
 
 # Results
 
-```{r tidy-data, eval = FALSE}
+```{r tidy-data}
 # summarise the ornaments by layers
 library(tidyverse)
 library(ggplot2)
@@ -124,7 +124,7 @@ ggplot(transform(ornaments_count,
   theme_minimal(base_size = 14)
 ```
 
-```{r get-data, eval = FALSE}
+```{r get-data}
 # plot for intact golden bead by period
 ornaments_intact_gold <-
   ornaments_period %>% 
@@ -174,7 +174,16 @@ ggplot(ornaments_intact_agate,
   theme(plot.title = element_text(hjust=0.5))
 ```
 
-```{r get-data, eval = FALSE}
+```{r get-data}
+
+
+  ornaments_period %>% 
+  filter(Categories == 'Agate bead') %>% 
+  mutate(Type = ifelse(Type == c('prism/octagonal', 'prism/pentagonal'),
+                       'prism', Type)
+
+
+
 # plot for different shape of agate bead by period
 agate_bead_shape <-
   ornaments_period %>% 
