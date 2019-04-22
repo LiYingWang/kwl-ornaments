@@ -1,8 +1,8 @@
 ---
-title: "Title Goes Here"
+title: "Ornaments as indicators of Social change before and after European contact at Kiwulan, Northeastern Taiwan"
 author:
-  - Author One
-  - Author Two
+  - Li-Ying Wang
+  - Ben Marwick
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
     bookdown::html_document2:
@@ -33,22 +33,69 @@ knitr::opts_chunk$set(
 
 ```
 
-# Introduction
+# Introduction and Research Question
+ 
+Body ornaments are usually viewed as materials that convey social meaning or representations in a culture through the body as the scene to display (Joyce 2005). Foreign ornaments including glass beads, agate or carnelian beads, and metal objects first appear in Taiwan around 1,800 years ago through regional trade network in Southeast Asia (Wang and Liu 2007). Those new types of ornaments gradually replaced the earlier jade ornamental system in Taiwan during the Metal Age and reached a high peak of quantity and variety in the early 17th century when the Europeans arrived and involved the island in an international trade network on a large scale. Foreign trade goods introduced into the local indigenous societies in an European colonial or imperial contexts usually had an impact on local culture and societies in many parts of the world that usually involved in the transformation of indigenous economic, cultural, and socio-political systems (Dietler 1997; Junker 1993; Mitchell 2000; Silliman 2005). Contrary to as passive receptors of imperial power, the agency of indigenous people in the colonial contexts has been broadly discussed that stress active adoptions of foreign materials, negotiation between colonized and colonizer, and resistance of indigenous people through daily cultural practices (Given 2004; Mullins 2011; Silliman 2001; Rubertone 2000; Torrence 2000; Torrence and Clarke 2000; Voss 2005). 
 
-Here is a citation [@Marwick2017]
+Compared to other places in Asia and Oceania, the impact of European colonialism on indigenous communities in East Asia appears to have been much less pronounced. Direct colonial rule was rare, but the question of long-lasting indirect impacts on local communities remains unanswered. Indirect effects of colonialism is addressed recently to discuss the impact on the indigenous societies in the periphery of colonial control (Trabert 2017). Taiwan was colonized by the Spanish and the Dutch during the early 17th century, where Northeastern Taiwan is an especially unique example for discussing indirect effects due to its physically isolated location that made it not easily accessible to the Europeans that the colonial control was less compared to other parts of this region (Andrade 2007; Kang 2012). In addition, prior to the European contact, there were small-scale regional exchange networks between China and Taiwan. Also, northern Taiwan had been involved in long-distance networks of East Asia since 14th century, and encountered a large wave of Han Chinese migration in the 19th century. This made northeastern Taiwan a good case to explore culture contacts at different periods and their indirect impacts by taking a long-term perspective. 
 
-# Background
+We ask whether colonial influence on indigenous populations can be detected in ornaments recovered from the archaeological record at Kiwulan (1400-1900 AD), a large Iron Age settlement in northeastern Taiwan.  Our hypothesis is that there was a greater diversity of ornaments types and materials at Kiwulan after European contact. We hypothesize that after Chinese contact there was a decline in the production, use and discard of ornaments at Kiwulan. We hypothesise that there is no change in the spatial distribution of ornaments at Kiwulan relating to these international contacts. 
 
+<<<<<<< HEAD
 ```{r read-in-the-data, eval = TRUE}
+=======
+# Cultural context of Ornaments in Northeastern Taiwan
+
+Historical records from Spanish and Dutch provide rich information about the historical and cultural background both for Europeans and indigenous people in the early 17th century. Spanish occupied and built forts in Northern Taiwan since 1624, from which Spanish missionaries often went to indigenous settlement and left behind numerous records from those places. The report of the Dominican Jacinto Esquivel in 1632 mentioned that the Taparri, an indigenous tribe from northern Taiwan, usually used cuentas (agate beads) as a materials to exchange with necessities they need with other indigenous people. This trend then gradually spread to other areas, and even the Spanish soldiers used agate as bargaining chips for gambling, since agate equaled money (Li 2006: 132-149).  European contact was focused on trading with indigenous communities in northeastern Taiwan. Trading activity of many types of goode among these indigenous communities increased with the arrival of European colonisers. Thus, we predict that this trading activity resulted in an increase in the amount and diversity of ornaments coming into indigenous communities in northeastern Taiwan.
+
+Father Jacinto Esquivel recorded how people in Tamsui entered marriages. A man who wanted to take a wife had to give her parents cuentas. If a married man was found having cheated on his wife, he only had to pay the witness with agate or golden beads and the matter was settled (Li 2006: 151). Other records mention that the female shamans (majuorbol) in the tribe used agate beads for healing ceremonies in rituals (Pao 2008: 122, 143, 151). Regarding funerals, some indigenous people buried the dead under their houses or in the vicinity. They put a mat into the grave to protect the body from moisture and then put cooked rice on both sides of the head as provision. The deceased were buried in small graves with both knees bent, and on the grave they placed quivers with arrows, pottery, agate beads and other things that they would need. The greater the influence of the deceased, the more agate, pottery and cloths were placed on the grave (Li 2006: 153). 
+
+Documents from the Qing dynasty usually describe the decorative purposes of the ornaments. In the Kavalan Subprefecture Gazetteer (Chen 2006[1852]: 308), the Kavalan Zhi Lue (Ko 1993[1837]: 11, 126) and the Dong Cha Ji Lue (Yao 1996[1829]: 77), it is mentioned that aborigines in Yilan used metal threads to weave so called golden carp-shaped ornaments. Their number was small and their value high, hence only the rich possessed them. Ordinary people wore agate beads or glass beads on their head or neck during various festivals. In 1895, at the beginning of Japanese rule over Taiwan, Ino Kanori (Kanori 1996: 227-232) made field surveys among various ethnic groups in Taiwan. He describes the Plains Aborigines from Yilan as not using carp-shaped ornaments any more, but mentions that older people still use beads ornaments.
+
+Recent ethnographic research of the Kavalan tribe describes agate beads as used in divination ceremonies, the subli, by female shamans (Liu 2008: 133-134). Interview records describe agate beads as valuable objects passed down from mother to daughter. When they were not used, they were often put on roof beams so that they were not seen by other people. But the origin of these beads is still not known. Later, because they were bought by Japanese and people in Taipei, agate beads became rarer and rarer (Hsu 1992: 22) and carp-shaped ornaments had completely disappeared. Modern ethnographic research shows that agate beads were not only used as decoration, but also played an important role in divination. It was usually the female shamans that were responsible for divination rites, a technique passed down by ancestors. Most aborigines today don’t know the origin of agate beads any more, but their worth is still highlighted by oral history and through their scarcity. 
+
+Those historical documents from the early 17th century to the modern ethnography described how local indigenous people use those ornaments in local cultural contexts that represents some social roles or status. However, compared to European contact period, there is less mention of beads in Chinese contact period and the description about ornaments is only limited to their dressing culture.   
+
+# Kiwulan in northeastern Taiwan
+
+Kiwulan (Figure 1) is located at Yilan, north of Lanyang Plain in northeastern Taiwan, surrounded by the Central Mountain Range in the west and the Pacific Ocean in the east. Kiwulan was excavated from 2001 to 2004, and the total excavation area was 3,814 m2. Most beads were found during the excavation and some of them through screens with 20 mm and 1.5 mm mesh. The archaeological evidence includes a rich amount of artifacts, burials, middens, post holes, wooden pillars, and stone structures. The chronology of Kiwulan can be divided into Lower Layer Culture (700 - 1200 AD) and Upper Layer Culture (1400 - 1900 AD) with a sterile layer in between based on a series of 32 radiocarbon dates[a], which coordinate to the late Iron Age and Proto-historical period in Taiwan. This paper focuses on the Upper Layer Culture which overlaps with the contact periods with the Europeans and Chinese. It provides a good examples to discuss the foreign impacts on local indigenous society through body ornaments that usually convey social and cultural meaning by displaying.  
+  
+The earliest record of direct European contact with indigenous people in Yilan can be traced back to 1632, when the local settlements were attacked by the Spanish according to the official documents (add citation; Borao Mateo 2009). Later in 1647, the Dutch attacked the indigenous villages in Yilan and forced them to accept colonial rules and economic demands by paying annual tribute (add citation; Borao Mateo 2009). According to Dutch census reports in 1650, Kiwulan was the biggest indigenous community in the Yilan Plain, with a population of 840 adults (Chen 2007; Kang 2012; Li 2014). The diagnostic artifacts during European contact found at Kiwulan including An-ping jars and glass beads that were largely introduced to Taiwan during the early 17th century. 
+
+The European colonization ended in 1662 when they were defeated by the kingdom of Tungning found by Koxinga from China. Later in 1683, the Qing dynasty ruled over Taiwan and a large wave of Han Chinese migrated to Yilan during the late 18th century. The evidence of Chinese migration can be identified from Chinese official records [b]and large amount of Chinese blue-and-white porcelain found at Kiwulan.[c]
+
+The ornaments sampled in this study come from 40 adjacent 4m x 4m units out of 262 units in total since those sampled units were less disturbed by modern constructions and remains intact. The Upper Layer Culture can be divided into six sub layers spanning from 14 century to 19 century according to current radiocarbon dates, excavation depth, types of ceramics, and sediment texture and color (Hsieh 2008; Wang 2011). Layers are assigned numbers from 1 to 6 for which L1 corresponds to the upper context and L6, also the bottom layer, refers to lower context. Based on Hsieh’s (2008) chronological study of Chinese porcelains, L5 and L6 represent pre-European contact period, L4 was the time of European contact, and L2 and L1 was the period of Chinese contact. 
+
+Graph of 40 units and chronology
+
+In general, intact ornaments with clear context were mostly found in burials that helps to understand how people wear them and any relationships between shapes of ornaments and gender or age. In addition to burials, ornaments were also found in middens and living space that can be identified by post holes. The frequency of ornaments from burials is more than those from the living space due to well preserved condition. There is a wide variety of raw materials for ornaments of which ornaments glass, agate and metal ornaments that account for 99% of all ornaments were thought to be introduced by trading with the Europeans and Chinese traders, while ornaments made of shells, woods, and bones were believed locally made that is about only about 1% of all ornaments (Table 1) . The reason for the large quantity of glass beads is that they usually have been found in clusters because of the original form such as necklaces. The shape of ornaments include beads, bracelets, rings, bells, pendants, and knitted objects that shows shape are closely related to raw material due to its characteristic. For example, beads are only made of glass, agate, and shell, and bone is the main material for knitted objects that used to connect beads. Also, metal ornaments covers more shapes such bells, pendants, and rings  (Chen 2007). 
+
+# Results
+
+This research compares the chronological and spatial distribution of trade ornaments during different time periods with foreign contacts, including European and Chinese Contacts. The principle of classification for ornaments is based on the material and shape that was used in the excavation report. For quantitative comparison between different time periods, minor types of ornaments with similar shapes from the same material are combined as one category that will be explained in each material section. The results are presented by the general distribution across the 40 sample squares, followed by each major types of materials from three analytical units that are before European contact, during European contact, and Chinese contact.  
+
+chronological distribution
+
+Sketch of results section, should have some graphs and tables for these: 
+
+1. Overall summary of  Raw material, shape/type and counts of ornaments
+2. Ornaments by: 
+ - time period
+ -- for each time period, spatial patterning
+
+
+```{r read-in-the-data}
+>>>>>>> 2e93107551460aba7536abe8fe4ba4ed85208ea3
 library(here)
 kwl_upper <- readxl::read_excel(here("analysis", "data", "raw_data", "Kiwulan_Ornament_Upper.xlsx"))
 ```
 
-# Methods
 
-# Results
-
+<<<<<<< HEAD
 ```{r tidy-data, eval = TRUE}
+=======
+```{r tidy-data}
+>>>>>>> 2e93107551460aba7536abe8fe4ba4ed85208ea3
 # summarise the ornaments by layers
 library(tidyverse)
 library(ggplot2)
@@ -132,6 +179,7 @@ ggplot(ornaments_count) +
 ```
 
 ```{r scatter-plot-bead-by-period}
+
 # plot for intact golden bead by period
 ornaments_intact_gold <-
   ornaments_period %>% 
@@ -167,6 +215,7 @@ ggplot(ornaments_intact_agate,
   theme_minimal() +
   theme(plot.title = element_text(hjust=0.5))
 ```
+
 
 ```{r plot-count-type-by-period}
 # plot for different shape of agate bead by period
@@ -266,7 +315,11 @@ ggplot(ornaments_intact_ring) +
   theme(plot.title = element_text(hjust=0.5))
 ```
 
+<<<<<<< HEAD
 ```{r read-in-the-spatial-data, eval = TRUE}
+=======
+```{r read-in-the-spatial-data}
+>>>>>>> 2e93107551460aba7536abe8fe4ba4ed85208ea3
 library(sf)
 library(cartography)
 burial <- st_read(here("analysis", "data", "raw_data", "AD_burial.shp"))
@@ -276,7 +329,11 @@ location <- st_read(here("analysis", "data", "raw_data", "location.shp"))
 units_40 <- read.csv(here("analysis", "data", "raw_data", "kwl-list-of-sampling-squares.csv"))
 ```
 
+<<<<<<< HEAD
 ```{r tidy-data2, eval = TRUE}
+=======
+```{r tidy-data2}
+>>>>>>> 2e93107551460aba7536abe8fe4ba4ed85208ea3
 # 40 sampling units
 sample_units <-
   AD_data %>% 
