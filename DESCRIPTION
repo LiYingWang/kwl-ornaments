@@ -11,8 +11,14 @@ License: MIT + file LICENSE
 ByteCompile: true
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/LiYingWang/master.paper
-BugReports: https://github.com/LiYingWang/master.paper/issues
+URL: https://github.com/LiYingWang/kwl-ornaments
+BugReports: https://github.com/LiYingWang/kwl-ornaments/issues
 Imports: 
     bookdown,
-    dplyr
+    here,
+    tidyverse, 
+    sf,
+    cartography,
+    gganimate,
+    git2r,
+    devtools
