@@ -39,7 +39,7 @@ Body ornaments are usually viewed as materials that convey social meaning or rep
 
 Compared to other places in Asia and Oceania, the impact of European colonialism on indigenous communities in East Asia appears to have been much less pronounced. Direct colonial rule was rare, but the question of long-lasting indirect impacts on local communities remains unanswered. Indirect effects of colonialism is addressed recently to discuss the impact on the indigenous societies in the periphery of colonial control (Trabert 2017). Taiwan was colonized by the Spanish and the Dutch during the early 17th century, where Northeastern Taiwan is an especially unique example for discussing indirect effects due to its physically isolated location that made it not easily accessible to the Europeans that the colonial control was less compared to other parts of this region (Andrade 2007; Kang 2012). In addition, prior to the European contact, there were small-scale regional exchange networks between China and Taiwan. Also, northern Taiwan had been involved in long-distance networks of East Asia since 14th century, and encountered a large wave of Han Chinese migration in the 19th century. This made northeastern Taiwan a good case to explore culture contacts at different periods and their indirect impacts by taking a long-term perspective. 
 
-We ask whether colonial influence on indigenous populations can be detected in ornaments recovered from the archaeological record at Kiwulan (1400-1900 AD), a large Iron Age settlement in northeastern Taiwan.  Our hypothesis is that there was a greater diversity of ornaments types and materials at Kiwulan after European contact. We hypothesise that after Chinese contact there was a decline in the production, use and discard of ornaments at Kiwulan. We hypothesise that there is no change in the spatial distribution of ornaments at Kiwulan relating to these international contacts. 
+We ask whether colonial influence on indigenous populations can be detected in ornaments recovered from the archaeological record at Kiwulan (1400-1900 AD), a large Iron Age settlement in northeastern Taiwan.  Our hypothesis is that there was a greater diversity of ornaments types and materials at Kiwulan after European contact. We hypothesize that after Chinese contact there was a decline in the production, use and discard of ornaments at Kiwulan. We hypothesise that there is no change in the spatial distribution of ornaments at Kiwulan relating to these international contacts. 
 
 # Cultural context of Ornaments in Northeastern Taiwan
 
@@ -73,10 +73,12 @@ This research compares the chronological and spatial distribution of trade ornam
 
 chronological distribution
 
-Sketch of results section: 
-H1
-   1. We compare Raw material, shape/type and counts of ornaments in three time periods, and by spatial distribution 
-   2. 
+Sketch of results section, should have some graphs and tables for these: 
+
+1. Overall summary of  Raw material, shape/type and counts of ornaments
+2. Ornaments by: 
+ - time period
+ -- for each time period, spatial patterning
 
 
 ```{r read-in-the-data}
