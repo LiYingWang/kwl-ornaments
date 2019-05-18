@@ -5,7 +5,7 @@ author:
   - Ben Marwick
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
-    bookdown::html_document2:
+    bookdown::word_document2:
       fig_caption: yes
       reference_docx: "../templates/template.docx" # Insert path for the DOCX file
 bibliography: references.bib
@@ -117,7 +117,7 @@ sample_pro <- sample_size/total_AD
 # Results
 
 1. Overall summary of  Raw material, shape/type and counts of ornaments
-There are `r sample_size` ornaments excavated from the 40 sampling squares, which accounts for `r sample_pro`% of the total number of ornaments found in the excavation section where they were from. Figure \@ref(fig:plot-all-ornaments-count) shows that the most common ornament is golden bead with the number of 143, followed by 121 glass beads, 46 agate beads, 35 metal rings, and 22 metal bells. Ornaments in some categories are divided into sub-types due to the variations of shape, such as agate bead, metal ring, and metal bell. Table ? shows the subtypes for the major ornaments. 
+There are `r sample_size` ornaments excavated from the 40 sampling squares, which accounts for `r sample_pro`% of the total number of ornaments found in the excavation section where they were from. Figure \@ref(fig:plot-all-ornaments-count) shows that the most common ornament is golden bead with the number of 143, followed by 121 glass beads, 46 agate beads, 35 metal rings, and 22 metal bells. Ornaments in some categories are divided into sub-types due to the variations of shape, such as agate bead, metal ring, and metal bell. Table \@ref(tab:tab-all) shows the subtypes for the major ornaments. 
 
 To investigate whether the types of ornaments changes resulted from culture contact and how they changed, we compare ornaments from pre-European, European contact period, and Chinese contact period. The results a general pattern that most ornaments appeared in the pre-European contact period, reached a peak in quantity during the European contact and dropped down during the Chinese contact. This trend can be seen on the ornaments including golden bead, agate bead, metal ring, and bell. However, glass bead shows different pattern that higher frequency in the pre-European contact, and then the quantity goes down over time in the European and Chinese contact periods.       
   
@@ -154,19 +154,32 @@ ggplot(ornaments_count,
   theme_minimal(base_size = 14)
 ```
 
-```{r tab-all}
+```{r taball}
+# clean some 
+ornaments_period_clean <- 
+ornaments_period %>% 
+  mutate(Type = str_remove(Type, "prism/"),
+         Type = ifelse(Type == "glass bead", "medium bead", Type))
+
 ornaments_shape <-
-  ornaments_period %>% 
-  ungroup() %>% 
-  select(Categories, Type) %>% 
-  distinct(Categories, Type, .keep_all = TRUE) %>% 
-  filter(Categories != c("Unknown Metal", "Bone Ornament"))
+  ornaments_period_clean %>% 
+  group_by(period, Categories, Type ) %>% 
+  tally() %>% 
+  spread(period, n, fill = 0) %>% 
+  filter(!Categories %in% c("Unknown Metal", 
+                           
+                            "Perforated plate", 
+                            "Knited item",
+                            "Hair pin",
+                            "Bone Ornament",
+                            "Metal Piece",
+                            "Glass ring"))
 
 knitr::kable(ornaments_shape)
 ```
 
 
-
+Table \@ref(tab:taball) shows the subtypes for the major ornaments. 
 
 
 %>% 
