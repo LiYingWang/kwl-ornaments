@@ -35,9 +35,9 @@ knitr::opts_chunk$set(
 
 # Introduction and Research Question
  
-Body ornaments are usually viewed as materials that convey social meaning or representations in a culture through the body as the scene to display (Joyce 2005). Foreign ornaments including glass beads, agate or carnelian beads, and metal objects first appear in Taiwan around 1,800 years ago through regional trade network in Southeast Asia (Wang and Liu 2007). Those new types of ornaments gradually replaced the earlier jade ornamental system in Taiwan during the Metal Age and reached a high peak of quantity and variety in the early 17th century when the Europeans arrived and involved the island in an international trade network on a large scale. Foreign trade goods introduced into the local indigenous societies in an European colonial or imperial contexts usually had an impact on local culture and societies in many parts of the world that usually involved in the transformation of indigenous economic, cultural, and socio-political systems (Dietler 1997; Junker 1993; Mitchell 2000; Silliman 2005). Contrary to as passive receptors of imperial power, the agency of indigenous people in the colonial contexts has been broadly discussed that stress active adoptions of foreign materials, negotiation between colonized and colonizer, and resistance of indigenous people through daily cultural practices (Given 2004; Mullins 2011; Silliman 2001; Rubertone 2000; Torrence 2000; Torrence and Clarke 2000; Voss 2005). 
+Body ornaments are usually viewed as materials that convey social meaning or representations in a culture through the body as the scene to display [@Joyce2005]. Foreign ornaments including glass beads, agate or carnelian beads, and metal objects first appear in Taiwan around 1,800 years ago through regional trade network in Southeast Asia [@WangandLiu2007]. Those new types of ornaments gradually replaced the earlier jade ornamental system in Taiwan during the Metal Age and reached a high peak of quantity and variety in the early 17th century when the Europeans arrived and involved the island in an international trade network on a large scale. Foreign trade goods introduced into the local indigenous societies in an European colonial or imperial contexts usually had an impact on local culture and societies in many parts of the world that usually involved in the transformation of indigenous economic, cultural, and socio-political systems (Dietler 1997; Junker 1993; Mitchell 2000; Silliman 2005). Contrary to as passive receptors of imperial power, the agency of indigenous people in the colonial contexts has been broadly discussed that stress active adoptions of foreign materials, negotiation between colonized and colonizer, and resistance of indigenous people through daily cultural practices (Given 2004; Mullins 2011; Silliman 2001; Rubertone 2000; Torrence 2000; Torrence and Clarke 2000; Voss 2005). 
 
-Compared to other places in Asia and Oceania, the impact of European colonialism on indigenous communities in East Asia appears to have been much less pronounced. Direct colonial rule was rare, but the question of long-lasting indirect impacts on local communities remains unanswered. Indirect effects of colonialism is addressed recently to discuss the impact on the indigenous societies in the periphery of colonial control (Trabert 2017). Taiwan was colonized by the Spanish and the Dutch during the early 17th century, where Northeastern Taiwan is an especially unique example for discussing indirect effects due to its physically isolated location that made it not easily accessible to the Europeans that the colonial control was less compared to other parts of this region (Andrade 2007; Kang 2012). In addition, prior to the European contact, there were small-scale regional exchange networks between China and Taiwan. Also, northern Taiwan had been involved in long-distance networks of East Asia since 14th century, and encountered a large wave of Han Chinese migration in the 19th century. This made northeastern Taiwan a good case to explore culture contacts at different periods and their indirect impacts by taking a long-term perspective. 
+Compared to other places in Asia and Oceania, the impact of European colonialism on indigenous communities in East Asia appears to have been much less pronounced. Direct colonial rule was rare, but the question of long-lasting indirect impacts on local communities remains unanswered. Indirect effects of colonialism is addressed recently to discuss the impact on the indigenous societies in the periphery of colonial control [@Trabert2017]. Taiwan was colonized by the Spanish and the Dutch during the early 17th century, where Northeastern Taiwan is an especially unique example for discussing indirect effects due to its physically isolated location that made it not easily accessible to the Europeans that the colonial control was less compared to other parts of this region (Andrade 2007; Kang 2012). In addition, prior to the European contact, there were small-scale regional exchange networks between China and Taiwan. Also, northern Taiwan had been involved in long-distance networks of East Asia since 14th century, and encountered a large wave of Han Chinese migration in the 19th century. This made northeastern Taiwan a good case to explore culture contacts at different periods and their indirect impacts by taking a long-term perspective. 
 
 We ask whether colonial influence on indigenous populations can be detected in ornaments recovered from the archaeological record at Kiwulan (1400-1900 AD), a large Iron Age settlement in northeastern Taiwan.  Our hypothesis is that there was a greater diversity of ornaments types and materials at Kiwulan after European contact. We hypothesize that after Chinese contact there was a decline in the production, use and discard of ornaments at Kiwulan. We hypothesise that there is no change in the spatial distribution of ornaments at Kiwulan relating to these international contacts. 
 
@@ -66,31 +66,18 @@ The ornaments sampled in this study come from 40 adjacent 4m x 4m units out of 2
 
 Graph of 40 units and chronology
 
-In general, intact ornaments with clear context were mostly found in burials that helps to understand how people wear them and any relationships between shapes of ornaments and gender or age. In addition to burials, ornaments were also found in middens and living space that can be identified by post holes. The frequency of ornaments from burials is more than those from the living space due to well preserved condition. There is a wide variety of raw materials for ornaments of which ornaments glass, agate and metal ornaments that account for 99% of all ornaments were thought to be introduced by trading with the Europeans and Chinese traders, while ornaments made of shells, woods, and bones were believed locally made that is about only about 1% of all ornaments (Table 1) . The reason for the large quantity of glass beads is that they usually have been found in clusters because of the original form such as necklaces. The shape of ornaments include beads, bracelets, rings, bells, pendants, and knitted objects that shows shape are closely related to raw material due to its characteristic. For example, beads are only made of glass, agate, and shell, and bone is the main material for knitted objects that used to connect beads. Also, metal ornaments covers more shapes such bells, pendants, and rings  (Chen 2007). 
+In general, complete ornaments with clear context were mostly found in burials that helps to understand how people wear them and any relationships between shapes of ornaments and gender or age. In addition to burials, ornaments were also found in middens and living space that can be identified by post holes. The frequency of ornaments from burials is more than those from the living space due to well preserved condition. There is a wide variety of raw materials for ornaments of which ornaments glass, agate and metal ornaments that account for 99% of all ornaments were thought to be introduced by trading with the Europeans and Chinese traders, while ornaments made of shells, woods, and bones were believed locally made that is about only about 1% of all ornaments (Table 1) . The reason for the large quantity of glass beads is that they usually have been found in clusters because of the original form such as necklaces. The shape of ornaments include beads, bracelets, rings, bells, pendants, and knitted objects that shows shape are closely related to raw material due to its characteristic. For example, beads are only made of glass, agate, and shell, and bone is the main material for knitted objects that used to connect beads. Also, metal ornaments covers more shapes such bells, pendants, and rings  (Chen 2007). 
 
-# Results
+# Methods
 
-This research compares the chronological and spatial distribution of trade ornaments during different time periods with foreign contacts, including European and Chinese Contacts. The principle of classification for ornaments is based on the material and shape that was used in the excavation report. For quantitative comparison between different time periods, minor types of ornaments with similar shapes from the same material are combined as one category that will be explained in each material section. The results are presented by the general distribution across the 40 sample squares, followed by each major types of materials from three analytical units that are before European contact, during European contact, and Chinese contact.  
-
-chronological distribution
-
-Sketch of results section, should have some graphs and tables for these: 
-
-1. Overall summary of  Raw material, shape/type and counts of ornaments
-2. Ornaments by: 
- - time period
- -- for each time period, spatial patterning
-
+To explore whether body ornaments can reflect the colonial influences on indigenous populations, this research exmines the frequency and spatial distribution of trade ornaments at Kiwulan during different time periods with foreign contacts, including European and Chinese contacts. Trade ornaments were analyzed by three analytical units, including pre-European contact, European contact, and Chinese contact. Because the appearance of ornament is highly correlated to the raw material itself, which is selected as the first criteria for classification. Under each category of raw material, ornaments are further classified into subtypes according to shapes when variation are found in each category. To compare the general pattern of changes in major ornaments, less frequent ornaments are combined as one category named other, which will be discussed separately. 
 
 ```{r read-in-the-data}
 library(here)
 kwl_upper <- readxl::read_excel(here("analysis", "data", "raw_data", "Kiwulan_Ornament_Upper.xlsx"))
 ```
 
-
-
 ```{r tidy-data, eval = TRUE}
-
 # summarise the ornaments by layers
 library(tidyverse)
 library(ggplot2)
@@ -111,27 +98,45 @@ kwl_upper %>%
   filter(period != "other") %>% 
   mutate(period = factor(period,
                        level = c("Before European Contact", 
-                                                "European Contact", 
-                                                "Chinese Contact"))) %>% 
+                                 "European Contact", 
+                                 "Chinese Contact"))) %>% 
   mutate(Length = as.numeric(`Length(mm)`),
          Thick = as.numeric(`Thick(mm)`),
          Width = as.numeric(`Width(mm)`),
          Perforation1 = as.numeric(`Perforation1(mm)`)) %>% 
   rowwise() %>% 
-  mutate(Perforation_average = mean(c(`Perforation1`, `Perforation2(mm)`), 
-                               na.rm = TRUE))
+  mutate(Perforation_average =
+           mean(c(`Perforation1`,`Perforation2(mm)`), 
+                na.rm = TRUE))
+
+sample_size <- nrow(ornaments_period)
+total_AD <- nrow(kwl_upper)
+sample_pro <- sample_size/total_AD
 ```
 
+# Results
 
-```{r plot-counts}
+1. Overall summary of  Raw material, shape/type and counts of ornaments
+There are `r sample_size` ornaments excavated from the 40 sampling squares, which accounts for `r sample_pro`% of the total number of ornaments found in the excavation section where they were from. Figure \@ref(fig:plot-all-ornaments-count) shows that the most common ornament is golden bead with the number of 143, followed by 121 glass beads, 46 agate beads, 35 metal rings, and 22 metal bells. Ornaments in some categories are divided into sub-types due to the variations of shape, such as agate bead, metal ring, and metal bell. Table ? shows the subtypes for the major ornaments. 
+
+To investigate whether the types of ornaments changes resulted from culture contact and how they changed, we compare ornaments from pre-European, European contact period, and Chinese contact period. The results a general pattern that most ornaments appeared in the pre-European contact period, reached a peak in quantity during the European contact and dropped down during the Chinese contact. This trend can be seen on the ornaments including golden bead, agate bead, metal ring, and bell. However, glass bead shows different pattern that higher frequency in the pre-European contact, and then the quantity goes down over time in the European and Chinese contact periods.       
+  
+
+2. Ornaments by: 
+ - time period
+ 
+ 
+ 
+ - for each time period, spatial patterning
+
+```{r plot-all-ornaments-count, fig.cap= "Frequency of ornaments"}
 # need to reorder, try https://forcats.tidyverse.org/reference/index.html
 # reorder factor for categories (by frequency) and period (manually)
 # total number of ornaments for each categories 
 
-ornaments_count_test <-
+ornaments_count <-
   ornaments_period %>% 
-  filter(!is.na(`6-layers`),
-         Categories != "Unknown Metal") %>%
+  filter(Categories != "Unknown Metal") %>%
   ungroup() %>% # need to upgroup because of rowwise or factor in previous chunk?
   mutate(Categories = fct_lump(Categories, 
                                n = 5)) %>% 
@@ -140,7 +145,7 @@ ornaments_count_test <-
   ungroup() %>% 
   mutate(Categories = fct_reorder(Categories, n))
 
-ggplot(ornaments_count_test,
+ggplot(ornaments_count,
        aes(Categories, n)) +
   geom_col() +
   coord_flip() +
@@ -149,6 +154,31 @@ ggplot(ornaments_count_test,
   theme_minimal(base_size = 14)
 ```
 
+```{r tab-all}
+ornaments_shape <-
+  ornaments_period %>% 
+  ungroup() %>% 
+  select(Categories, Type) %>% 
+  distinct(Categories, Type, .keep_all = TRUE) %>% 
+  filter(Categories != c("Unknown Metal", "Bone Ornament"))
+
+knitr::kable(ornaments_shape)
+```
+
+
+
+
+
+%>% 
+  spread(Categories, value)
+ 
+
+ filter(Categories != "Unknown Metal") %>% 
+%>% 
+  mutate(Categories = factor(Categories,
+                         level = c("Agate bead", 
+                                 "European Contact", 
+                                 "Chinese Contact"))) %>% 
 
 ```{r plot-counts-by-period}
 # categories of ornaments by period
@@ -174,7 +204,6 @@ ggplot(ornaments_count) +
 ```
 
 ```{r scatter-plot-bead-by-period}
-
 # plot for intact golden bead by period
 ornaments_intact_gold <-
   ornaments_period %>% 
@@ -210,7 +239,6 @@ ggplot(ornaments_intact_agate,
   theme_minimal() +
   theme(plot.title = element_text(hjust=0.5))
 ```
-
 
 ```{r plot-count-type-by-period}
 # plot for different shape of agate bead by period
