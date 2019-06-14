@@ -40,20 +40,6 @@ Compared to other places in Asia and Oceania, the impact of European colonialism
 
 We ask whether colonial influence on indigenous populations can be detected in ornaments recovered from the archaeological record at Kiwulan (1400-1900 AD), a large Iron Age settlement in northeastern Taiwan. Our hypothesis is that there was a greater diversity of ornaments types and materials at Kiwulan after European contact due to the large scale exchange network. We hypothesize that after Chinese contact there was a decline in the production, use and discard of ornaments at Kiwulan. We hypothesize that there is no change in the spatial distribution of ornaments at Kiwulan relating to these international contacts. 
 
-Q: Is the difference in the frequency of ornaments related to the scale of exchange network, does it show any spatial pattern at Kiwulan that indicate the appearance of social inequality.
-
-Q: what is the scale of those exchange network: 
-- pre-European contact: middle scale, regional trade network 
-- European contact: global scale, international trade network 
-- Chinsese contact: small scale, mutual trade network
-
-Q: Is the difference in the frequency of ornaments related to the intensity of contact, does it show any spatial pattern at Kiwulan that indicate the appearance of social inequality.
-- pre-European contact: indirect 
-- European contact: indirect, colonial context
-- Chinsese contact: direct, Han people migration
-
- and intense of contact
-
 # Cultural context of Ornaments in Northeastern Taiwan
 
 <--Add a paragraph about exchange network before European contact-->
@@ -255,7 +241,7 @@ ggplot(ornaments_intact_agate,
   theme(plot.title = element_text(hjust=0.5))
 ```
 
-```{r plot-count-type-by-period}
+```{r tidy-shape-by-period}
 # tidy the data with categories and shapes
 ornaments_shape_count <-
   ornaments_period_clean %>% 
@@ -268,68 +254,86 @@ ornaments_shape_count <-
                             "Bone Ornament",
                             "Metal Piece",
                             "Glass ring",
-                            "Golden bead"))
+                            "Golden bead"))  %>% 
+  ungroup() %>% 
+  mutate(Type = as.factor(Type)) 
+```
 
+```{r agate-bead-fre-plot}
 # plot for different shape of agate bead by period
 agate_bead_shape <-
-  ornaments_period %>% 
-  filter(Categories == 'Agate bead') %>%
-  ungroup() %>% 
-  mutate(Type = ifelse(Type == 'prism/octagonal', 
-                       str_remove(Type, '/octagonal'), Type)) %>% 
-  mutate(Type = ifelse(Type == 'prism/pentagonal', 
-                       str_remove(Type, '/pentagonal'), Type)) %>% 
-  mutate(Type = ifelse(Type == 'prism/hexagonal', 
-                       str_remove(Type, 'prism/'), Type)) %>%
-  mutate(Type = fct_infreq(Type)) %>%
-  mutate(Type = fct_rev(Type)) %>% 
-  group_by(period, Type) %>% 
-  count()
+  ornaments_shape_count %>% 
+  filter(Categories == 'Agate bead')
 
+agate_bead_shape_plot <- 
 ggplot(agate_bead_shape) +
-  geom_col(aes(Type, n)) +
+  geom_col(aes(reorder(Type, n), n)) +
   facet_wrap(~ period) +
   coord_flip() +
   labs(y = "Frequency",
        x = "Shape of Agate bead") +
   theme_minimal(base_size = 14)
+```
 
-# plot for different shape of metal bell by period
-bell_shape <-
-  ornaments_period %>% 
-  filter(Categories == 'Bell',
-         Type != 'unclassified') %>% 
-  ungroup() %>% 
-  mutate(Type = fct_rev(Type)) %>% 
-  group_by(period, Type) %>% 
-  count()
-
-ggplot(bell_shape) +
-  geom_col(aes(Type, n)) +
-  facet_wrap(~ period) +
-  coord_flip() +
-  labs(y = "Frequency",
-       x = "Shape of Bell") +
-  theme_minimal(base_size = 14)
-
+```{r metal-fre-plot}
 # plot for different shape of metal ring by period
 ring_shape <-
-  ornaments_period %>% 
-  filter(Categories == 'Metal ring') %>%
-  ungroup() %>% 
-  mutate(Type = fct_infreq(Type)) %>%
-  mutate(Type = fct_rev(Type)) %>% 
-  group_by(period, Type) %>% 
-  count()
+  ornaments_shape_count %>% 
+  filter(Categories == 'Metal ring')
 
+ring_shape_plot <-
 ggplot(ring_shape) +
-  geom_col(aes(Type, n)) +
+  geom_col(aes(reorder(Type, n), n)) +
   facet_wrap(~ period) +
   coord_flip() +
   labs(y = "Frequency",
        x = "Shape of Metal ring") +
   theme_minimal(base_size = 14)
 ```
+
+```{r bell-fre-plot}
+# plot for different shape of metal bell by period
+bell_shape <-
+  ornaments_shape_count %>% 
+  filter(Categories == 'Bell',
+         Type != 'unclassified')
+
+bell_shape_plot <-
+ggplot(bell_shape) +
+  geom_col(aes(reorder(Type,n), n)) +
+  facet_wrap(~ period) +
+  coord_flip() +
+  labs(y = "Frequency",
+       x = "Shape of Bell") +
+  theme_minimal(base_size = 14)
+```
+
+```{r glass-bead-fre-plot}
+# plot for different shape of glass bead by period
+glass_bead_shape <-
+  ornaments_shape_count %>% 
+  filter(Categories == 'Glass bead')
+
+glass_bead_plot <-
+ggplot(glass_bead_shape) +
+  geom_col(aes(Type, n)) +
+  facet_wrap(~ period) +
+  coord_flip() +
+  labs(y = "Frequency",
+       x = "Shape of Glass Bead") +
+  theme_minimal(base_size = 14)
+```
+
+
+```{r}
+library(cowplot)
+plot_grid(agate_bead_shape_plot, ring_shape_plot,
+          labels = c("A", "B"))
+
+plot_grid(bell_shape_plot, glass_bead_plot,
+          labels = c("C", "D"))
+```
+
 
 ```{r scatter-plot-metal-by-period}
 # plot for intact bell by period
@@ -482,6 +486,20 @@ anim_gold_bead_spatial <-
 ```
 
 # Discussion
+
+Q: Is the difference in the frequency of ornaments related to the scale of exchange network, does it show any spatial pattern at Kiwulan that indicate the appearance of social inequality.
+
+Q: what is the scale of those exchange network: 
+- pre-European contact: middle scale, regional trade network 
+- European contact: global scale, international trade network 
+- Chinese contact: small scale, mutual trade network
+
+Q: Is the difference in the frequency of ornaments related to the intensity of contact, does it show any spatial pattern at Kiwulan that indicate the appearance of social inequality.
+- pre-European contact: indirect 
+- European contact: indirect, colonial context
+- Chinese contact: direct, Han people migration
+
+ and intense of contact
 
 # Conclusion
 
