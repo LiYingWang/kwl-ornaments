@@ -142,7 +142,8 @@ ornaments_period %>%
   mutate(Type = str_remove(Type, "prism/"),
          Type = ifelse(Type == "glass bead", "medium bead", Type),
          Type = ifelse(Type == "small I", "plain small", Type),
-         Type = ifelse(Type == "small II", "thin small", Type))
+         Type = ifelse(Type == "small II", "thin small", Type),
+         Type = ifelse(Type == "large thin string", "thin large", Type))
 
 ornaments_shape <-
   ornaments_period_clean %>% 
@@ -166,20 +167,6 @@ knitr::kable(ornaments_shape,
 To explore whether body ornaments can reflect the colonial influences on indigenous populations, this research examines the frequency and spatial distribution of trade ornaments at Kiwulan during different time periods with foreign contacts, including European and Chinese contacts. Trade ornaments were analyzed by three analytical units including pre-European contact, European contact, and Chinese contact that indicates three scale of exchange network from less to intense contact subsequently. Because the appearance of ornaments is highly related to the original raw material couple with the function such as bead and bracelet, they are combined as the first criterion of classification which determines five major categories. Under each category of raw material, ornaments are further classified into several subtype according to the shape if any variations were identified in each category. In order to compare the general pattern of changes for major ornaments, less frequent ornaments are combined as one category named other, which will be discussed separately. 
 
 Ornaments with clear contexts were mainly found from the post-hole area, burials, and middens, where ornaments from the post-hole area accounts for the majority of the amount in total. Post-hole area is also the contexts that we mainly focus on because it represents house units accross the site that can further provide a basis for comparison to see if there is any spatial pattern of distribution. Ornaments from middens and burials will also be discussed in the later section. For the post-hole area, there were `r sample_size` ornaments recovered from the 40 sampling squares, which accounts for `r sample_pro`% of the total number of ornaments found in the same excavation section including all contexts. Figure \@ref(fig:plot-all-ornaments-count) shows that the most common ornament is golden bead with the number of 143, followed by 121 glass beads, 46 agate beads, 35 metal rings, and 22 metal bells. Ornaments in most categories can be divided into sub-types according to the variation of shape. The variation was defined by the difference identified in at least two variables, for example dimensional variables such as length, or stylish variables such as patterns. The frequency and feature of subtypes for major categories are summarized in \@ref(tab:tidy-data-for-table).
-
-# Results
-
-## Frequency between time periods
-
-The results of the comparison between different time periods show a general pattern that most ornaments appeared in the pre-European contact period and the frequencies reached a peak during the European contact and then dropped during the Chinese contact period, especially for golden beads. This trend can be also seen on other ornaments including agate bead, metal ring, and bell. However, glass bead shows a different pattern that indicates a higher frequency in the pre-European contact, and then the frequency decreased in the European contact period and even less in the Chinese contact period.
-
-The distribution of frequency for subtypes in each major category are presented in (make a figure to combine all). Agate beads can be divided into 7 subtypes, in which hexagonal shape is the most common subtype that appeared before European contact and the number increased in the Eruopean contact and then declined in the Chinese contact. Small oval type shows similar frequency before and during European contact but not found in the Chinese contact period, while waxy oval bead only found during European contact period. There are more subtypes of agate beads during European contact compared to other time periods. For golden bead, we focus on their length 
-
-## Frequency for spatial pattern
-2. Ornaments by: 
- - time period
- 
- - for each time period, spatial patterning
 
 ```{r plot-counts-by-period}
 # categories of ornaments by period
@@ -263,7 +250,8 @@ ornaments_shape_count <-
 # plot for different shape of agate bead by period
 agate_bead_shape <-
   ornaments_shape_count %>% 
-  filter(Categories == 'Agate bead')
+  filter(Categories == 'Agate bead',
+         Type != 'other')
 
 agate_bead_shape_plot <- 
 ggplot(agate_bead_shape) +
@@ -279,7 +267,9 @@ ggplot(agate_bead_shape) +
 # plot for different shape of metal ring by period
 ring_shape <-
   ornaments_shape_count %>% 
-  filter(Categories == 'Metal ring')
+  filter(Categories == 'Metal ring',
+         !Type %in% c('large thick string',
+                       'small thin string'))
 
 ring_shape_plot <-
 ggplot(ring_shape) +
@@ -324,18 +314,25 @@ ggplot(glass_bead_shape) +
   theme_minimal(base_size = 14)
 ```
 
-
-```{r}
+```{r plot-altogether, fig.cap= "Frequency of "}
 library(cowplot)
 plot_grid(agate_bead_shape_plot, ring_shape_plot,
-          labels = c("A", "B"))
-
-plot_grid(bell_shape_plot, glass_bead_plot,
-          labels = c("C", "D"))
+          bell_shape_plot, glass_bead_plot,
+          labels = c("A", "B", "C", "D"), ncol=2)
 ```
+# Results
 
+## Frequency between time periods
+The results of the comparison between different time periods show a general pattern that most ornaments appeared in the pre-European contact period and the frequencies reached a peak during the European contact and then dropped during the Chinese contact period, especially for golden beads. This trend can be also seen on other ornaments including agate bead, metal ring, and bell. However, glass bead shows a different pattern that indicates a higher frequency in the pre-European contact, and then the frequency decreased in the European contact period and even less in the Chinese contact period.
 
-```{r scatter-plot-metal-by-period}
+The distribution of frequency for subtypes in each major category are presented in \@ref(fig:plot-all-ornaments-count). The distribution shows that agate beads and metal rings have greater quantity and variety of shapes compared to copper bell and glass beads during the European contact period. Agate beads can be divided into eight subtypes, in which hexagonal shape is the most common subtype that appeared before European contact and increased during the European contact and then declined in the Chinese contact. Small oval type shows similar frequency before and during European contact but not found in the Chinese contact period, while waxy oval bead only found during European contact period. There are more subtypes of agate beads during European contact compared to other time periods. Similarly metal rings can be classified into seven subtypes, in which wide small ring is the most common metal ornaments, followed by wide large and thin large shape. The greater varieties for those two categories might indicate the multiple sources due to global trade network brought by the Europeans. In contrast, copper bell and glass bead have smaller variety, but glass bead has larger number due to they were usually found in a cluster that reflect the original use as strings. Most common shape for copper bell is the large shape with human face as motif, while most common shape for glass bead is small that were identified as Indo-Pacific beads, the most common type that are widespread in Southeast Asian sites since 300 BC [@Francis2002].
+
+## Frequency for spatial pattern
+Figure \@ref(fig:plot-all-spatial-pattern) presents the spatial distribution of the ornaments for each time period. It shows that ornaments concentrate on one specific square in the pre-European contact, and more ubiquitous during the European contact and 
+ 
+ - for each time period, spatial patterning
+
+```{r scatter-plot-metal-by-period, eval= FALSE}
 # plot for intact bell by period
 ornaments_intact_bell <-
   ornaments_period %>% 
@@ -353,26 +350,9 @@ ggplot(ornaments_intact_bell) +
   coord_fixed(ratio = 1) +
   theme_minimal() +
   theme(plot.title = element_text(hjust=0.5))
-
-# plot for intact ring by period
-ornaments_intact_ring <-
-  ornaments_period %>% 
-  filter(Condition %in% c('complete', 'near-complete'),
-         Categories == 'Metal ring') %>% 
-  mutate(Length = as.numeric(gsub("\\+|\\-", "", `Length(mm)`))) #remove + -
-  
-ggplot(ornaments_intact_ring) +
-  geom_point(aes(Length, Width, col = Type)) +
-  facet_wrap(~ period) +
-  labs(x = "Length (mm)",
-       y = "Width (mm)",
-       title = "Metal ring") +
-  theme_minimal() +
-  theme(plot.title = element_text(hjust=0.5))
 ```
 
 ```{r read-in-the-spatial-data, eval = TRUE}
-
 library(sf)
 library(cartography)
 burial <- st_read(here("analysis", "data", "raw_data", "AD_burial.shp"))
@@ -382,7 +362,7 @@ location <- st_read(here("analysis", "data", "raw_data", "location.shp"))
 units_40 <- read.csv(here("analysis", "data", "raw_data", "kwl-list-of-sampling-squares.csv"))
 ```
 
-```{r tidy-data2, eval = TRUE}
+```{r tidy-spatial-data, eval = TRUE}
 # 40 sampling units
 sample_units <-
   AD_data %>% 
@@ -396,6 +376,21 @@ ornaments_period_join <-
   count(Categories) %>% 
   inner_join(AD_data, by = c("Pit_No" = "坑號"))
 ```
+
+```{r plot-all-spatial-pattern, fig.cap= "Spatial pattern of ornaments"}
+ggplot(ornaments_period_join) +
+  geom_sf(data = sample_units, fill = NA) +
+  geom_sf(data = ornaments_period_join, aes(fill =n), alpha = 0.9) +
+  facet_wrap(~ period) +
+  labs(fill = "frequency") +
+  scale_fill_gradient(high = "black", low = "grey") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        strip.text.x = element_text(size = 11))
+```
+
 
 ```{r plot-spatial-distribution}
 # filter golden bead
@@ -456,7 +451,7 @@ ggplot(ornaments_period_join_gold) +
         strip.text.x = element_text(size = 11))
 ```
 
-```{r-gganimate}
+```{r-gganimate, eval= FALSE}
 # test gganimate for measurement of beads by period
 # devtools::install_github('thomasp85/gganimate')
 library(gganimate)
@@ -529,3 +524,5 @@ The current Git commit details are:
 # what commit is this file at? 
 git2r::repository(here::here())
 ```
+
+Word count: `r wordcountaddin::word_count()`
