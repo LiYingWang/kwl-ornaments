@@ -62,6 +62,47 @@ The earliest record of direct European contact with indigenous people in Yilan c
 
 The European colonization ended in 1662 when they were defeated by the kingdom of Tungning found by Koxinga from China. Later in 1683, the Qing dynasty ruled over Taiwan and a large wave of Han Chinese migrated to Yilan during the late 18th century. The evidence of Chinese migration can be identified from Chinese official records [b]and large amount of Chinese blue-and-white porcelain found at Kiwulan.
 
+```{r read-in-the-data}
+library(here)
+library(tidyverse)
+library(ggplot2)
+kwl_upper <- readxl::read_excel(here("analysis", "data", "raw_data", "Kiwulan_Ornament_Upper.xlsx"))
+```
+
+```{r tidy-data, eval = TRUE}
+# summarise the ornaments by layers
+# L5 and L6 represent pre-European contact period, 
+# L4 was the time of European contact, and 
+# L2 and L1 was the period of Chinese contact. 
+
+ornaments_period <- 
+kwl_upper %>% 
+  filter(!is.na(`6-layers`)) %>% 
+  mutate(period = case_when(
+    `6-layers` %in% 1:2 ~ "Chinese Contact",
+    `6-layers` == 4 ~ "European Contact",
+    `6-layers` %in% 5:6 ~ "Before European Contact",
+     TRUE ~ "other"
+  )) %>% 
+  filter(period != "other") %>% 
+  mutate(period = factor(period,
+                       level = c("Before European Contact", 
+                                 "European Contact", 
+                                 "Chinese Contact"))) %>% 
+  mutate(Length = as.numeric(`Length(mm)`),
+         Thick = as.numeric(`Thick(mm)`),
+         Width = as.numeric(`Width(mm)`),
+         Perforation1 = as.numeric(`Perforation1(mm)`)) %>% 
+  rowwise() %>% 
+  mutate(Perforation_average =
+           mean(c(`Perforation1`,`Perforation2(mm)`), 
+                na.rm = TRUE))
+
+sample_size <- nrow(ornaments_period)
+total_AD <- nrow(kwl_upper)
+sample_pro <- sample_size/total_AD
+```
+
 ```{r read-in-the-spatial-data, eval = TRUE}
 library(sf)
 library(cartography)
@@ -94,48 +135,6 @@ The ornaments studied in this paper came from 40 adjacent 4m x 4m units out of 2
 In general, complete ornaments with clear context were mostly found in burials that helps to understand how people wear them and any relationships between shapes of ornaments and gender or age. In addition to burials, ornaments were also found in middens and living space that can be identified by post holes. The frequency of ornaments from burials is more than those from the living space due to well preserved condition. There is a wide variety of raw materials for ornaments of which ornaments glass, agate and metal ornaments that account for 99% of all ornaments were thought to be introduced by trading with the Europeans and Chinese traders, while ornaments made of shells, woods, and bones were believed locally made that is about only about 1% of all ornaments (Table 1). The reason for the large quantity of glass beads is that they usually have been found in clusters because of the original form such as necklaces. The shape of ornaments include beads, bracelets, rings, bells, pendants, and knitted objects that shows shape are closely related to raw material due to its characteristic. For example, beads are only made of glass, agate, and shell, and bone is the main material for knitted objects that used to connect beads. Also, metal ornaments covers more shapes such bells, pendants, and rings (Chen 2007). 
 
 # Samples and Methods
-
-```{r read-in-the-data}
-library(here)
-kwl_upper <- readxl::read_excel(here("analysis", "data", "raw_data", "Kiwulan_Ornament_Upper.xlsx"))
-```
-
-```{r tidy-data, eval = TRUE}
-# summarise the ornaments by layers
-library(tidyverse)
-library(ggplot2)
-
-# L5 and L6 represent pre-European contact period, 
-# L4 was the time of European contact, and 
-# L2 and L1 was the period of Chinese contact. 
-
-ornaments_period <- 
-kwl_upper %>% 
-  filter(!is.na(`6-layers`)) %>% 
-  mutate(period = case_when(
-    `6-layers` %in% 1:2 ~ "Chinese Contact",
-    `6-layers` == 4 ~ "European Contact",
-    `6-layers` %in% 5:6 ~ "Before European Contact",
-     TRUE ~ "other"
-  )) %>% 
-  filter(period != "other") %>% 
-  mutate(period = factor(period,
-                       level = c("Before European Contact", 
-                                 "European Contact", 
-                                 "Chinese Contact"))) %>% 
-  mutate(Length = as.numeric(`Length(mm)`),
-         Thick = as.numeric(`Thick(mm)`),
-         Width = as.numeric(`Width(mm)`),
-         Perforation1 = as.numeric(`Perforation1(mm)`)) %>% 
-  rowwise() %>% 
-  mutate(Perforation_average =
-           mean(c(`Perforation1`,`Perforation2(mm)`), 
-                na.rm = TRUE))
-
-sample_size <- nrow(ornaments_period)
-total_AD <- nrow(kwl_upper)
-sample_pro <- sample_size/total_AD
-```
 
 ```{r plot-all-ornaments-count, fig.cap= "Frequency of ornaments"}
 # need to reorder, try https://forcats.tidyverse.org/reference/index.html
@@ -290,9 +289,11 @@ ggplot(agate_bead_shape) +
   geom_col(aes(reorder(Type, n), n)) +
   facet_wrap(~ period) +
   coord_flip() +
-  labs(y = "Frequency",
-       x = "Shape of Agate bead") +
-  theme_minimal(base_size = 14)
+  labs(y = "",
+       x = "Agate bead") +
+  theme_minimal(base_size = 14) +
+  theme(strip.background = element_blank(), 
+        strip.text = element_blank())
 ```
 
 ```{r metal-fre-plot}
@@ -301,16 +302,20 @@ ring_shape <-
   ornaments_shape_count %>% 
   filter(Categories == 'Metal ring',
          !Type %in% c('large thick string',
-                       'small thin string'))
+                       'small thin string')) %>% 
+  ungroup() %>% 
+  mutate(Type = fct_drop(Type)) %>% 
+  mutate(Type = fct_infreq(Type)) %>% 
+  mutate(Type = fct_rev(Type)) 
 
 ring_shape_plot <-
 ggplot(ring_shape) +
-  geom_col(aes(reorder(Type, n), n)) +
-  facet_wrap(~ period) +
+  geom_col(aes(Type, n)) +
   coord_flip() +
-  labs(y = "Frequency",
-       x = "Shape of Metal ring") +
-  theme_minimal(base_size = 14)
+  labs(y = "",
+       x = "Metal ring") +
+  facet_wrap(~ period) +
+  theme_minimal(base_size = 14) 
 ```
 
 ```{r bell-fre-plot}
@@ -325,9 +330,11 @@ ggplot(bell_shape) +
   geom_col(aes(reorder(Type,n), n)) +
   facet_wrap(~ period) +
   coord_flip() +
-  labs(y = "Frequency",
-       x = "Shape of Bell") +
-  theme_minimal(base_size = 14)
+  labs(y = "",
+       x = "Bell") +
+  theme_minimal(base_size = 14) +
+  theme(strip.background = element_blank(), 
+        strip.text = element_blank())
 ```
 
 ```{r glass-bead-fre-plot}
@@ -342,15 +349,23 @@ ggplot(glass_bead_shape) +
   facet_wrap(~ period) +
   coord_flip() +
   labs(y = "Frequency",
-       x = "Shape of Glass Bead") +
-  theme_minimal(base_size = 14)
+       x = "Glass bead") +
+  theme_minimal(base_size = 14) +
+  theme(strip.background = element_blank(), 
+        strip.text = element_blank())
 ```
 
 ```{r plot-altogether, fig.cap= "Frequency of "}
 library(cowplot)
-plot_grid(agate_bead_shape_plot, ring_shape_plot,
-          bell_shape_plot, glass_bead_plot,
-          labels = c("A", "B", "C", "D"), ncol=2)
+plot_grid(ring_shape_plot,
+          agate_bead_shape_plot, 
+          bell_shape_plot, 
+          glass_bead_plot,
+          ncol=1,
+          align = "h",
+          axis = "lr",
+          rel_widths = 1,
+          rel_heights = c(1,1,0.7,0.62))
 ```
 # Results
 
@@ -358,12 +373,6 @@ plot_grid(agate_bead_shape_plot, ring_shape_plot,
 The results of the comparison between different time periods show a general pattern that most ornaments appeared in the pre-European contact period and the frequencies reached a peak during the European contact and then dropped during the Chinese contact period, especially for golden beads. This trend can be also seen on other ornaments including agate bead, metal ring, and bell. However, glass bead shows a different pattern that indicates a higher frequency in the pre-European contact, and then the frequency decreased in the European contact period and even less in the Chinese contact period.
 
 The distribution of frequency for subtypes in each major category are presented in \@ref(fig:plot-all-ornaments-count). The distribution shows that agate beads and metal rings have greater quantity and variety of shapes compared to copper bell and glass beads during the European contact period. Agate beads can be divided into eight subtypes, in which hexagonal shape is the most common subtype that appeared before European contact and increased during the European contact and then declined in the Chinese contact. Small oval type shows similar frequency before and during European contact but not found in the Chinese contact period, while waxy oval bead only found during European contact period. There are more subtypes of agate beads during European contact compared to other time periods. Similarly metal rings can be classified into seven subtypes, in which wide small ring is the most common metal ornaments, followed by wide large and thin large shape. The greater varieties for those two categories might indicate the multiple sources due to global trade network brought by the Europeans. In contrast, copper bell and glass bead have smaller variety, but glass bead has larger number due to they were usually found in a cluster that reflect the original use as strings. Most common shape for copper bell is the large shape with human face as motif, while most common shape for glass bead is small that were identified as Indo-Pacific beads, the most common type that are widespread in Southeast Asian sites since 300 BC [@Francis2002].
-
-## Frequency for spatial pattern
-Figure \@ref(fig:plot-all-spatial-pattern) presents the spatial distribution of the ornaments for each time period. It shows that one square unearthed more ornaments than others in the pre-European contact. During the European contact period, the distribution is more ubiquitous with some concentration on northern part, and more even during Chinese contact period. Further look at the distribution for each major category individually, it shows that some squares have higher number of ornaments during the European contact period, including golden bead, agate bead, metal ring, and bell. However, there is no consistent pattern of concentration for different ornaments across the area. The squares with high number of ornaments distributed separately and independently without clear correlation. For example, more golden beads were found at the northern part, while more agate beads concentrated in the middle part.   
-
-
-Golden beads and 
 
 ```{r scatter-plot-metal-by-period, eval= FALSE}
 # plot for intact bell by period
@@ -495,6 +504,43 @@ ggplot(ornaments_period_join_bell) +
         axis.text.y = element_blank(),
         strip.text.x = element_text(size = 11))
 ```
+
+## Frequency for spatial pattern
+Figure \@ref(fig:plot-all-spatial-pattern) presents the spatial distribution of all classes of ornaments for each time period. It shows that one square unearthed more ornaments than others in the pre-European contact. During the European contact period, the presence of ornaments is more ubiquitous with some clusters on northern part, and more randomly distributed during the Chinese contact period. When looking at the distribution for each major class individually, it shows that some clusters of different class of ornaments across the area during the European contact period, including golden bead, agate bead, metal ring, and bell. However, it seems no clear consistent pattern of concentration for those ornaments. Each class shows its own pattern that squares with higher number of ornaments distributed separately and independently. For example, the cluster of golden bead were found at the northern part, while the cluster of agate bead were found in the middle part. In contrast, there are more than one cluster of metal rings that distribute separately across the research area. Copper bells were usually found solely and seem randomly across the area. Before European contact, the map shows greater amount of glass beads were found at the northern and middle part of the research area, and more widespread during the European contact period. In the Chinese Contact period, both the amount and density of different classes of ornaments decreases that they were only found in a few squares, for example, golden bead and glass bead were only found in a couple squares at the middle part.
+
+```{r point-pattern-data-setup}
+# get centroid 
+ornaments_period_join_cen <-
+  ornaments_period_join %>% 
+  mutate(lon = map_dbl(geometry, ~st_point_on_surface(.x)[[1]]),
+         lat = map_dbl(geometry, ~st_point_on_surface(.x)[[2]]))
+
+# plot the centroid
+ggplot() +
+  geom_sf(data = sample_units, fill = NA) +
+  geom_point(data = ornaments_period_join_cen, 
+             aes(x = lon, y = lat))
+
+# transform data to PPP format and sp SpatialPoints
+library(spatstat)
+
+#store x and y coords in two vectors, and create two vectors xrange and yrange with dimensions of triangle that contain all points
+lon <- ornaments_period_join_cen$lon
+lat <- ornaments_period_join_cen$lat
+xrange <- range(lon, na.rm=T)
+yrange <- range(lat, na.rm=T)
+
+# create ppp
+ornaments_point <- ppp(lon, lat, xrange, yrange)
+
+
+```
+
+To access whether the distribution of ornaments present different density that can indicate the changes caused by global trade network brought by the Europeans, point pattern analysis is used to measure and test the density of ornaments across three time periods.
+
+
+
+
 
 ```{r-gganimate, eval= FALSE}
 # test gganimate for measurement of beads by period
