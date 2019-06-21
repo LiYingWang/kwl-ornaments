@@ -513,7 +513,7 @@ Figure \@ref(fig:plot-all-spatial-pattern) presents the spatial distribution of 
 ornaments_period_join_cen <-
   ornaments_period_join %>% 
   mutate(lon = map_dbl(geometry, ~st_point_on_surface(.x)[[1]]),
-         lat = map_dbl(geometry, ~st_point_on_surface(.x)[[2]]))
+         lat = map_dbl(geometry, ~st_point_on_surface(.x)[[2]])) 
 
 # plot the centroid
 ggplot() +
@@ -523,6 +523,8 @@ ggplot() +
 
 # transform data to PPP format and sp SpatialPoints
 library(spatstat)
+library(maptools)
+library(raster)
 
 #store x and y coords in two vectors, and create two vectors xrange and yrange with dimensions of triangle that contain all points
 lon <- ornaments_period_join_cen$lon
@@ -530,10 +532,23 @@ lat <- ornaments_period_join_cen$lat
 xrange <- range(lon, na.rm=T)
 yrange <- range(lat, na.rm=T)
 
-# create ppp
-ornaments_point <- ppp(lon, lat, xrange, yrange)
+# create ppp and sp(spacial points) format
+ornaments_point_ppp <- ppp(lon, lat, xrange, yrange)
+ornaments_point_sp <- as(ornaments_point_ppp, "SpatialPoints")
+r_ornaments <- raster(sample_units)
 
+# plot density
+den_ornaments <- rasterize(coordinates(ornaments_point_sp), r_ornaments, fun = 'count', background = 0)
+plot(den_ornaments)
 
+# kernel density estimation
+ds <- density(ornaments_point_ppp)
+plot(ds, main = "Ornament density")
+
+kernel_or <- density(ornaments_point_ppp)
+kernel_or %>%  # Using the default bandwidth
+  plot(main= "Ornament density", las=1)
+contour(kernel_or, add=TRUE)
 ```
 
 To access whether the distribution of ornaments present different density that can indicate the changes caused by global trade network brought by the Europeans, point pattern analysis is used to measure and test the density of ornaments across three time periods.
