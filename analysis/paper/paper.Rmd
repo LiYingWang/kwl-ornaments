@@ -106,11 +106,11 @@ sample_pro <- sample_size/total_AD
 ```{r read-in-the-spatial-data, eval = TRUE}
 library(sf)
 library(cartography)
-burial <- st_read(here("analysis", "data", "raw_data", "AD_burial.shp"))
-AD <- st_read(here("analysis", "data", "raw_data", "AD_zone.shp"))
-AD_data <- st_read(here("analysis", "data", "raw_data", "AD_withdata.shp"))
-location <- st_read(here("analysis", "data", "raw_data", "location.shp"))
-units_40 <- read.csv(here("analysis", "data", "raw_data", "kwl-list-of-sampling-squares.csv"))
+burial <- invisible(st_read(here("analysis", "data", "raw_data", "AD_burial.shp"), quiet = TRUE))
+AD <- invisible(st_read(here("analysis", "data", "raw_data", "AD_zone.shp"), quiet = TRUE))
+AD_data <- invisible(st_read(here("analysis", "data", "raw_data", "AD_withdata.shp"), quiet = TRUE))
+location <- invisible(st_read(here("analysis", "data", "raw_data", "location.shp"), quiet = TRUE))
+units_40 <- invisible(read.csv(here("analysis", "data", "raw_data", "kwl-list-of-sampling-squares.csv")))
 ```
 
 ```{r tidy-spatial-data, eval = TRUE}
@@ -509,49 +509,114 @@ ggplot(ornaments_period_join_bell) +
 Figure \@ref(fig:plot-all-spatial-pattern) presents the spatial distribution of all classes of ornaments for each time period. It shows that one square unearthed more ornaments than others in the pre-European contact. During the European contact period, the presence of ornaments is more ubiquitous with some clusters on northern part, and more randomly distributed during the Chinese contact period. When looking at the distribution for each major class individually, it shows that some clusters of different class of ornaments across the area during the European contact period, including golden bead, agate bead, metal ring, and bell. However, it seems no clear consistent pattern of concentration for those ornaments. Each class shows its own pattern that squares with higher number of ornaments distributed separately and independently. For example, the cluster of golden bead were found at the northern part, while the cluster of agate bead were found in the middle part. In contrast, there are more than one cluster of metal rings that distribute separately across the research area. Copper bells were usually found solely and seem randomly across the area. Before European contact, the map shows greater amount of glass beads were found at the northern and middle part of the research area, and more widespread during the European contact period. In the Chinese Contact period, both the amount and density of different classes of ornaments decreases that they were only found in a few squares, for example, golden bead and glass bead were only found in a couple squares at the middle part.
 
 ```{r point-pattern-data-setup}
-# get centroid 
-ornaments_period_join_cen <-
+# get centroid and make a list of three periods
+ornaments_period_join_cen_all <-
   ornaments_period_join %>% 
-  mutate(lon = map_dbl(geometry, ~st_point_on_surface(.x)[[1]]),
-         lat = map_dbl(geometry, ~st_point_on_surface(.x)[[2]])) 
+  mutate(lon = jitter(map_dbl(geometry, ~st_point_on_surface(.x)[[1]])),
+         lat = jitter(map_dbl(geometry, ~st_point_on_surface(.x)[[2]]))) 
 
-# plot the centroid
-ggplot() +
-  geom_sf(data = sample_units, fill = NA) +
-  geom_point(data = ornaments_period_join_cen, 
-             aes(x = lon, y = lat))
+ornaments_period_join_cen <- 
+ ornaments_period_join_cen_all %>% 
+  group_by(period) %>% 
+  group_split() %>% 
+  set_names(c("Pre-European",
+              "European",
+              "Chinese"))
+```
 
+```{r}
 # transform data to PPP format and sp SpatialPoints
 library(spatstat)
 library(maptools)
 library(raster)
 
-#store x and y coords in two vectors, and create two vectors xrange and yrange with dimensions of triangle that contain all points
-lon <- ornaments_period_join_cen$lon
-lat <- ornaments_period_join_cen$lat
-xrange <- range(lon, na.rm=T)
-yrange <- range(lat, na.rm=T)
+#store x and y coords in two vectors, and create two vectors xrange and yrange with dimensions of triangle that contain all points, by period
 
-# create ppp and sp(spacial points) format
-ornaments_point_ppp <- ppp(lon, lat, xrange, yrange)
-ornaments_point_sp <- as(ornaments_point_ppp, "SpatialPoints")
-r_ornaments <- raster(sample_units)
+# use common range for each period
+lon_all <- ornaments_period_join_cen_all$lon
+lat_all <- ornaments_period_join_cen_all$lat
+xrange <- range(lon_all, na.rm=T)
+yrange <- range(lat_all, na.rm=T)
 
-# plot density
-den_ornaments <- rasterize(coordinates(ornaments_point_sp), r_ornaments, fun = 'count', background = 0)
-plot(den_ornaments)
+# create a function to apply to each period
+density_analysis <- function(x, ...) {
+  # create ppp and sp(spacial points) format
+lon_tmp <- x$lon
+lat_tmp <- x$lat
+ornaments_point_ppp_tmp <- ppp(lon_tmp, lat_tmp, xrange, yrange)
+ornaments_point_sp_tmp <- as(ornaments_point_ppp_tmp, "SpatialPoints")
 
-# kernel density estimation
-ds <- density(ornaments_point_ppp)
-plot(ds, main = "Ornament density")
+# kernel density estimation with contour
+kernel_tmp <- density(ornaments_point_ppp_tmp)
+kernel_to_plot <- 
+  plot(kernel_tmp, ...)
+  contour(kernel_tmp, add = TRUE)
 
-kernel_or <- density(ornaments_point_ppp)
-kernel_or %>%  # Using the default bandwidth
-  plot(main= "Ornament density", las=1)
-contour(kernel_or, add=TRUE)
+return(list(ornaments_point_ppp = ornaments_point_ppp_tmp,
+            kernel_to_plot = kernel_to_plot))
+}
 ```
 
-To access whether the distribution of ornaments present different density that can indicate the changes caused by global trade network brought by the Europeans, point pattern analysis is used to measure and test the density of ornaments across three time periods.
+```{r plot-all-densities}
+par(mfrow = c(1, 3))
+# apply function to each data frame in the list
+titles <- names(ornaments_period_join_cen)
+
+kernels_for_plotting <- 
+  map2(ornaments_period_join_cen, 
+       titles,
+      ~density_analysis(.x, main = .y))
+```
+
+
+```{r}
+# function for hypothesis testing
+nndist_hypo_testing <- function(x, n = 1e3L,  ... ) {
+  
+ann_tmp <- mean(nndist(x$ornaments_point_ppp, k = 1))
+
+# object for storing simulated ANN values
+ann_r_tmp <- vector(length = n) 
+
+for (i in 1:n) {
+  # Generate random point locations
+  rand_tmp <-  rpoint(n = x$ornaments_point_ppp$n,
+                      win = as.owin(as_Spatial(sample_units)))
+  ann_r_tmp[i] <-
+    mean(nndist(rand_tmp, k = 1))  # Tally the ANN values
+}  
+
+the_plot <- 
+hist(
+  ann_r_tmp,
+  xlab = NULL,
+  las = 1,
+  breaks = 40,
+  col = "bisque",
+  xlim = range(ann_tmp, ann_r_tmp),
+  ...)
+
+abline(v = ann_tmp, col = "blue")
+
+return(the_plot)
+}
+```
+
+```{r}
+
+par(mfrow = c(3, 1))
+invisible(
+map2(kernels_for_plotting, 
+    titles,
+    ~invisible(nndist_hypo_testing(.x, 
+                         main = .y)))
+)
+```
+
+
+To assess whether the distribution of ornaments present different density that can indicate the changes caused by global trade network brought by the Europeans, point pattern analysis is used to measure and test the density of ornaments across three time periods. We assume a uniform point density across the research area before European contact period, that is, randomly distributed, and test the null hypothesis that is there is no cluster of ornaments across the sapce during the European contact periods. 
+
+
 
 
 
