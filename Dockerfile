@@ -10,9 +10,9 @@ COPY . /kwl-ornaments
 RUN . /etc/environment \
 
   # Install linux depedendencies here
-  # e.g. need this for ggforce::geom_sina
+  # e.g. need this for ggforce::geom_sina and rgeos
   && sudo apt-get update \
-  && sudo apt-get install libudunits2-dev -y \
+  && sudo apt-get install libudunits2-dev libgeos-dev -y \
 
   # build this compendium package
   && R -e "devtools::install('/kwl-ornaments', dep=TRUE)" \
