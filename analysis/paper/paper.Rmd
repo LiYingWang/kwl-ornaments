@@ -395,9 +395,12 @@ ggplot(ornaments_intact_bell) +
 ```
 
 ```{r plot-all-spatial-pattern, fig.cap= "Spatial pattern of ornaments"}
-ggplot(ornaments_period_join) +
+ggplot() +
   geom_sf(data = sample_units, fill = NA) +
-  geom_sf(data = ornaments_period_join, aes(fill =n), alpha = 0.9) +
+  geom_sf(data = ornaments_period_join, 
+          aes(geometry = geometry, 
+              fill =n), 
+          alpha = 0.9) +
   facet_wrap(~ period) +
   labs(fill = "frequency") +
   scale_fill_gradient(high = "black", low = "grey") +
@@ -417,7 +420,9 @@ ornaments_period_join_gold <-
 # plot by period
 ggplot(ornaments_period_join_gold) +
   geom_sf(data = sample_units, fill = NA) +
-  geom_sf(data = ornaments_period_join_gold, aes(fill = n), alpha = 0.9) +
+  geom_sf(data = ornaments_period_join_gold, 
+          aes(geometry = geometry,
+              fill = n), alpha = 0.9) +
   facet_wrap(~ period) +
   labs(title = "Spatial Distribution of Golden Beads",
        fill = "frequency") +
@@ -436,7 +441,9 @@ ornaments_period_join_gold <-
 # plot by period
 ggplot(ornaments_period_join_gold) +
   geom_sf(data = sample_units, fill = NA) +
-  geom_sf(data = ornaments_period_join_gold, aes(fill = n), alpha = 0.9) +
+  geom_sf(data = ornaments_period_join_gold, 
+          aes(geometry = geometry,
+              fill = n), alpha = 0.9) +
   facet_wrap(~ period) +
   labs(title = "Spatial Distribution of Glass Beads",
        fill = "frequency") +
@@ -455,7 +462,9 @@ ornaments_period_join_gold <-
 # plot by period
 ggplot(ornaments_period_join_gold) +
   geom_sf(data = sample_units, fill = NA) +
-  geom_sf(data = ornaments_period_join_gold, aes(fill = n), alpha = 0.9) +
+  geom_sf(data = ornaments_period_join_gold, 
+          aes(geometry = geometry, 
+              fill = n), alpha = 0.9) +
   facet_wrap(~ period) +
   labs(title = "Spatial Distribution of Agate Beads",
        fill = "frequency") +
@@ -474,7 +483,9 @@ ornaments_period_join_metal <-
 # plot by period
 ggplot(ornaments_period_join_metal) +
   geom_sf(data = sample_units, fill = NA) +
-  geom_sf(data = ornaments_period_join_metal, aes(fill = n), alpha = 0.9) +
+  geom_sf(data = ornaments_period_join_metal, 
+          aes(geometry = geometry,
+              fill = n), alpha = 0.9) +
   facet_wrap(~ period) +
   labs(title = "Spatial Distribution of Metal Ring",
        fill = "frequency") +
@@ -493,7 +504,9 @@ ornaments_period_join_bell <-
 # plot by period
 ggplot(ornaments_period_join_bell) +
   geom_sf(data = sample_units, fill = NA) +
-  geom_sf(data = ornaments_period_join_bell, aes(fill = n), alpha = 0.9) +
+  geom_sf(data = ornaments_period_join_bell, 
+          aes(geometry = geometry,
+              fill = n), alpha = 0.9) +
   facet_wrap(~ period) +
   labs(title = "Spatial Distribution of Copper Bell",
        fill = "frequency") +
