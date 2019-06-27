@@ -13,6 +13,7 @@ RUN . /etc/environment \
   # e.g. need this for ggforce::geom_sina and rgeos
   && sudo apt-get update \
   && sudo apt-get install libudunits2-dev libgeos-dev  libgdal-dev libproj-dev -y \
+  && R -e "devtools::install_github('benmarwick/wordcountaddin')" \
 
   # build this compendium package
   && R -e "devtools::install('/kwl-ornaments', dep=TRUE)" \
