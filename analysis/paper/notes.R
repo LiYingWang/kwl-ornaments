@@ -7,7 +7,7 @@ map(ornaments_period_join_cen,
                      y = lat))) %>%
   plot_grid(plotlist  = .)
 
-```{r-gganimate, eval= FALSE}
+
 # test gganimate for measurement of beads by period
 # devtools::install_github('thomasp85/gganimate')
 library(gganimate)
