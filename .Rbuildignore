@@ -9,3 +9,4 @@ analysis
 ^Dockerfile$
 ^\.travis\.yml$
 ^\.httr-oauth$
+^renv$
