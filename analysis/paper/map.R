@@ -29,6 +29,7 @@ ggplot(data = world) +
   coord_sf(xlim = c(107, 135), ylim = c(13, 35), expand = FALSE, datum = NA) +
   theme(panel.background = element_rect(fill = "azure"))
 
+
 library(ggmap)
 library(tmaptools)
 library(shadowtext)
@@ -78,6 +79,7 @@ tw_map +
     arrow_distance = 7,
     # size of letter 'N' on N arrow, in km
     arrow_north_size = 5)
+
 
 TW_map_with_site +
   annotation_custom(
