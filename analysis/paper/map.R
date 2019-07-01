@@ -34,10 +34,10 @@ library(tmaptools)
 library(shadowtext)
 # we don't want to download every time, so let's save the map locally
 # from https://stackoverflow.com/a/52710855/1036500
-# tw_map <- ggmap(get_stamenmap(rbind(as.numeric(c(121.0, 24.3,
-#                                                  122.0, 25.2))), zoom = 10))
+ tw_map <- ggmap(get_stamenmap(rbind(as.numeric(c(121.0, 24.3,
+                                                  122.0, 25.2))), zoom = 10))
 # saveRDS(tw_map, here("analysis", "data", "raw_data", "tw_map.rds"))
-tw_map <- readRDS(here("analysis", "data", "raw_data", "tw_map.rds"))
+# tw_map <- readRDS(here("analysis", "data", "raw_data", "tw_map.rds"))
 pg <- ggplot_build(tw_map)
 
 TW_map_with_site <-
