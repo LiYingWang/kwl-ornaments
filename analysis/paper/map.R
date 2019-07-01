@@ -26,13 +26,8 @@ ggplot(data = world) +
   geom_sf() +
   geom_rect(xmin = 121, xmax = 122.0, ymin = 24.3, ymax = 25.2,
             fill = NA, colour = "red", size = 0.5) +
-  coord_sf(xlim = c(107, 135), ylim = c(13, 35), expand = FALSE, datum = NA)
-
-TW_SE_Asia_void <-
-  TW_SE_Asia +
-  theme_void() +
-  theme(panel.border = element_rect(colour = "black",
-                                    fill = NA))
+  coord_sf(xlim = c(107, 135), ylim = c(13, 35), expand = FALSE, datum = NA) +
+  theme(panel.background = element_rect(fill = "azure"))
 
 library(ggmap)
 library(tmaptools)
@@ -84,8 +79,6 @@ tw_map +
     # size of letter 'N' on N arrow, in km
     arrow_north_size = 5)
 
-
-
 TW_map_with_site +
   annotation_custom(
     grob = ggplotGrob(TW_SE_Asia),
@@ -93,4 +86,5 @@ TW_map_with_site +
     xmax = 121.2,
     ymin = 24.7,
     ymax = 25.2)
+
 
