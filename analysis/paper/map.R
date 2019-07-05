@@ -51,3 +51,6 @@ TW_map_with_site +
     xmax = 120,
     ymin = 23.5,
     ymax = 25.7)
+
+ggsave("kiwulan-location-map.jpeg")
+
