@@ -134,13 +134,12 @@ ornaments_period_join <-
   inner_join(AD_data, by = c("Pit_No" = "坑號"))
 
 # mapping sampling area
-ggplot(data = AD_data) +
-  geom_sf(fill = NA) +
-  geom_sf(data = sample_units, color = 'red', fill = NA) +
+ggplot(sample_units) +
+  geom_sf(data = AD_data, fill = NA) +
+  geom_sf(color = 'red') +
   geom_sf_text(aes(label = `坑號`), alpha = 0.7) +
   theme_minimal() +
-  theme(axis.text.x = element_blank(),
-        axis.text.y = element_blank())
+  theme_void() 
 ```
 
 The ornaments studied in this paper came from 40 adjacent 4m x 4m units out of 262 units in the middle part of excavation. The sampling principle is based on the extent of intact contexts that the least disturbed by modern constructions are the preference. The Upper Layer Culture can be divided into six sub layers spanning from 14 century to 19 century according to current radiocarbon dates, excavation depth, types of ceramics, and sediment texture and color [@Hsieh2009; @Wang2011]. Layers are assigned numbers from 1 to 6 for which L1 corresponds to the upper context and L6, also the bottom layer, refers to lower context. Based on @Hsieh2009 chronological study of Chinese porcelains, L5 and L6 represent pre-European contact period, L4 was the time of European contact, and L2 and L1 was the period of Chinese contact. 
