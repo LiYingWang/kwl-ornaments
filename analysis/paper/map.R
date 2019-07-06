@@ -84,10 +84,10 @@ tw_map +
 TW_map_with_site +
   annotation_custom(
     grob = ggplotGrob(TW_SE_Asia),
-    xmin = 120.4,
-    xmax = 121.2,
-    ymin = 24.7,
-    ymax = 25.2)
+    xmin = 118,
+    xmax = 120,
+    ymin = 23.5,
+    ymax = 25.7)
 
 ggsave("analysis/figures/kiwulan-location-map.png")
 

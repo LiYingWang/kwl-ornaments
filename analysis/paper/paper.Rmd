@@ -132,7 +132,9 @@ ornaments_period_join <-
   group_by(Pit_No, period) %>% 
   count(Categories) %>% 
   inner_join(AD_data, by = c("Pit_No" = "坑號"))
+```
 
+```{r, KWL-sam-area, fig.cap = "Sampling area with 40 squares", out.width= "400px", echo=FALSE}
 # mapping sampling area
 ggplot(sample_units) +
   geom_sf(data = AD_data, fill = NA) +
@@ -142,9 +144,9 @@ ggplot(sample_units) +
   theme_void() 
 ```
 
-The ornaments studied in this paper came from 40 adjacent 4m x 4m units out of 262 units in the middle part of excavation. The sampling principle is based on the extent of intact contexts that the least disturbed by modern constructions are the preference. The Upper Layer Culture can be divided into six sub layers spanning from 14 century to 19 century according to current radiocarbon dates, excavation depth, types of ceramics, and sediment texture and color [@Hsieh2009; @Wang2011]. Layers are assigned numbers from 1 to 6 for which L1 corresponds to the upper context and L6, also the bottom layer, refers to lower context. Based on @Hsieh2009 chronological study of Chinese porcelains, L5 and L6 represent pre-European contact period, L4 was the time of European contact, and L2 and L1 was the period of Chinese contact. 
+The ornaments studied in this paper came from 40 adjacent 4m x 4m units out of 262 units in the middle part of excavation (Figure \@ref(fig:KWL-sam-area). The sampling principle is based on the extent of intact contexts that the least disturbed by modern constructions are the preference. The Upper Layer Culture can be divided into six sub layers spanning from 14 century to 19 century according to current radiocarbon dates, excavation depth, types of ceramics, and sediment texture and color [@Hsieh2009; @Wang2011]. Layers are assigned numbers from 1 to 6 for which L1 corresponds to the upper context and L6, also the bottom layer, refers to lower context. Based on @Hsieh2009 chronological study of Chinese porcelains, L5 and L6 represent pre-European contact period, L4 was the time of European contact, and L2 and L1 was the period of Chinese contact. 
 
-<--add a graph of 40 units and chronology-->
+<--add a chart of chronology-->
 
 In general, complete ornaments with clear context were mostly found in burials that helps to understand how people wear them and any relationships between shapes of ornaments and gender or age. In addition to burials, ornaments were also found in middens and living space that can be identified by post holes. The frequency of ornaments from burials is more than those from the living space due to well preserved condition. There is a wide variety of raw materials for ornaments of which ornaments glass, agate and metal ornaments that account for 99% of all ornaments were thought to be introduced by trading with the Europeans and Chinese traders, while ornaments made of shells, woods, and bones were believed locally made that is about only about 1% of all ornaments (Table 1). The reason for the large quantity of glass beads is that they usually have been found in clusters because of the original form such as necklaces. The shape of ornaments include beads, bracelets, rings, bells, pendants, and knitted objects that shows shape are closely related to raw material due to its characteristic. For example, beads are only made of glass, agate, and shell, and bone is the main material for knitted objects that used to connect beads. Also, metal ornaments covers more shapes such bells, pendants, and rings [@Chen2007]. 
 
