@@ -89,6 +89,5 @@ TW_map_with_site +
     ymin = 24.7,
     ymax = 25.2)
 
-ggsave("kiwulan-location-map.jpeg")
-
+ggsave("analysis/figures/kiwulan-location-map.png")
 
