@@ -5,9 +5,8 @@ library("rnaturalearth")
 library("rnaturalearthdata")
 library("here")
 library("ggspatial")
-# devtools::install_github('3wen/legendMap')
+#devtools::install_github('3wen/legendMap')
 library(legendMap)
-
 
 world <- ne_countries(scale = "medium", returnclass = "sf")
 # class(world)
@@ -29,16 +28,16 @@ ggplot(data = world) +
   coord_sf(xlim = c(107, 135), ylim = c(13, 35), expand = FALSE, datum = NA) +
   theme(panel.background = element_rect(fill = "azure"))
 
-
+# Topographic map
 library(ggmap)
 library(tmaptools)
 library(shadowtext)
 # we don't want to download every time, so let's save the map locally
 # from https://stackoverflow.com/a/52710855/1036500
- tw_map <- ggmap(get_stamenmap(rbind(as.numeric(c(121.0, 24.3,
-                                                  122.0, 25.2))), zoom = 10))
-# saveRDS(tw_map, here("analysis", "data", "raw_data", "tw_map.rds"))
-# tw_map <- readRDS(here("analysis", "data", "raw_data", "tw_map.rds"))
+tw_map <- ggmap(get_stamenmap(rbind(as.numeric(c(121.0, 24.3,
+                                                 122.0, 25.2))), zoom = 10))
+#saveRDS(tw_map, here("analysis", "data", "raw_data", "tw_map.rds"))
+#tw_map <- readRDS(here("analysis", "data", "raw_data", "tw_map.rds"))
 pg <- ggplot_build(tw_map)
 
 TW_map_with_site <-
@@ -80,14 +79,12 @@ tw_map +
     # size of letter 'N' on N arrow, in km
     arrow_north_size = 5)
 
-
 TW_map_with_site +
-  annotation_custom(
-    grob = ggplotGrob(TW_SE_Asia),
-    xmin = 118,
-    xmax = 120,
-    ymin = 23.5,
-    ymax = 25.7)
+annotation_custom(
+grob = ggplotGrob(TW_SE_Asia),
+xmin = 120.4,
+xmax = 121.2,
+ymin = 24.7,
+ymax = 25.2)
 
 ggsave("analysis/figures/kiwulan-location-map.png")
-
