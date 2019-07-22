@@ -34,4 +34,3 @@ anim_gold_bead_spatial <-
         axis.text.y = element_blank(),
         strip.text.x = element_text(size = 11))
 
-```
