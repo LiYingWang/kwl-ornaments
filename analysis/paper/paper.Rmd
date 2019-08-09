@@ -50,7 +50,6 @@ In 1642, the Dutch VOC defeated the Spanish and took over their forts in norther
 Chinese historical records from the year of 1829, 1837, and 1852 during the Qing dynasty [1616-1911] contain some notes on the purposes of ornaments from Yilan [@Chen1963, pp. 228, 308; @Ke1993, pp. 11, 126; @Yao1996, pp. 77]. According to those records, indigenous people in Yilan had the custom to wear ornaments in ceremonial contexts to display their wealth and status. Among those ornaments, golden fish-shaped necklaces made of copper threads had higher value due to its delicacy and more materials invested in production. These were usually possessed by wealthy people. Other people wore agate beads or glass beads on their head or neck to participate in ceremonies. In 1895, at the beginning of Japanese colonization, a field survey for plains indigenous groups reported that golden necklaces were not used in Yilan at that time, but elderly people still used beads [@Ino1996, pp. 227-232].
 
 Recent ethnographic research with the living members of the Kavalan tribe describes how agate beads were used in divination practices, called “subli”, by female shamans [@Liu2008, pp. 133-134]. Interview records mention agate beads as valuable objects that are usually passed down from mother to daughter as heirlooms in shaman families, without knowing the exact origin. When not in use, beads were often hidden in safe places, such as on the roof beams. Modern ethnographic research shows that agate beads were not only used as decoration, but also played an important role in divination, consistent with observations from the European colonial period. It was usually the female shamans conducting divination rituals that passed the beads down from their ancestors. Despite most Kavalan people today not knowing the specific origin of their agate beads, the value of beads is still highlighted through oral history and by their scarcity. In sum, we find multiple sources describing how local Indigenous people used ornaments in cultural contexts that represents some social roles or high status. However, compared to the European contact period, there are fewer mentions of beads in Chinese contact period and the descriptions are limited to clothing, but generally confirm the role of beads as status markers.  
-
 # Excavations at Kiwulan in northeastern Taiwan
 
 ```{r, KWL-map, fig.cap = "Map showing the location of Kiwulan, and other places in northern Taiwan named in the text", out.width= "400px", echo=FALSE}
@@ -101,7 +100,7 @@ kwl_upper %>%
 knitr::include_graphics(here("analysis", "figures", "KWL-excavation-map.png"))
 ```
 
-Kiwulan \@ref(fig:KWL-map) is located at northern Yilan and was a rescue archaeology project that carried out from 2001 to 2004 in advance of water diversion project and construction of a road bridge. The total area includes eight open area sections of 262 squares (4 m by 4 m) reaching 3,814 m^2^ in total [@Chen2007]. The archaeological evidence includes a large amount of artifacts, burials, middens, post holes, wooden pillars, and stone structures, all of which indicates it was a settlement. Most ornaments were found in situ while digging and some were collected through screens with 2 mm and 1.5 mm mesh. The ornaments studied in this paper were found from 40 adjacent squares in the largest open area, located in the middle part of the excavation, see \@ref(fig:KWL-sam-area). They were sampled because those units were stratigraphically intact with the least disturbance by modern construction activity, compared to excavation squares on the periphery of the site.
+Kiwulan (Figure \@ref(fig:KWL-map)) is located at northern Yilan and was a rescue archaeology project that carried out from 2001 to 2004 in advance of water diversion project and construction of a road bridge. The total area includes eight open area sections of 262 squares (4 m by 4 m) reaching 3,814 m^2^ in total [@Chen2007]. The archaeological evidence includes a large amount of artifacts, burials, middens, post holes, wooden pillars, and stone structures, all of which indicates it was a settlement. Most ornaments were found in situ while digging and some were collected through screens with 2 mm and 1.5 mm mesh. The ornaments studied in this paper were found from 40 adjacent squares in the largest open area, located in the middle part of the excavation, see Figure \@ref(fig:KWL-sam-area). They were sampled because those units were stratigraphically intact with the least disturbance by modern construction activity, compared to excavation squares on the periphery of the site.
 
 The chronology of Kiwulan can be divided into two phases represented by a Lower Layer Culture (700 - 1200 AD) and a Upper Layer Culture (1400 - 1900 AD) with a sterile layer in between. This chronology is based on the stratigraphy and a series of 32 radiocarbon dates [@Chen2007]. This paper focuses on the Upper Layer Culture spanning from the late Iron Age to the historical period starting from the 17th century with European contact in Taiwan.
 
@@ -170,25 +169,13 @@ knitr::kable(ornaments_shape,
 sam_post_hole <- nrow(ornaments_period)
 total_post_hole <- nrow(kwl_upper)
 sample_per <- round(sam_post_hole/total_post_hole*100, 1)
-
-ornament_context <-
-  data.frame("contexts" = c("post hole area", "burials", "middens"),
-           "sampling" = c(406, 3173, 27),
-           "total_KWL" = c(873, 6769, 55)) 
-
-ornament_context %>% 
-  mutate(percent_context = round(sampling/sum(ornament_context$sampling)*100, 1),
-         sam_total_percent = round(sampling/total_KWL*100, 1)) %>% 
-  add_row(contexts = "sum", 
-          sampling = sum(ornament_context$sampling), 
-          total_KWL = sum(ornament_context$total_KWL))
 ```
 
-```{r, ornaments-image, fig.cap = "Subtypes of ornament in each major category. A: agate beads, B: bells, C: glass beads and golden beads, D: metal rings. Photographs are presented in the same order as those subtypes in the table but from left to right instead. The photographs of B, C, D categories were from original excavation report (Chen 2007).", out.width= "400px", echo=FALSE}
+```{r, ornaments-image, fig.cap = "Subtypes of ornament in each major class. A: agate beads, B: bells, C: glass beads and golden beads, D: metal rings. Photographs are presented in the same order as those subtypes in the table but from left to right instead. The photographs of B, C, D classes were from original excavation report (Chen 2007).", out.width= "400px", echo=FALSE}
 knitr::include_graphics(here("analysis", "figures", "ornament.png"))
 ```
 
-Ornaments from 40 sampling squares were excavated in-situ in different archaeological contexts, including 406 pieces from post-hole area, 3173 pieces from burials, and 27 pieces from middens. Burials unearthed a large amount of ornaments because most beads were preserved well in the form of bead strings that consist of hundreds to thousand pieces. In this paper I focus on the post hole area where `r sam_post_hole` ornaments were recovered, which accounts for `r sample_per` % of the total number from the same context in the Upper Layer Culture at Kiwulan. Post hole area represents Kiwulan domestic space that provides clear contexts and basis for comparison to see if there is any spatial pattern of distribution. Figure \@ref(fig:plot-all-ornaments-count) shows that the most common ornament is golden bead with the number of 143, followed by 121 glass beads, 46 agate beads, 35 metal rings, and 22 metal bells. The variety of subtype and their individual frequency are summarized in Table \@ref(tab:tidy-data-for-table) in terms of three time episodes. The image for each subtype in each major category is shown in Figure \@ref(fig:ornaments-image).
+Ornaments from 40 sampling squares were excavated in-situ in different archaeological contexts, including 406 pieces from post-hole area, 3173 pieces from burials, and 27 pieces from middens. Burials unearthed a large amount of ornaments because mostly beads were preserved well in the form of bead strings that consisted of hundreds to thousand pieces. In this paper I focus on the post hole area where `r sam_post_hole` ornaments were recovered, which accounts for `r sample_per` % of the total number from the same context in the Upper Layer Culture at Kiwulan. Post hole area represents Kiwulan domestic space that provides clear contexts and basis for comparison to see if there is any spatial pattern of distribution. Figure \@ref(fig:plot-all-ornaments-count) shows that the most common ornament is golden bead with the number of 143, followed by 121 glass beads, 46 agate beads, 35 metal rings, and 22 metal bells. The variety of subtype and their individual frequency are summarized in Table \@ref(tab:tidy-data-for-table) in terms of three time episodes. The image for each subtype in each major class is shown in Figure \@ref(fig:ornaments-image).
 
 Ornaments were found in 30 burials from the sampling area as grave goods. Their positions in burials in association with particular parts of human remains indicate the purpose of body adornment. For example, agate beads, golden beads, and small metal rings were often found near skulls that indicate the use as necklaces or earrings, while big metal rings were found wearing on radius and ulna bones as bangles. This pattern corresponds to the texts regarding the body decorations of indigenous culture from Chinese historical documents [@Chen1963; @Ke1993]. Agate beads were mostly found in female burials with an average of 4 to 5 pieces, while golden beads were found in both genders with an average of 2 to 3 pieces. 
 
@@ -217,12 +204,35 @@ ggplot(ornaments_count) +
   theme_minimal(base_size = 12)
 ```
 
+```{r chi square testing}
+# prepare contingency table for chi sqaure
+ornaments_shape_chi <-
+  ornaments_period_clean %>% 
+  group_by(period, Categories) %>% 
+  tally() %>% 
+  filter(!Categories %in% c("Unknown Metal", 
+                            "Perforated plate", 
+                            "Knited item",
+                            "Hair pin",
+                            "Bone Ornament",
+                            "Metal Piece",
+                            "Glass ring")) %>% 
+  spread(Categories, n) 
+
+# compute chi sqaure
+chisq_test_result <- chisq.test(ornaments_shape_chi[ , -1])
+chisq_test_result_stat <- round(chisq_test_result$statistic, 2)
+chisq_test_result_df <- round(chisq_test_result$parameter, 2)
+chisq_test_result_p_value <- (chisq_test_result$p.value)
+```
+
 # Results of hypothesis testing
 
 In this section I report the tests of the three hypotheses about indirect impacts of European colonization on the indigenous community at Kiwulan. To test the hypothesis of a greater diversity of ornaments types and materials at Kiwulan after European contact, and a lesser diversity after Chinese contact, I compare frequencies of ornament types between different time periods. To test the prediction that after European contact were new spatial patterns in the distributions of ornaments at Kiwulan, I use kernel density and point pattern analyses. 
 
 ## Frequency of ornaments between time periods
-Figure \@ref(fig:plot-counts-by-period) shows the comparison of ornament type frequencies between different time periods at Kiwulan. It indicates a general pattern that most ornament types were present before European contact. The frequencies reached a peak during the European contact and then dropped during the Chinese contact period, especially for golden beads. This trend can be also seen on other ornaments including agate bead, metal ring, and bell. However, glass beads show a different pattern that indicates a higher frequency in the pre-European contact, and then their frequency decreased in the European contact period and was even much less in the Chinese contact period.
+
+Figure \@ref(fig:plot-counts-by-period) shows the comparison of frequency for the major class of ornaments between different time periods at Kiwulan. The result of chi-square test for the number of ornaments (X-squared = `r chisq_test_result_stat`, df = `r chisq_test_result_df`, p-value = `r chisq_test_result_p_value`) shows that there is a significant difference between time period groups. It indicates a general pattern that most ornament types were present before European contact.The frequencies reached a peak during the European contact and then dropped during the Chinese contact period, especially for golden beads. This trend can be also seen on other ornaments including agate bead, metal ring, and bell. However, glass beads show a different pattern that indicates a higher frequency in the pre-European contact, and then their frequency decreased in the European contact period and was even much less in the Chinese contact period. 
 
 ```{r tidy-shape-by-period}
 # tidy the data with categories and shapes
@@ -333,9 +343,40 @@ plot_grid(ring_shape_plot,
           rel_heights = c(1,1,0.7,0.62))
 ```
 
-The distribution of frequency for subtypes in each major category are presented in Figure \@ref(fig:plot-altogether). The distribution shows that agate beads and metal rings have greater quantity and \variety of shapes compared to copper bell and glass beads during the European contact period. Agate beads can be divided into seven subtypes, in which hexagonal shape is the most common subtype that appeared before European contact and increased significantly during the European contact and then declined in the Chinese contact. The small oval type shows a similar frequency before and during European contact but is not found in the Chinese contact period. Waxy oval beads were only found during European contact period. A higher variety of agate beads were found in European contact compared to other time periods. Similarly, metal rings can be classified into eight subtypes, in which wide small ring is the most common metal ornaments, followed by wide large and thin large shape. The greater varieties for those two categories might indicate multiple origins due to global trade networks stimulated by the Europeans. In contrast, copper bell and glass bead have less variety, but glass beads have a larger number because they were usually found in a cluster that indicates the original use as strings or necklaces. The common shape for copper bells is the large shape with a wide variety of human faces as a motif, while the common shape for glass beads is a bead with length less than 1 cm that are often identified as Indo-Pacific beads, the most common type that had been widespread in Southeast Asian sites since 300 BC [@Francis2002].
+```{r regression}
+# tidy up the data for correlation testing
+ornaments_diversity_test <-
+  ornaments_shape_count %>%
+  group_by(period) %>% 
+  mutate(sam_size = sum(n)) %>% 
+  add_count() %>% 
+  select(period, n, sam_size) %>% 
+  distinct()
 
-<---I think we need an addition bit of analysis in this section to show the relationship between diversity and sample size. We naturally expect diversity to increase as sample size increases. So we want to test and see if the changes in diversity that you describe here are only the natural effects of increase/decrease in sample size, or there are ‘real’ increases in diversity that cannot be explained by sample size changes. The peer reviewers will want to know the answers to this. --->
+ornaments_diversity_test_2 <-
+  ornaments_shape_count %>%
+  unite(diversity, c(period, Categories), sep = "-", remove = FALSE) %>% 
+  group_by(diversity) %>% 
+  mutate(sam_size = sum(n)) %>% 
+  add_count() %>% 
+  select(diversity, n, sam_size) %>% 
+  separate(diversity, c("period","subtype"), sep = "-", remove = FALSE) %>% 
+  distinct()
+
+# spearman test
+spearman_result <- 
+cor.test( ~ n + sam_size, 
+         data = ornaments_diversity_test_2,
+         method = "spearman",
+         continuity = FALSE,
+         conf.level = 0.95)
+
+spearman_result_stat <- round(spearman_result$statistic, 2)
+spearman_result_rho <- unname(round(spearman_result$estimate, 2))
+spearman_result_p_value <- round(spearman_result$p.value, 2)
+```
+
+The distribution of frequency for subtypes in each major class are presented in Figure \@ref(fig:plot-altogether). Spearman's correlation test shows that there is no significant relationship between diversity of subtypes and sample size (S = `r spearman_result_stat`, rho = `spearman_result_rho`, p-value = `r spearman_result_p_value`). This indicates that the increases in diversity can be explained by the effects of culture contact instead of natural effects of sample size. According to the frequency, agate beads and metal rings have greater quantity and variety of shapes compared to copper bell and glass beads during the European contact period. Agate beads can be divided into seven subtypes, in which hexagonal shape is the most common subtype that appeared before European contact and increased significantly during the European contact and then declined in the Chinese contact. The small oval type shows a similar frequency before and during European contact but is not found in the Chinese contact period. Waxy oval beads were only found during European contact period. A higher variety of agate beads were found in European contact compared to other time periods. Similarly, metal rings can be classified into eight subtypes, in which wide small ring is the most common metal ornaments, followed by wide large and thin large shape. The greater varieties for those two classes might indicate multiple origins due to global trade networks stimulated by the Europeans. In contrast, copper bell and glass bead have less variety, but glass beads have a larger number because they were usually found in a cluster that indicates the original use as strings or necklaces. The common shape for copper bells is the large shape with a wide variety of human faces as a motif, while the common shape for glass beads is a bead with length less than 1 cm that are often identified as Indo-Pacific beads, the most common type that had been widespread in Southeast Asian sites since 300 BC [@Francis2002].
 
 ```{r plot-all-spatial-pattern, fig.cap= "Spatial pattern of all class of ornament by time periods"}
 

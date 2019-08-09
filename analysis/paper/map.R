@@ -19,6 +19,9 @@ TW_map <- fortify(TW_adm)
 
 # add site location
 Kiwulan <- data.frame(lon = c(121.7809), lat = c(24.8066))
+Keelung <- data.frame(lon = c(121.7621), lat = c(25.1573))
+Tamsui <- data.frame(lon = c(121.4349), lat = c(25.1764))
+Hualien <- data.frame(lon = c(121.6084), lat = c(24.0228))
 
 TW_SE_Asia <-
 ggplot(data = world) +

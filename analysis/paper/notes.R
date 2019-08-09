@@ -175,3 +175,34 @@ dis_bell <-
         axis.text.x = element_blank(),
         axis.text.y = element_blank(),
         strip.text.x = element_text(size = 11))
+
+# table for a quick look at number from excavation reports and raw data
+ornament_context <-
+  data.frame("contexts" = c("post hole area", "burials", "middens"),
+             "sampling" = c(406, 3173, 27),
+             "total_KWL" = c(873, 6769, 55))
+
+ornament_context %>%
+  mutate(percent_context = round(sampling/sum(ornament_context$sampling)*100, 1),
+         sam_total_percent = round(sampling/total_KWL*100, 1)) %>%
+  add_row(contexts = "sum",
+          sampling = sum(ornament_context$sampling),
+          total_KWL = sum(ornament_context$total_KWL))
+
+# spearman testing and plot
+ornaments_diversity_test_2 <-
+  ornaments_shape_count %>%
+  unite(diversity, c(period, Categories), sep = "-", remove = FALSE) %>%
+  group_by(diversity) %>%
+  mutate(sam_size = sum(n)) %>%
+  add_count() %>%
+  select(diversity, n, sam_size) %>%
+  separate(diversity, c("period","subtype"), sep = "-", remove = FALSE) %>%
+  distinct()
+
+# plot
+ggplot(ornaments_diversity_test_2,
+       aes(sam_size, n)) +
+  geom_point(aes(color = period)) +
+  labs(x = 'sample size', y = 'subtypes') +
+  scale_x_log10()
