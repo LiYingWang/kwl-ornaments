@@ -88,3 +88,5 @@ ymin = 24.7,
 ymax = 25.2)
 
 ggsave("analysis/figures/kiwulan-location-map.png")
+
+# add the location of Keelung, Tamsui, and Holping dau
