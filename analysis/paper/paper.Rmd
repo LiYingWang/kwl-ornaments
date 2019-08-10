@@ -204,7 +204,7 @@ ggplot(ornaments_count) +
   theme_minimal(base_size = 12)
 ```
 
-```{r chi square testing}
+```{r chi-square-testing}
 # prepare contingency table for chi sqaure
 ornaments_shape_chi <-
   ornaments_period_clean %>% 
