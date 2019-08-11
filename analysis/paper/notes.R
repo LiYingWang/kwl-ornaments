@@ -34,3 +34,175 @@ anim_gold_bead_spatial <-
         axis.text.y = element_blank(),
         strip.text.x = element_text(size = 11))
 
+# categories of ornaments by period
+ornaments_count <-
+  ornaments_period %>%
+  filter(!is.na(`6-layers`),
+         Categories != "Unknown Metal") %>%
+  ungroup() %>%
+  mutate(Categories = fct_lump(Categories,
+                               n = 5)) %>%
+  mutate(Categories = fct_infreq(Categories)) %>%
+  mutate(Categories = fct_rev(Categories)) %>%
+  group_by(period, Categories) %>%
+  count()
+
+# histogram facetting for three periods
+orna_periods_facet <-
+  ggplot(ornaments_count) +
+  geom_col(aes(Categories, n)) +
+  facet_wrap(~ period) +
+  coord_flip() +
+  labs(y = "Frequency") +
+  theme_minimal(base_size = 12) +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.title.x = element_blank())
+
+# stack histogram
+orna_all_viridis <-
+  ggplot(ornaments_count) +
+  geom_col(aes(Categories, n, fill = period)) +
+  labs(y = "Frequency", x = "Categories") +
+  coord_flip() +
+  theme_minimal(base_size = 12) +
+  scale_fill_viridis_d()
+
+library(cowplot)
+library(viridis)
+# add two plots together
+ggdraw() +
+  draw_plot(orna_all_viridis +
+              theme(legend.justification = "top"), 0, 0, 1, 1) +
+  draw_plot(orna_periods_facet + scale_color_viridis(discrete = TRUE) +
+              theme(legend.justification = "bottom"), 0.5, 0.15, 0.5, 0.5) +
+  draw_plot_label(c("A", "B"), c(0, 0.5), c(1, 0.7), size = 15)
+
+
+# plot for intact golden bead by period
+ornaments_intact_gold <-
+  ornaments_period %>%
+  filter(Condition %in% c('complete', 'near-complete'),
+         Categories == 'Golden bead')
+
+ggplot(ornaments_intact_gold) +
+  geom_point(aes(Length, Width, col = Perforation_average)) +
+  facet_wrap(~ period) +
+  labs(x = "Length (mm)",
+       y = "Width (mm)",
+       title = "Golden beads") +
+  coord_fixed(ratio = 1) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust=0.5))
+
+# plot for intact glass bead by period, need to deal with the original data, haven't done yet
+
+# plot for intact agate bead by period
+ornaments_intact_agate <-
+  ornaments_period %>%
+  filter(Condition %in% c('complete','near-complete'),
+         Categories == 'Agate bead')
+
+ggplot(ornaments_intact_agate,
+       aes(Length, Width, col = period))+
+  geom_point() +
+  labs(x = "Length (mm)",
+       y = "Width (mm)",
+       title = "Agate beads") +
+  coord_fixed(ratio = 1) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust=0.5))
+
+# scatter plot for intact bell by period
+ornaments_intact_bell <-
+  ornaments_period %>%
+  filter(Condition %in% c('complete', 'near-complete'),
+         Categories == 'Bell',
+         Type != 'unclassified') %>%
+  mutate(Length = as.numeric(gsub("\\+", "", `Length(mm)`))) #remove +
+
+ggplot(ornaments_intact_bell) +
+  geom_point(aes(Length, Width, col = Type)) +
+  facet_wrap(~ period) +
+  labs(x = "Length (mm)",
+       y = "Width (mm)",
+       title = "Bell") +
+  coord_fixed(ratio = 1) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust=0.5))
+
+# spatial pattern
+# filter metal ring
+ornaments_period_join_metal <-
+  ornaments_period_join %>%
+  filter(Categories %in% 'Metal ring')
+
+# plot by period
+dis_metal <-
+  ggplot(ornaments_period_join_metal) +
+  geom_sf(data = sample_units, fill = NA) +
+  geom_sf(data = ornaments_period_join_metal,
+          aes(geometry = geometry,
+              fill = n), alpha = 0.9) +
+  facet_wrap(~ period) +
+  labs(title = "Metal Ring",
+       fill = "frequency") +
+  scale_fill_gradient(high = "black", low = "grey") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        strip.text.x = element_text(size = 11))
+
+# filter bell
+ornaments_period_join_bell <-
+  ornaments_period_join %>%
+  filter(Categories %in% 'Bell')
+
+# plot by period
+dis_bell <-
+  ggplot(ornaments_period_join_bell) +
+  geom_sf(data = sample_units, fill = NA) +
+  geom_sf(data = ornaments_period_join_bell,
+          aes(geometry = geometry,
+              fill = n), alpha = 0.9) +
+  facet_wrap(~ period) +
+  labs(title = "Copper Bell",
+       fill = "frequency") +
+  scale_fill_gradient(high = "black", low = "grey") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        strip.text.x = element_text(size = 11))
+
+# table for a quick look at number from excavation reports and raw data
+ornament_context <-
+  data.frame("contexts" = c("post hole area", "burials", "middens"),
+             "sampling" = c(406, 3173, 27),
+             "total_KWL" = c(873, 6769, 55))
+
+ornament_context %>%
+  mutate(percent_context = round(sampling/sum(ornament_context$sampling)*100, 1),
+         sam_total_percent = round(sampling/total_KWL*100, 1)) %>%
+  add_row(contexts = "sum",
+          sampling = sum(ornament_context$sampling),
+          total_KWL = sum(ornament_context$total_KWL))
+
+# spearman testing and plot
+ornaments_diversity_test_2 <-
+  ornaments_shape_count %>%
+  unite(diversity, c(period, Categories), sep = "-", remove = FALSE) %>%
+  group_by(diversity) %>%
+  mutate(sam_size = sum(n)) %>%
+  add_count() %>%
+  select(diversity, n, sam_size) %>%
+  separate(diversity, c("period","subtype"), sep = "-", remove = FALSE) %>%
+  distinct()
+
+# plot
+ggplot(ornaments_diversity_test_2,
+       aes(sam_size, n)) +
+  geom_point(aes(color = period)) +
+  labs(x = 'sample size', y = 'subtypes') +
+  scale_x_log10()

@@ -18,14 +18,17 @@ TW_adm <- st_read(here("analysis", "data", "raw_data","TWN_adm2.shp"))
 TW_map <- fortify(TW_adm)
 
 # add site location
-Kiwulan <- data.frame(lon = c(121.7809), lat = c(24.8066))
+site_location <-
+  data.frame(location = c("Kiwulan", "Keeling", "Tamsui", "Hualien"),
+             lon = c(121.7809, 121.7621, 121.4349, 121.6084),
+             lat = c(24.8066, 25.1523, 25.1764, 24.0228))
 
 TW_SE_Asia <-
 ggplot(data = world) +
   geom_sf() +
-  geom_rect(xmin = 121, xmax = 122.0, ymin = 24.3, ymax = 25.2,
+  geom_rect(xmin = 120.9, xmax = 122.2, ymin = 24.4, ymax = 25.5,
             fill = NA, colour = "red", size = 0.5) +
-  coord_sf(xlim = c(107, 135), ylim = c(13, 35), expand = FALSE, datum = NA) +
+  coord_sf(xlim = c(107, 135), ylim = c(5, 45), expand = FALSE, datum = NA) +
   theme(panel.background = element_rect(fill = "azure"))
 
 # Topographic map
@@ -34,34 +37,36 @@ library(tmaptools)
 library(shadowtext)
 # we don't want to download every time, so let's save the map locally
 # from https://stackoverflow.com/a/52710855/1036500
-tw_map <- ggmap(get_stamenmap(rbind(as.numeric(c(121.0, 24.3,
-                                                 122.0, 25.2))), zoom = 10))
+tw_map <- ggmap(get_stamenmap(rbind(as.numeric(c(120.7, 24.2,
+                                                 122.1, 25.6))), zoom = 10))
 #saveRDS(tw_map, here("analysis", "data", "raw_data", "tw_map.rds"))
 #tw_map <- readRDS(here("analysis", "data", "raw_data", "tw_map.rds"))
 pg <- ggplot_build(tw_map)
 
 TW_map_with_site <-
 tw_map +
-  geom_point(data = Kiwulan,
+  geom_point(data = site_location,
              aes(x = lon,
                  y = lat),
-             size = 3,
+             size = 2,
              color = "red") +
-  geom_shadowtext(data = Kiwulan,
+  geom_shadowtext(data = site_location,
             aes(x = lon,
                 y = lat,
-                label = "Kiwulan"),
+                label = location),
             size = 5,
             position = position_nudge(y = 0.05)) +
-  coord_sf(xlim = c(120.5, 122.2),
-           ylim = c(24, 25.2),
+  coord_sf(xlim = c(120.9, 122.7),
+           ylim = c(24.4, 25.5),
            expand = FALSE) +
+  scale_x_continuous(breaks = c(121.0, 121.5, 122.0),
+                     limits = c(120.9, 122.7)) +
   legendMap::scale_bar(
     # edit these numbers to select a suitable location
     # for the scale bar where it does not cover
     # important details on the map
-    lon = 120.6,
-    lat = 24.1,
+    lon = 121.0,
+    lat = 24.45,
     # distance of one section of scale bar, in km
     distance_lon = 20,
     # height of the scale bar, in km
@@ -72,19 +77,21 @@ tw_map +
     dist_unit = "km",
     # add the north arrow
     orientation = TRUE,
-    # length of N arrow, , in km
+    # length of N arrow, in km
     arrow_length = 5,
     # distance between scale bar & base of N arrow, in km
-    arrow_distance = 7,
+    arrow_distance = 8,
     # size of letter 'N' on N arrow, in km
     arrow_north_size = 5)
 
 TW_map_with_site +
 annotation_custom(
 grob = ggplotGrob(TW_SE_Asia),
-xmin = 120.4,
-xmax = 121.2,
-ymin = 24.7,
-ymax = 25.2)
+xmin = 122.1,
+xmax = 122.7,
+ymin = 24.5,
+ymax = 25.4)
 
 ggsave("analysis/figures/kiwulan-location-map.png")
+
+# add the location of Keelung, Tamsui, and Heping dau
