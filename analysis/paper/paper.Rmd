@@ -28,6 +28,11 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "../figures/"
 )
+# prepare for JAS:R
+# https://www.elsevier.com/journals/journal-of-archaeological-science-reports/2352-409x/guide-for-authors#2000
+# not exceed 6000 words excluding figures, tables, highlights 
+# iamge Single column	w = 90 mm 
+# image Double column w = 190 mm 
 ```
 
 # Introduction
