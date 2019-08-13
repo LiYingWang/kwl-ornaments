@@ -102,6 +102,6 @@ ggplot() +
   annotation_custom(ggplotGrob(TW_map_with_site), xmin = 1.2, xmax = 2.5, ymin = 0, ymax = 1) +
   theme_void()
 
-ggsave("analysis/figures/kiwulan-location-map.png")
+ggsave(here("analysis", "figures", "kiwulan-location-map.png"))
 
 # add the location of Keelung, Tamsui, and Heping dau
