@@ -1,17 +1,23 @@
-library("ggplot2")
+library(ggplot2)
 theme_set(theme_bw())
-library("sf")
-library("rnaturalearth")
-library("rnaturalearthdata")
-library("here")
-library("ggspatial")
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(here)
+library(ggspatial)
 #devtools::install_github('3wen/legendMap')
 library(legendMap)
+library(tmaptools)
+library(shadowtext)
+library(tidyverse)
 
 world <- ne_countries(scale = "medium", returnclass = "sf")
 # class(world)
 world_points <- st_centroid(world)
-world_points <- cbind(world, st_coordinates(st_centroid(world$geometry)))
+world_points <- cbind(world, st_coordinates(st_centroid(world$geometry))) %>%
+  filter(name %in% c("Japan", "China", "Korea", "Taiwan",
+                     "Philippines", "Vietnam", "Cambodia"))
+
 
 # read Taiwan administrative areas
 TW_adm <- st_read(here("analysis", "data", "raw_data","TWN_adm2.shp"))
@@ -19,22 +25,25 @@ TW_map <- fortify(TW_adm)
 
 # add site location
 site_location <-
-  data.frame(location = c("Kiwulan", "Keeling", "Tamsui", "Hualien"),
-             lon = c(121.7809, 121.7621, 121.4349, 121.6084),
-             lat = c(24.8066, 25.1523, 25.1764, 24.0228))
+  data.frame(location = c("Kiwulan", "Keelung","Heping dao", "Tamsui", "Hualien"),
+             lon = c(121.7809, 121.7400, 121.7621, 121.4349, 121.6084),
+             lat = c(24.8066, 25.1292, 25.1553, 25.1764, 24.0228))
 
 TW_SE_Asia <-
 ggplot(data = world) +
   geom_sf() +
-  geom_rect(xmin = 120.9, xmax = 122.2, ymin = 24.4, ymax = 25.5,
+  geom_rect(xmin = 120.7, xmax = 122.2, ymin = 24.2, ymax = 25.5,
             fill = NA, colour = "red", size = 0.5) +
-  coord_sf(xlim = c(107, 135), ylim = c(5, 45), expand = FALSE, datum = NA) +
-  theme(panel.background = element_rect(fill = "azure"))
+  geom_shadowtext(data= world_points, aes(x = X, y = Y, label = name),
+                  size = 4, position = position_nudge(y = - 1.7)) +
+  coord_sf(xlim = c(100, 142), ylim = c(7, 43), expand = FALSE) + #add datum = NA to remove
+  scale_x_continuous(breaks = seq(100, 140, by = 20)) +
+  scale_y_continuous(breaks = seq(15, 40, by = 10)) +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank())
 
 # Topographic map
 library(ggmap)
-library(tmaptools)
-library(shadowtext)
 # we don't want to download every time, so let's save the map locally
 # from https://stackoverflow.com/a/52710855/1036500
 tw_map <- ggmap(get_stamenmap(rbind(as.numeric(c(120.7, 24.2,
@@ -55,12 +64,13 @@ tw_map +
                 y = lat,
                 label = location),
             size = 5,
-            position = position_nudge(y = 0.05)) +
-  coord_sf(xlim = c(120.9, 122.7),
-           ylim = c(24.4, 25.5),
+            position = position_nudge(y = 0.05),
+            check.overlap = TRUE) +
+  coord_sf(xlim = c(120.95, 122.05),
+           ylim = c(24.4, 25.4),
            expand = FALSE) +
-  scale_x_continuous(breaks = c(121.0, 121.5, 122.0),
-                     limits = c(120.9, 122.7)) +
+  #scale_x_continuous(breaks = c(121.0, 121.5, 122.0),
+                     #limits = c(120.9, 122.7)) +
   legendMap::scale_bar(
     # edit these numbers to select a suitable location
     # for the scale bar where it does not cover
@@ -82,15 +92,15 @@ tw_map +
     # distance between scale bar & base of N arrow, in km
     arrow_distance = 8,
     # size of letter 'N' on N arrow, in km
-    arrow_north_size = 5)
+    arrow_north_size = 5) +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank())
 
-TW_map_with_site +
-annotation_custom(
-grob = ggplotGrob(TW_SE_Asia),
-xmin = 122.1,
-xmax = 122.7,
-ymin = 24.5,
-ymax = 25.4)
+ggplot() +
+  coord_equal(xlim = c(0, 2.5), ylim = c(0, 1), expand = FALSE) +
+  annotation_custom(ggplotGrob(TW_SE_Asia), xmin = 0, xmax = 1.5, ymin = 0, ymax = 1) +
+  annotation_custom(ggplotGrob(TW_map_with_site), xmin = 1.2, xmax = 2.5, ymin = 0, ymax = 1) +
+  theme_void()
 
 ggsave("analysis/figures/kiwulan-location-map.png")
 
