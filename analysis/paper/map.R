@@ -106,8 +106,8 @@ tw_map +
         axis.title.y = element_blank())
 
 ggplot() +
-  scale_x_continuous(limits = c(0.2,2.5), expand = c(0, 0)) +
-  scale_y_continuous(limits = c(0,1), expand = c(0, 0)) +
+  scale_x_continuous(limits = c(0, 2.5), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0, 1), expand = c(0, 0)) +
   coord_equal() +
   annotation_custom(ggplotGrob(TW_SE_Asia),
                     xmin = 0,
@@ -122,6 +122,8 @@ ggplot() +
   theme_void()
 
 ggsave(here("analysis", "figures", "kiwulan-location-map.png"),
-       width = 190, units = "mm")
+       width = 190,
+       height = 90,
+       units = "mm")
 
 # add the location of Keelung, Tamsui, and Heping dau
