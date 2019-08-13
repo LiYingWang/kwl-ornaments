@@ -59,13 +59,22 @@ tw_map +
                  y = lat),
              size = 2,
              color = "red") +
-  geom_shadowtext(data = site_location,
+  geom_shadowtext(data = site_location %>%
+                   filter(location != "Heping dao") ,
             aes(x = lon,
                 y = lat,
                 label = location),
-            size = 5,
+            size = 4,
             position = position_nudge(y = 0.05),
             check.overlap = TRUE) +
+  geom_shadowtext(data = site_location %>%
+                    filter(location == "Heping dao"),
+                  aes(x = lon,
+                      y = lat,
+                      label = location),
+                  size = 4,
+                  position = position_nudge(y = 0.07, x = 0.1),
+                  check.overlap = TRUE) +
   coord_sf(xlim = c(120.95, 122.05),
            ylim = c(24.4, 25.4),
            expand = FALSE) +
