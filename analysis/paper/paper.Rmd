@@ -54,13 +54,8 @@ Recent ethnographic research with the living members of the Kavalan tribe descri
 
 # Excavations at Kiwulan in northeastern Taiwan
 
-<<<<<<< HEAD
 ```{r, KWL-map, fig.cap = "Map showing the location of Kiwulan, and other places in northern Taiwan named in the text", out.width= "400px"}
 # need to add the locations of Keelung, Tamsui, and hoping dao
-=======
-```{r, KWL-map, fig.cap = "Map showing the location of Kiwulan, and other places in northern Taiwan named in the text", out.width= "400px", echo=FALSE}
-# need to adjust Keelung, heping dao, check it out after knitting
->>>>>>> 79d64f162b0e52c80ce996e3fded19e7a2299429
 library(here)
 knitr::include_graphics(here("analysis", "figures", "kiwulan-location-map.png"))
 ```
