@@ -523,9 +523,9 @@ ornaments_period_join_cen <-
   ornaments_period_join_cen_all %>% 
   group_by(period) %>% 
   group_split() %>% 
-  set_names(c("Pre-European",
-              "European",
-              "Chinese"))
+  set_names(c("Before European Contact",
+              "European Contact",
+              "Chinese Contact"))
 ```
 
 ```{r transformation-sptial-data}
