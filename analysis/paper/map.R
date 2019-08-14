@@ -59,13 +59,22 @@ tw_map +
                  y = lat),
              size = 2,
              color = "red") +
-  geom_shadowtext(data = site_location,
+  geom_shadowtext(data = site_location %>%
+                   filter(location != "Heping dao") ,
             aes(x = lon,
                 y = lat,
                 label = location),
-            size = 5,
+            size = 4,
             position = position_nudge(y = 0.05),
             check.overlap = TRUE) +
+  geom_shadowtext(data = site_location %>%
+                    filter(location == "Heping dao"),
+                  aes(x = lon,
+                      y = lat,
+                      label = location),
+                  size = 4,
+                  position = position_nudge(y = 0.07, x = 0.1),
+                  check.overlap = TRUE) +
   coord_sf(xlim = c(120.95, 122.05),
            ylim = c(24.4, 25.4),
            expand = FALSE) +
@@ -97,11 +106,24 @@ tw_map +
         axis.title.y = element_blank())
 
 ggplot() +
-  coord_equal(xlim = c(0, 2.5), ylim = c(0, 1), expand = FALSE) +
-  annotation_custom(ggplotGrob(TW_SE_Asia), xmin = 0, xmax = 1.5, ymin = 0, ymax = 1) +
-  annotation_custom(ggplotGrob(TW_map_with_site), xmin = 1.2, xmax = 2.5, ymin = 0, ymax = 1) +
+  scale_x_continuous(limits = c(0, 2.5), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0, 1), expand = c(0, 0)) +
+  coord_equal() +
+  annotation_custom(ggplotGrob(TW_SE_Asia),
+                    xmin = 0,
+                    xmax = 1.5,
+                    ymin = 0,
+                    ymax = 1) +
+  annotation_custom(ggplotGrob(TW_map_with_site),
+                    xmin = 1.2,
+                    xmax = 2.5,
+                    ymin = 0,
+                    ymax = 1) +
   theme_void()
 
-ggsave(here("analysis", "figures", "kiwulan-location-map.png"))
+ggsave(here("analysis", "figures", "kiwulan-location-map.png"),
+       width = 190,
+       height = 90,
+       units = "mm")
 
 # add the location of Keelung, Tamsui, and Heping dau
