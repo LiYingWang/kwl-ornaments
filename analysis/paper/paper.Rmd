@@ -1,5 +1,5 @@
 ---
-title: "Ornaments as indicators of Social change before and after European contact at Kiwulan, Northeastern Taiwan"
+title: "Ornaments as indicators of social change before and after European contact at Kiwulan, Northeastern Taiwan"
 author:
   - Li-Ying Wang
 date: "`r format(Sys.time(), '%d %B, %Y')`"
@@ -28,6 +28,11 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "../figures/"
 )
+# prepare for JAS:R
+# https://www.elsevier.com/journals/journal-of-archaeological-science-reports/2352-409x/guide-for-authors#2000
+# not exceed 6000 words excluding figures, tables, highlights 
+image_width_1_col_inch = 90/25.4 # image Single column	w = 90 mm 
+image_width_2_col_inch = 190/25.4 # image Double column w = 190 mm 
 ```
 
 # Introduction
@@ -53,8 +58,7 @@ Chinese historical records from 1829, 1837, and 1852 during the Qing dynasty [16
 Recent ethnographic research with the living members of the Kavalan tribe describes how agate beads were used in divination practices, called "subli", by female shamans [@Liu2008, pp. 133-134]. Interview records mention agate beads as valuable objects that are usually passed down from mother to daughter as heirlooms in shaman families, without knowing the exact origin. When not in use, beads were often hidden in safe places, such as on the roof beams. Modern ethnographic research shows that agate beads were not only used as decoration, but also played an important role in divination, consistent with observations from the European colonial period. Despite most Kavalan people today not knowing the specific origin of their agate beads, the high value of beads is still indicated in oral history and by their scarcity. In sum, we find multiple sources describing how local Indigenous people used ornaments in cultural contexts that represents some social roles or high status. However, compared to the European contact period, there are fewer mentions of beads in Chinese contact period and the descriptions are limited to clothing, but generally confirm the role of beads as status markers.
 
 # Excavations at Kiwulan in northeastern Taiwan
-
-```{r, KWL-map, fig.cap = "Map showing the location of Kiwulan, and other places in northern Taiwan named in the text", out.width= "400px"}
+```{r, KWL-map, fig.cap = "Map showing the location of Kiwulan, and other places in northern Taiwan named in the text", fig.width=image_width_2_col_inch}
 # need to add the locations of Keelung, Tamsui, and hoping dao
 library(here)
 knitr::include_graphics(here("analysis", "figures", "kiwulan-location-map.png"))
@@ -71,7 +75,6 @@ kwl_upper <- readxl::read_excel(here("analysis", "data", "raw_data", "Kiwulan_Or
 # L5 and L6 represent pre-European contact period, 
 # L4 was the time of European contact, and 
 # L2 and L1 was the period of Chinese contact. 
-
 ornaments_period <- 
 kwl_upper %>% 
   filter(!is.na(`6-layers`)) %>% 
@@ -96,8 +99,47 @@ kwl_upper %>%
                 na.rm = TRUE))
 ```
 
-```{r, KWL-sam-area, fig.cap = "Map showing the largest section of excavation areas at Kiwulan, and the distribution of forty squares sampled in this paper presented in red with square ID number. Each square is 4 x 4 m", out.width= "70%", echo=FALSE}
+```{r, KWL-sam-area, fig.cap = "Map showing the largest section of excavation areas at Kiwulan, and the distribution of forty squares sampled in this paper presented in red with square ID number. Each square is 4 x 4 m", fig.width=image_width_2_col_inch}
 # add to the map and scale and north arrow. Check it out after knitting 
+library(sf)
+library(cartography)
+# read in the spatial data
+burial <- invisible(st_read(here("analysis", "data", "raw_data", "AD_burial.shp"), quiet = TRUE))
+AD <- invisible(st_read(here("analysis", "data", "raw_data", "AD_zone.shp"), quiet = TRUE))
+AD_data <- invisible(st_read(here("analysis", "data", "raw_data", "AD_withdata.shp"), quiet = TRUE))
+location <- invisible(st_read(here("analysis", "data", "raw_data", "location.shp"), quiet = TRUE))
+units_40 <- invisible(read.csv(here("analysis", "data", "raw_data", "kwl-list-of-sampling-squares.csv")))
+
+# tidy spatial data
+# 40 sampling units
+sample_units <-
+  AD_data %>%
+  semi_join(units_40, by = c (`坑號` = "the_sq"))
+
+# join two dataset to get coordinate
+ornaments_period_join <-
+  ornaments_period %>%
+  mutate(period = as.factor(period)) %>% # seems need this line first
+  group_by(Pit_No, period) %>%
+  count(Categories) %>%
+  inner_join(AD_data, by = c("Pit_No" = "坑號"))
+
+# mapping sampling area
+KWL_excavation_map <- 
+ggplot(sample_units) +
+  geom_sf(data = AD_data, fill = NA) +
+  geom_sf(color = 'red') +
+  geom_sf_text(aes(label = `坑號`), size = 2.5, alpha = 0.9) +
+  theme_minimal() +
+  theme_void()
+
+#1. Need to say that this is a map of excavation areas at Kiwulan, because the reader cannot see the site name anywhere in this figure.
+#2. Need to add in here that each square is 4 x 4 m
+#3. and say which way north is. Or add to the map and scale and north arrow.
+
+ggsave(plot = KWL_excavation_map, 
+       here("analysis", "figures", "KWL-excavation-map.png"), width = 190, units = "mm")
+
 knitr::include_graphics(here("analysis", "figures", "KWL-excavation-map.png"))
 ```
 
@@ -113,11 +155,10 @@ European colonization ended in 1662 when they were defeated by the kingdom of Tu
 
 # The ornaments
 
-```{r plot-all-ornaments-count, fig.cap= "Frequency of the major class of ornaments at Kiwulan", out.width='60%'}
+```{r plot-all-ornaments-count, fig.cap= "Frequency of the major class of ornaments at Kiwulan", fig.width=image_width_1_col_inch}
 # need to reorder, try https://forcats.tidyverse.org/reference/index.html
 # reorder factor for categories (by frequency) and period (manually)
 # total number of ornaments for each categories 
-
 ornaments_count <-
   ornaments_period %>% 
   filter(Categories != "Unknown Metal") %>%
@@ -128,14 +169,24 @@ ornaments_count <-
   count() %>% 
   ungroup() %>% 
   mutate(Categories = fct_reorder(Categories, n))
-
+plot_ornaments_count <- 
 ggplot(ornaments_count,
        aes(Categories, n)) +
   geom_col() +
   coord_flip() +
+  scale_y_continuous(limits = c(0, 160)) +
   labs(y = "Frequency",
        x = "Categories") +
-  theme_minimal(base_size = 14)
+  theme_minimal(base_size = 10)
+ggsave(plot = plot_ornaments_count,
+       here("analysis", "figures",
+       "plot-ornaments-count.png"),
+       width = 90, 
+       height = 40,
+       units = "mm")
+knitr::include_graphics(here("analysis", 
+                             "figures", 
+                             "plot-ornaments-count.png"))
 ```
 
 ```{r tidy-data-for-table}
@@ -147,7 +198,6 @@ ornaments_period %>%
          Type = ifelse(Type == "small I", "plain small", Type),
          Type = ifelse(Type == "small II", "thin small", Type),
          Type = ifelse(Type == "large thin string", "thin large", Type))
-
 ornaments_shape <-
   ornaments_period_clean %>% 
   group_by(period, Categories, Type) %>% 
@@ -163,18 +213,16 @@ ornaments_shape <-
   filter(!Type %in% c("other",
                       "unclassified")) %>% 
   arrange(Categories, desc(`European Contact`))
-
 # making table
 knitr::kable(ornaments_shape,
              caption = "Ornament subtype frequencies at Kiwulan")
-
 # some basic stat
 sam_post_hole <- nrow(ornaments_period)
 total_post_hole <- nrow(kwl_upper)
 sample_per <- round(sam_post_hole/total_post_hole*100, 1)
 ```
 
-```{r, ornaments-image, fig.cap = "Subtypes of ornament in each major class. A: agate beads, B: bells, C: glass beads and golden beads, D: metal rings. Photographs are presented in the same order as those subtypes in the table but from left to right instead. The photographs of B, C, D classes were from original excavation report (Chen 2007).", out.width= "400px", echo=FALSE}
+```{r, ornaments-image, fig.cap = "Subtypes of ornament in each major class. A: agate beads, B: bells, C: glass beads and golden beads, D: metal rings. Photographs are presented in the same order as those subtypes in the table but from left to right instead. The photographs of B, C, D classes were from original excavation report (Chen 2007).", echo=FALSE}
 knitr::include_graphics(here("analysis", "figures", "ornament.png"))
 ```
 
@@ -182,7 +230,6 @@ Ornaments from 40 sampling squares were excavated in-situ in different archaeolo
 
 ```{r, plot-counts-by-period, fig.cap = "Frequency of the major ornament across different time periods."}
 ### delete one plot
-
 # categories of ornaments by period
 ornaments_count <-
   ornaments_period %>% 
@@ -195,14 +242,26 @@ ornaments_count <-
   mutate(Categories = fct_rev(Categories)) %>% 
   group_by(period, Categories) %>%
   count()
-
 # histogram facetting for three periods
+plot_ornaments_count_three_periods <- 
 ggplot(ornaments_count) +
   geom_col(aes(Categories, n)) +
   facet_wrap(~ period) +
   coord_flip() +
-  labs(x = "categories", y = "Frequency") +
+  labs(x = "Categories",
+       y = "Frequency") +
   theme_minimal(base_size = 12)
+
+ggsave(plot = plot_ornaments_count_three_periods,
+       here("analysis", "figures",
+       "plot-ornaments-count-three-periods.png"),
+       width = 190, 
+       height = 80,
+       units = "mm")
+
+knitr::include_graphics(here("analysis", 
+                             "figures", 
+                             "plot-ornaments-count-three-periods.png"))
 ```
 
 ```{r chi-square-testing}
@@ -219,7 +278,6 @@ ornaments_shape_chi <-
                             "Metal Piece",
                             "Glass ring")) %>% 
   spread(Categories, n) 
-
 # compute chi sqaure
 chisq_test_result <- chisq.test(ornaments_shape_chi[ , -1])
 chisq_test_result_stat <- round(chisq_test_result$statistic, 2)
@@ -231,7 +289,7 @@ chisq_test_result_p_value <- (chisq_test_result$p.value)
 
 ## Changes in the frequencies of ornament types over time
 
-Figure \@ref(fig:plot-counts-by-period) shows the comparison of frequency for the major class of ornaments between different time periods at Kiwulan. The result of chi-square test for the number of ornaments (chi-square = `r chisq_test_result_stat`, df = `r chisq_test_result_df`, p-value = `r chisq_test_result_p_value`) shows that there is a non-random difference between the three time periods. It indicates that most ornament types were present before European contact. Ornament frequencies reached a peak during European contact and then dropped during the Chinese contact period, especially for golden beads. This trend can be also seen on other ornaments including agate beads, metal rings, and bells. However, glass beads show a different pattern that indicates a higher frequency in the pre-European contact, and then a decrease in the European contact period and a further decrease in the Chinese contact period.
+Figure \@ref(fig:plot-counts-by-period) shows the comparison of frequency for the major class of ornaments between different time periods at Kiwulan. The result of chi-square test for the number of ornaments (chi-square = `r chisq_test_result_stat`, df = `r chisq_test_result_df`, p-value = $`r chisq_test_result_p_value`$) shows that there is a non-random difference between the three time periods. It indicates that most ornament types were present before European contact. Ornament frequencies reached a peak during European contact and then dropped during the Chinese contact period, especially for golden beads. This trend can be also seen on other ornaments including agate beads, metal rings, and bells. However, glass beads show a different pattern that indicates a higher frequency in the pre-European contact, and then a decrease in the European contact period and a further decrease in the Chinese contact period.
 
 ```{r tidy-shape-by-period}
 # tidy the data with categories and shapes
@@ -257,7 +315,7 @@ agate_bead_shape <-
   ornaments_shape_count %>% 
   filter(Categories == 'Agate bead',
          Type != 'other')
-
+base_size_multi_plot <- 10
 agate_bead_shape_plot <- 
 ggplot(agate_bead_shape) +
   geom_col(aes(reorder(Type, n), n)) +
@@ -265,7 +323,7 @@ ggplot(agate_bead_shape) +
   coord_flip() +
   labs(y = "",
        x = "Agate bead") +
-  theme_minimal(base_size = 14) +
+  theme_minimal(base_size = base_size_multi_plot) +
   theme(strip.background = element_blank(), 
         strip.text = element_blank())
 ```
@@ -281,7 +339,6 @@ ring_shape <-
   mutate(Type = fct_drop(Type)) %>% 
   mutate(Type = fct_infreq(Type)) %>% 
   mutate(Type = fct_rev(Type)) 
-
 ring_shape_plot <-
 ggplot(ring_shape) +
   geom_col(aes(Type, n)) +
@@ -289,7 +346,7 @@ ggplot(ring_shape) +
   labs(y = "",
        x = "Metal ring") +
   facet_wrap(~ period) +
-  theme_minimal(base_size = 14) 
+  theme_minimal(base_size = base_size_multi_plot) 
 ```
 
 ```{r bell-fre-plot}
@@ -298,7 +355,6 @@ bell_shape <-
   ornaments_shape_count %>% 
   filter(Categories == 'Bell',
          Type != 'unclassified')
-
 bell_shape_plot <-
 ggplot(bell_shape) +
   geom_col(aes(reorder(Type,n), n)) +
@@ -306,7 +362,7 @@ ggplot(bell_shape) +
   coord_flip() +
   labs(y = "",
        x = "Bell") +
-  theme_minimal(base_size = 14) +
+  theme_minimal(base_size = base_size_multi_plot) +
   theme(strip.background = element_blank(), 
         strip.text = element_blank())
 ```
@@ -316,7 +372,6 @@ ggplot(bell_shape) +
 glass_bead_shape <-
   ornaments_shape_count %>% 
   filter(Categories == 'Glass bead')
-
 glass_bead_plot <-
 ggplot(glass_bead_shape) +
   geom_col(aes(Type, n)) +
@@ -324,13 +379,14 @@ ggplot(glass_bead_shape) +
   coord_flip() +
   labs(y = "Frequency",
        x = "Glass bead") +
-  theme_minimal(base_size = 14) +
+  theme_minimal(base_size = base_size_multi_plot) +
   theme(strip.background = element_blank(), 
         strip.text = element_blank())
 ```
 
 ```{r plot-altogether, fig.cap= "Frequency of ornament subtypes showing the changes in frequency across contact periods for metal rings, agate beads, bells, and glass beads."}
 library(cowplot)
+plot_multi_types_by_period <- 
 plot_grid(ring_shape_plot,
           agate_bead_shape_plot, 
           bell_shape_plot, 
@@ -340,6 +396,15 @@ plot_grid(ring_shape_plot,
           axis = "lr",
           rel_widths = 1,
           rel_heights = c(1,1,0.7,0.62))
+ggsave(plot = plot_multi_types_by_period,
+       here("analysis", "figures",
+       "plot-multi-types-by-period.png"),
+       width = 190, 
+       height = 150,
+       units = "mm")
+knitr::include_graphics(here("analysis", 
+                             "figures", 
+                             "plot-multi-types-by-period.png"))
 ```
 
 ```{r regression}
@@ -351,7 +416,6 @@ ornaments_diversity_test <-
   add_count() %>% 
   select(period, n, sam_size) %>% 
   distinct()
-
 ornaments_diversity_test_2 <-
   ornaments_shape_count %>%
   unite(diversity, c(period, Categories), sep = "-", remove = FALSE) %>% 
@@ -361,7 +425,6 @@ ornaments_diversity_test_2 <-
   select(diversity, n, sam_size) %>% 
   separate(diversity, c("period","subtype"), sep = "-", remove = FALSE) %>% 
   distinct()
-
 # spearman test
 spearman_result <- 
 cor.test( ~ n + sam_size, 
@@ -369,34 +432,35 @@ cor.test( ~ n + sam_size,
          method = "spearman",
          continuity = FALSE,
          conf.level = 0.95)
-
 spearman_result_stat <- round(spearman_result$statistic, 2)
 spearman_result_rho <- unname(round(spearman_result$estimate, 2))
 spearman_result_p_value <- round(spearman_result$p.value, 2)
 ```
 
-The distribution of frequency for subtypes in each major class are presented in Figure \@ref(fig:plot-altogether). Spearman's correlation test shows that there is no significant relationship between diversity of subtypes and sample size (S = `r spearman_result_stat`, rho = `r spearman_result_rho`, p-value = `r spearman_result_p_value`). This indicates that the increases in diversity can be explained by the effects of culture contact instead of effects of sample size. According to the frequency, agate beads and metal rings have greater quantity and variety of shapes compared to copper bell and glass beads during the European contact period. The greater varieties for agate beads and metal rings might indicate multiple origins due to participation in global trade networks stimulated by the Europeans. In contrast, copper bells and glass beads have less variety, but glass beads have a larger number because they were usually found in a cluster that indicates the original use as strings or necklaces. The common shape for copper bells is the large shape with a wide variety of human faces as a motif, while the common shape for glass beads is a bead with length less than 1 cm that are often identified as Indo-Pacific beads, the most common type that had been widespread in Southeast Asian sites since 300 BC [@Francis2002].
+
+The distribution of frequency for subtypes in each major class are presented in Figure \@ref(fig:plot-altogether). Spearman's correlation test shows that there is no significant relationship between diversity of subtypes and sample size (S = `r spearman_result_stat`, rho = `r spearman_result_rho`, p = $`r spearman_result_p_value`$). This indicates that the increases in diversity can be explained by the effects of culture contact instead of effects of sample size. According to the frequency, agate beads and metal rings have greater quantity and variety of shapes compared to copper bell and glass beads during the European contact period. The greater varieties for agate beads and metal rings might indicate multiple origins due to participation in global trade networks stimulated by the Europeans. In contrast, copper bells and glass beads have less variety, but glass beads have a larger number because they were usually found in a cluster that indicates the original use as strings or necklaces. The common shape for copper bells is the large shape with a wide variety of human faces as a motif, while the common shape for glass beads is a bead with length less than 1 cm that are often identified as Indo-Pacific beads, the most common type that had been widespread in Southeast Asian sites since 300 BC [@Francis2002].
 
 ```{r plot-all-spatial-pattern, fig.cap= "Spatial pattern of all class of ornament by time periods"}
 library(sf)
+
 # read in the spatial data
 AD_data <- invisible(st_read(here("analysis", "data", "raw_data", "AD_withdata.shp"), quiet = TRUE))
 units_40 <- invisible(read.csv(here("analysis", "data", "raw_data", "kwl-list-of-sampling-squares.csv")))
-
 # tidy spatial data for 40 sampling units
 sample_units <-
   AD_data %>%
   semi_join(units_40, by = c (`坑號` = "the_sq"))
-
 # join two dataset to get coordinate
+
 ornaments_period_join <-
   ornaments_period %>%
   mutate(period = as.factor(period)) %>% # seems need this line first
   group_by(Pit_No, period) %>%
   count(Categories) %>%
   inner_join(AD_data, by = c("Pit_No" = "坑號"))
-
 # plot spatial pattern for all ornaments
+
+plot_spatial_distribution_all_ornaments_by_period <- 
 ggplot() +
   geom_sf(data = sample_units, fill = NA) +
   geom_sf(data = ornaments_period_join, 
@@ -411,82 +475,55 @@ ggplot() +
         axis.text.x = element_blank(),
         axis.text.y = element_blank(),
         strip.text.x = element_text(size = 11))
+
+ggsave(plot = plot_spatial_distribution_all_ornaments_by_period,
+       here("analysis", "figures",
+       "plot-spatial-distribution-all-ornaments-by-period.png"),
+       width = 190, 
+       height = 50,
+       units = "mm")
+knitr::include_graphics(here("analysis", 
+                             "figures", 
+                             "plot-spatial-distribution-all-ornaments-by-period.png"))
 ```
 
-```{r, plot-spatial-pattern-each, fig.cap= "Spatial pattern for ornament class by time periods, only those types with more than 5 pieces are shown here"}
-
-# filter golden bead
-ornaments_period_join_gold <-
+```{r, plot-spatial-pattern-each, fig.cap="Spatial pattern for ornament class by time periods, only those types with more than 5 pieces are shown here"}
+ornaments_period_join_selected_types <- 
   ornaments_period_join %>% 
-  filter(Categories %in% 'Golden bead')
+  filter(Categories %in% c('Golden bead', 
+                           'Glass bead',
+                           'Agate bead'))
 
-# plot by period
-dis_golden <-
-ggplot(ornaments_period_join_gold) +
+plot_spatial_distribution_some_ornaments_by_period <- 
+ggplot() +
   geom_sf(data = sample_units, fill = NA) +
-  geom_sf(data = ornaments_period_join_gold, 
+  geom_sf(data = ornaments_period_join_selected_types, 
           aes(geometry = geometry,
               fill = n), alpha = 0.9) +
-  facet_wrap(~ period) +
-  labs(title = "Golden Beads",
+  facet_grid(rows = vars(Categories),
+             cols = vars(period)) +
+  labs(title = "",
        fill = "frequency") +
   scale_fill_gradient(high = "black", low = "grey") +
-  theme_minimal() +
+  theme_bw() +
   theme(plot.title = element_text(hjust = 0.5),
         axis.text.x = element_blank(),
         axis.text.y = element_blank(),
-        strip.text.x = element_text(size = 11))
+        strip.text.x = element_text(size = 8))
 
-# filter glass bead
-ornaments_period_join_gold <-
-  ornaments_period_join %>% 
-  filter(Categories %in% 'Glass bead')
+ggsave(plot = plot_spatial_distribution_some_ornaments_by_period,
+       here("analysis", "figures",
+       "plot-spatial-distribution-some-ornaments-by-period.png"),
+       width = 190, 
+       height = 130,
+       units = "mm")
 
-# plot by period
-dis_glass <-
-  ggplot(ornaments_period_join_gold) +
-  geom_sf(data = sample_units, fill = NA) +
-  geom_sf(data = ornaments_period_join_gold, 
-          aes(geometry = geometry,
-              fill = n), alpha = 0.9) +
-  facet_wrap(~ period) +
-  labs(title = "Glass Beads",
-       fill = "frequency") +
-  scale_fill_gradient(high = "black", low = "grey") +
-  theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5),
-        axis.text.x = element_blank(),
-        axis.text.y = element_blank(),
-        strip.text.x = element_text(size = 11))
-
-# filter agate bead
-ornaments_period_join_gold <-
-  ornaments_period_join %>% 
-  filter(Categories %in% 'Agate bead')
-
-# plot by period
-dis_agate <-
-ggplot(ornaments_period_join_gold) +
-  geom_sf(data = sample_units, fill = NA) +
-  geom_sf(data = ornaments_period_join_gold, 
-          aes(geometry = geometry, 
-              fill = n), alpha = 0.9) +
-  facet_wrap(~ period) +
-  labs(title = "Agate Beads",
-       fill = "frequency") +
-  scale_fill_gradient(high = "black", low = "grey") +
-  theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5),
-        axis.text.x = element_blank(),
-        axis.text.y = element_blank(),
-        strip.text.x = element_text(size = 11))
-
-plot_grid(dis_golden,
-          dis_glass,
-          dis_agate, 
-          align = "v",
-          nrow = 3)
+knitr::include_graphics(here("analysis", 
+                             "figures", 
+                             "plot-spatial-distribution-some-ornaments-by-period.png"))
 ```
+
+
 
 ## Changes in patterns of the spatial distribution of ornament types 
 
@@ -498,14 +535,13 @@ ornaments_period_join_cen_all <-
   ornaments_period_join %>% 
   mutate(lon = jitter(map_dbl(geometry, ~st_point_on_surface(.x)[[1]])),
          lat = jitter(map_dbl(geometry, ~st_point_on_surface(.x)[[2]]))) 
-
 ornaments_period_join_cen <- 
   ornaments_period_join_cen_all %>% 
   group_by(period) %>% 
   group_split() %>% 
-  set_names(c("Pre-European",
-              "European",
-              "Chinese"))
+  set_names(c("Before European Contact",
+              "European Contact",
+              "Chinese Contact"))
 ```
 
 ```{r transformation-sptial-data}
@@ -513,15 +549,12 @@ ornaments_period_join_cen <-
 library(spatstat)
 library(maptools)
 library(raster)
-
 #store x and y coords in two vectors, and create two vectors xrange and yrange with dimensions of triangle that contain all points, by period
-
 # use common range for each period
 lon_all <- ornaments_period_join_cen_all$lon
 lat_all <- ornaments_period_join_cen_all$lat
 xrange <- range(lon_all, na.rm=T)
 yrange <- range(lat_all, na.rm=T)
-
 # create a function to apply to each period
 density_analysis <- function(x, ...) {
   # create ppp and sp(spacial points) format
@@ -529,28 +562,40 @@ lon_tmp <- x$lon
 lat_tmp <- x$lat
 ornaments_point_ppp_tmp <- ppp(lon_tmp, lat_tmp, xrange, yrange)
 ornaments_point_sp_tmp <- as(ornaments_point_ppp_tmp, "SpatialPoints")
-
 # kernel density estimation with contour
 kernel_tmp <- density(ornaments_point_ppp_tmp)
 kernel_to_plot <- 
-  plot(kernel_tmp, ...)
+  plot(kernel_tmp, main = "")
   contour(kernel_tmp, add = TRUE)
-
+  title(..., line = -2, adj = 0.4)
 return(list(ornaments_point_ppp = ornaments_point_ppp_tmp,
             kernel_to_plot = kernel_to_plot))
 }
 ```
 
 ```{r plot-all-densities, fig.cap= "Kernal density map for ornaments by periods"}
-par(mfrow = c(1, 3))
 # apply function to each data frame in the list
 titles <- names(ornaments_period_join_cen)
-
+png(
+  here("analysis", "figures",
+       "plot-kde-maps.png"), 
+    width = 190,
+    height = 63,
+    units = "mm",
+  res = 300)
+par(mfrow = c(1, 3),
+    oma = c(1,1,1,1) + 0.1,
+    mar = c(0,0,1,1) + 0.1)
 kernels_for_plotting <- 
   map2(ornaments_period_join_cen, 
        titles,
       ~density_analysis(.x, main = .y))
+invisible(dev.off())
+knitr::include_graphics(here("analysis", 
+                             "figures", 
+                             "plot-kde-maps.png"))
 ```
+
 
 ## Point pattern analysis of ornament distribution
 
@@ -559,16 +604,13 @@ I used point pattern analysis to examine whether the distribution of ornaments w
 Kernel density estimations (KDE) estimate the probability of the density of ornaments across space by creating a continuous, smooth density surface across space. Here we use KDE to visualize core areas of ornaments and surrounding neighborhoods [@Bonnier2019; @Cortegoso2016]. Density values of artifacts per square meter were calculated for each cell.
 
 The results show that there is one major core area during the pre-European contact period, multiple core areas during European contact period, and a single core during the Chinese contact period (Figure \@ref(fig:plot-all-densities)). Those maps present three consistent sub-regions with a core area that shifts over time. The distribution might indicate different social groups who possessed more ornaments. The multiple groups during European contact period might reflect more unequal consumption of ornaments across the site, relative to other periods. However, the generation of core areas might be biased due to small sample size, for example, a few ornaments found at one single square during the Chinese period could create an obvious hot spot. To further evaluate the pattern, we test the hypothesis that the distribution of ornaments is not randomly distributed to determine if social processes might explain ornament distributions.
-
 ```{r function for ANN values}
 # function for hypothesis testing
 nndist_hypo_testing <- function(x, n = 1e3L,  ... ) {
   
 ann_tmp <- mean(nndist(x$ornaments_point_ppp, k = 1))
-
 # object for storing simulated ANN values
 ann_r_tmp <- vector(length = n) 
-
 for (i in 1:n) {
   # Generate random point locations
   rand_tmp <-  rpoint(n = x$ornaments_point_ppp$n,
@@ -576,7 +618,6 @@ for (i in 1:n) {
   ann_r_tmp[i] <-
     mean(nndist(rand_tmp, k = 1))  # Tally the ANN values
 }  
-
 the_plot <- 
 hist(
   ann_r_tmp,
@@ -586,24 +627,32 @@ hist(
   col = "bisque",
   xlim = range(ann_tmp, ann_r_tmp),
   ...)
-
 abline(v = ann_tmp, col = "blue")
-
 return(the_plot)
 }
 ```
 
-```{r hypo-test-distribution, fig.cap= "Histogram of simulated ANN values with the blue line indicating the observed value"}
-
+```{r hypo-test-distribution, fig.cap= "Histograms of simulated ANN values with the blue line indicating the observed value"}
 # make the blue lines thicker to be more visible
+png(
+  here("analysis", "figures",
+       "plot-kde-ann-histograms.png"), 
+    width = 90,
+    height = 150,
+    units = "mm",
+  res = 300)
 par(mfrow = c(3, 1))
 invisible(
 map2(kernels_for_plotting, 
     titles,
     ~invisible(nndist_hypo_testing(.x, 
-                         main = .y)))
-)
+                         main = .y))))
+invisible(dev.off())
+knitr::include_graphics(here("analysis", 
+                             "figures", 
+                             "plot-kde-ann-histograms.png"))
 ```
+
 
 To test this hypothesis about the randomness of spatial locations, I used a Monte Carlo method to simulate average nearest-neighbor distances (ANN). Our null hypothesis is that the distribution of ornaments is consistent with a completely random process. We simulated the locations of ornaments across the space 1000 times for each time period. The observed data was compared to the random patterns generated by simulated processes to determine if our data are randomly distributed or not. Figure \@ref(fig:hypo-test-distribution) shows the distributions of the ANN distances calculated on 1000 simulations of ornament locations. The results show that 100% of the simulated values are much greater than our observed ANN value during the European contact period, which means the ornaments have non-random clustered distributions. A similar, but less extreme, result is also observed during the pre-European period. The observed distribution of ornaments is more similar to the random distributions during the Chinese contact period, with about one third of the simulated values are greater than our observed ANN value. This testing reveals that the clustered distributions of ornaments during the pre-European and European contact periods might reflect the presence of different social groups. Moreover, the clustering of ornaments during the European contact period is highly non-random, potentially indicating that some of the social changes leading to a concentration of power to control the distribution of ornaments at Kiwulan.
 
