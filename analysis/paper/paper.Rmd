@@ -28,26 +28,17 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "../figures/"
 )
-# prepare for JAS:R
-# https://www.elsevier.com/journals/journal-of-archaeological-science-reports/2352-409x/guide-for-authors#2000
-# not exceed 6000 words excluding figures, tables, highlights 
-image_width_1_col_inch = 90/25.4 # image Single column	w = 90 mm 
-image_width_2_col_inch = 190/25.4 # image Double column w = 190 mm 
 ```
 
 # Introduction
 
-The direct impacts of European colonialism on indigenous communities in East Asia were much less pronounced than island Southeast Asia and Oceania. Direct European colonial rule throughout East Asia was rare and limited, and the question of long-lasting indirect impacts on local indigenous communities remains largely unanswered. Understanding the indirect effects of colonialism are important for detecting colonial impacts on indigenous peoples in the periphery of colonial control [@TorrenceandClarke2000; @Trabert2017]. In many parts of the world, the introduction of foreign trade goods by colonial traders into local indigenous societies caused substantial transformations of indigenous economic, cultural, and socio-political systems [@Dietler1997; @Junker1993; @Mitchell2000; @Silliman2005]. Studying the consumption of foreign goods can improve our understanding of the negotiations between colonized and colonizer, and the resistance and accommodations of indigenous people through their daily cultural practices [@Dietler2005; @Dietler2015; @Given2004; @Mullins2011; @Rubertone2000; @Scaramelli2005; @Silliman2001; @Torrence2000; @TorrenceandClarke2000; @Voss2005].
+The direct impacts of European colonialism on indigenous communities in East Asia were much less pronounced than island Southeast Asia and Oceania. Direct European colonial rule throughout East Asia was rare and limited, and the question of long-lasting indirect impacts on local indigenous communities remains largely unanswered. Understanding the indirect effects of colonialism are important for detecting colonial impacts on indigenous peoples in the periphery of colonial control [@Trabert2017]. In many parts of the world, the introduction of foreign trade goods by colonial traders into local indigenous societies caused substantial transformations of indigenous economic, cultural, and socio-political systems [@Dietler2005; @Dietler1997; @Junker1993; @Mitchell2000; @Silliman2005]. Studying the consumption of foreign goods can improve our understanding of the negotiations between colonized and colonizer, and the resistance and accommodations of indigenous people through their daily cultural practices [@Dietler2015; @Given2004; @Mullins2011; @Rubertone2000; @Scaramelli2005; @Silliman2001; @Torrence2000; @TorrenceandClarke2000; @Voss2005].
 
 Prior to contact with the Europeans in the early 17th century, Taiwan had been involved in both regional and long-distance East and Southeast Asian trade systems since the tenth century, and encountered large waves of Han Chinese immigration after 17th century when Taiwan was incorporated into the territories of Qing Dynasty of China [@Liu2017; @Andrade2007, ch. 11]. The exchange network in northern Taiwan was influenced by long-distance trade between Fuzhou or Quanzhou in China and Ryukyu in Japan since the 15th century due to its location on shipping routes [@Chen2005]. This intensified in the 17th century with the arrival of the Europeans and their trade goods [@Wang2007]. 
 
-Taiwan became part of global trade systems during the early 17th century due to western European expansions that connected Europe and Asia. Despite the colonization of Taiwan by the Spanish and Dutch from 1624 to 1662, there has been little discussion of the archaeology of indigenous responses to the European colonization. @Berrocal2018 examined both archaeological and historical records of Heping Dao in northern Taiwan. This was the location of the colony of San Salvador founded by the Spanish in 1626 and taken over by the Dutch in 1642. Berrocal et al. uncovered parts of the foundation of a Spanish church and a European cemetery that indicate the evidence of European occupation. These remains indicate a direct impact on the local indigenous populations through their modification of the local landscape. In contrast to Heping Dao, Yilan in Northeastern Taiwan is physically isolated and there are no traces of European settlement. This makes Yilan an especially unique location for exploring indirect colonial effects on local indigenous settlements because of isolation. The rugged Hsuehshan Range to the west and Central Range to the south of the Yilan Plain that made it not easily accessible to the European colonists and the colonial control was weaker compared to other parts of this region [@Andrade2007; @Kang2012]. Yilan, also called "Kavalan" by local indigenous people, is an alluvial plain circumscribed by the Pacific and mountains on the sides. 
+Taiwan became part of global trade systems during the early 17th century due to western European expansions that connected Europe and Asia. Despite the colonization of Taiwan by the Spanish and Dutch from 1624 to 1662, there has been little discussion of the archaeology of indigenous responses to the European colonization. @Berrocal2018 examined both archaeological and historical records of Heping Dao in northern Taiwan. This was the location of the colony of San Salvador founded by the Spanish in 1626 and taken over by the Dutch in 1642. Berrocal et al. uncovered parts of the foundation of a Spanish church and a European cemetery that indicate the evidence of European occupation. These remains indicate a direct impact on the local indigenous populations through their modification of the local landscape. In contrast to Heping Dao, Yilan in Northeastern Taiwan is physically isolated and there are no traces of European settlement. Yilan, also called "Kavalan" by local indigenous people, is an alluvial plain circumscribed by the Pacific and mountains on the sides. The rugged Hsuehshan Range to the west and Central Range to the south of the Yilan Plain that made it not easily accessible to the European colonists and the colonial control was weaker compared to other parts of this region [@Andrade2007; @Kang2012]. This makes Yilan an especially unique location for exploring indirect colonial effects on local indigenous settlements because of isolation. 
 
-<<<<<<< HEAD
-Although mountains isolated Yilan by land, rivers and seas provided a way for the interaction between local indigenous settlements and further afield communities, such as the Basai in northern Taiwan, and Han Chinese. The indigenous people of Yilan established their own exchange network that has been described as part of an "inter-insular trade" system [@Chen2005, p. 12] to refer to small-scale regional trade between China and Taiwan on an irregular basis since 14th century. Kavalan people offered rice, deer hides, and gold in exchange for beads, metal tools or ornaments, ironwares, porcelains, and textiles with outside traders [@Chen2005; @Hsieh2009; @LiandWu2006]. Trading activities brought a wide variety of objects into indigenous communities in Yilan. One of the most commonly traded types of object in this region were personal ornaments such as glass and stone beads. These are one of the most abundant types of foreign goods found at the settlement sites in this region [@Chen2007; @Li2014; @NMTH2005]. Personal adornments in the archaeological record are useful as social signal of an individual's status [@Joyce2005; @Scaramelli2005]. For example, the consumption of stone beads in Southeast Asia during Iron Age is often associated with increasing social stratification or socio-political complexity [@Bellina2014; @Carter2016; @Francis2002; @Theunissen2000; @Kenoyer2000].
-=======
-Although mountains isolated Yilan by land, the sea provided a way through which indigenous people in Yilan could interact with groups elsewhere, such as indigenous groups, distant traders such as the Han people of China, and Europeans. Large-scale and frequent trading activities brought a wide variety of objects into indigenous communities in Yilan. The indigenous people of Yilan established their own exchange network that has been described as part of an "inter-insular trade" system [@Chen2005, p. 12] to refer to small-scale regional trade between China and Taiwan on an irregular basis. One of the most commonly traded types of object in this region were personal ornaments such as glass and stone beads. These are one of the most abundant types of foreign goods found at the settlement sites in this region [@Chen2007; @Li2014; @NMTH2005]. Personal adornments in the archaeological record are useful as social signal of an individual's status [@Joyce2005; @Scaramelli2005]. For example, the consumption of stone beads in Southeast Asia during Iron Age is often associated with increasing social stratification or socio-political complexity [@Bellina2014; @Carter2016; @Francis2002; @Theunissen2000; @Kenoyer2000].
->>>>>>> 76c37bfdcaf59b0a8f9fb3727c805fb814056e1e
+Although mountains isolated Yilan by land, rivers and seas provided a way for the interaction between local indigenous settlements and further afield communities, such as the Basai in northern Taiwan, and Han Chinese. The indigenous people of Yilan established their own exchange network that has been described as part of an "inter-insular trade" system [@Chen2005, p. 12] to refer to small-scale regional trade between China and Taiwan on an irregular basis before European contact. Kavalan people offered rice, deer hides, and gold in exchange for beads, metal tools or ornaments, ironwares, porcelains, and textiles with outside traders [@Chen2005; @Hsieh2009; @LiandWu2006]. Trading activities brought a wide variety of objects into indigenous communities in Yilan. One of the most commonly traded types of object in this region were personal ornaments such as glass and stone beads. These are one of the most abundant types of foreign goods found at the settlement sites in this region [@Chen2007; @Li2014; @NMTH2005]. Personal adornments in the archaeological record are useful as social signal of an individual's status [@Joyce2005; @Scaramelli2005]. For example, the consumption of stone beads in Southeast Asia during Iron Age is often associated with increasing social stratification or socio-political complexity [@Bellina2014; @Carter2016; @Francis2002; @Theunissen2000; @Kenoyer2000].
 
 In this paper, I explore archaeological evidence from Yilan spanning from the late Iron Age to the historical period to address the question of whether indirect colonial influences on the indigenous populations can be detected. I focus on the ornaments recovered from the archaeological excavations at Kiwulan (1400-1900 AD), a large Iron Age settlement in northeastern Taiwan [@Chen2007]. Northeastern Taiwan provides a good example to explore the indirect colonial impacts on indigenous societies by comparing archaeological evidence from different episodes of culture contact [cf. @Lape2003]. I will describe the variety and cultural context of trade ornaments in this region, and examine the potential of ornaments to inform on social changes relating to trade with colonial groups. I hypothesize that there was a greater diversity of ornaments types and materials at Kiwulan after European contact due to participation in a larger scale exchange network. I also predict that after European contact there will be new patterns in the spatial distributions of ornaments at Kiwulan that indicate increasing social inequality. I hypothesize that after 1662 when European contact declined and Chinese contact became the dominant international tradition partner, there was a decline in the use and discard of ornaments at Kiwulan due to overall population declines and acculturation in the Chinese community. To test the hypothesis of a greater diversity of ornaments types and materials at Kiwulan after European contact, and a lesser diversity after Chinese contact, I compare frequencies of ornament types between different time periods. To test the prediction that after European contact were new spatial patterns in the distributions of ornaments at Kiwulan, I use kernel density and point pattern analyses.
 
@@ -63,7 +54,7 @@ Recent ethnographic research with the living members of the Kavalan tribe descri
 
 # Excavations at Kiwulan in northeastern Taiwan
 
-```{r, KWL-map, fig.cap = "Map showing the location of Kiwulan, and other places in northern Taiwan named in the text", fig.width=image_width_2_col_inch}
+```{r, KWL-map, fig.cap = "Map showing the location of Kiwulan, and other places in northern Taiwan named in the text", out.width= "400px"}
 # need to add the locations of Keelung, Tamsui, and hoping dao
 library(here)
 knitr::include_graphics(here("analysis", "figures", "kiwulan-location-map.png"))
@@ -105,12 +96,12 @@ kwl_upper %>%
                 na.rm = TRUE))
 ```
 
-```{r, KWL-sam-area, fig.cap = "Map showing the largest section of excavation areas at Kiwulan, and the distribution of forty squares sampled in this paper presented in red with square ID number. Each square is 4 x 4 m", fig.width=image_width_2_col_inch}
+```{r, KWL-sam-area, fig.cap = "Map showing the largest section of excavation areas at Kiwulan, and the distribution of forty squares sampled in this paper presented in red with square ID number. Each square is 4 x 4 m", out.width= "70%", echo=FALSE}
 # add to the map and scale and north arrow. Check it out after knitting 
 knitr::include_graphics(here("analysis", "figures", "KWL-excavation-map.png"))
 ```
 
-Kiwulan is located at northern Yilan (Figure \@ref(fig:KWL-map)) and was a rescue archaeology project that carried out from 2001 to 2004 in advance of water diversion project and construction of a road bridge . The total area includes eight open area sections of 262 excavation squares (4 m by 4 m) reaching 3,814 m^2^ in total [@Chen2007]. The archaeological evidence includes a large amount of artifacts, burials, middens, post holes, wooden pillars, and stone structures, all of which indicates it was a settlement. Most ornaments were found in situ while digging and some were collected through screens with 2 mm and 1.5 mm mesh. The ornaments studied in this paper were found from 40 adjacent squares in the largest open area, located in the middle part of the excavation, see Figure \@ref(fig:KWL-sam-area). They were sampled because those units were stratigraphically intact with the least disturbance by modern construction activity, compared to excavation squares on the periphery of the site.
+Kiwulan (Figure \@ref(fig:KWL-map)) is located at northern Yilan and was a rescue archaeology project that carried out from 2001 to 2004 in advance of water diversion project and construction of a road bridge. The total area includes eight open area sections of 262 excavation squares (4 m by 4 m) reaching 3,814 m^2^ in total [@Chen2007]. The archaeological evidence includes a large amount of artifacts, burials, middens, post holes, wooden pillars, and stone structures, all of which indicates it was a settlement. Most ornaments were found in situ while digging and some were collected through screens with 2 mm and 1.5 mm mesh. The ornaments studied in this paper were found from 40 adjacent squares in the largest open area, located in the middle part of the excavation, see Figure \@ref(fig:KWL-sam-area). They were sampled because those units were stratigraphically intact with the least disturbance by modern construction activity, compared to excavation squares on the periphery of the site.
 
 The chronology of Kiwulan can be divided into two phases represented by a Lower Layer Culture (700 - 1200 AD) and a Upper Layer Culture (1400 - 1900 AD) with a sterile layer in between. This chronology is based on the stratigraphy and a series of 32 radiocarbon dates [@Chen2007]. This paper focuses on the Upper Layer Culture spanning from the late Iron Age to the historical period starting from the 17th century with European contact in Taiwan.
 
@@ -122,7 +113,7 @@ European colonization ended in 1662 when they were defeated by the kingdom of Tu
 
 # The ornaments
 
-```{r plot-all-ornaments-count, fig.cap= "Frequency of the major class of ornaments at Kiwulan", fig.width=image_width_1_col_inch}
+```{r plot-all-ornaments-count, fig.cap= "Frequency of the major class of ornaments at Kiwulan", out.width='60%'}
 # need to reorder, try https://forcats.tidyverse.org/reference/index.html
 # reorder factor for categories (by frequency) and period (manually)
 # total number of ornaments for each categories 
@@ -138,26 +129,13 @@ ornaments_count <-
   ungroup() %>% 
   mutate(Categories = fct_reorder(Categories, n))
 
-plot_ornaments_count <- 
 ggplot(ornaments_count,
        aes(Categories, n)) +
   geom_col() +
   coord_flip() +
-  scale_y_continuous(limits = c(0, 160)) +
   labs(y = "Frequency",
        x = "Categories") +
-  theme_minimal(base_size = 10)
-
-ggsave(plot = plot_ornaments_count,
-       here("analysis", "figures",
-       "plot-ornaments-count.png"),
-       width = 90, 
-       height = 40,
-       units = "mm")
-
-knitr::include_graphics(here("analysis", 
-                             "figures", 
-                             "plot-ornaments-count.png"))
+  theme_minimal(base_size = 14)
 ```
 
 ```{r tidy-data-for-table}
@@ -219,25 +197,12 @@ ornaments_count <-
   count()
 
 # histogram facetting for three periods
-plot_ornaments_count_three_periods <- 
 ggplot(ornaments_count) +
   geom_col(aes(Categories, n)) +
   facet_wrap(~ period) +
   coord_flip() +
-  labs(x = "Categories",
-       y = "Frequency") +
+  labs(x = "categories", y = "Frequency") +
   theme_minimal(base_size = 12)
-
-ggsave(plot = plot_ornaments_count_three_periods,
-       here("analysis", "figures",
-       "plot-ornaments-count-three-periods.png"),
-       width = 190, 
-       height = 80,
-       units = "mm")
-
-knitr::include_graphics(here("analysis", 
-                             "figures", 
-                             "plot-ornaments-count-three-periods.png"))
 ```
 
 ```{r chi-square-testing}
@@ -266,11 +231,7 @@ chisq_test_result_p_value <- (chisq_test_result$p.value)
 
 ## Changes in the frequencies of ornament types over time
 
-<<<<<<< HEAD
 Figure \@ref(fig:plot-counts-by-period) shows the comparison of frequency for the major class of ornaments between different time periods at Kiwulan. The result of chi-square test for the number of ornaments (chi-square = `r chisq_test_result_stat`, df = `r chisq_test_result_df`, p-value = `r chisq_test_result_p_value`) shows that there is a non-random difference between the three time periods. It indicates that most ornament types were present before European contact. Ornament frequencies reached a peak during European contact and then dropped during the Chinese contact period, especially for golden beads. This trend can be also seen on other ornaments including agate beads, metal rings, and bells. However, glass beads show a different pattern that indicates a higher frequency in the pre-European contact, and then a decrease in the European contact period and a further decrease in the Chinese contact period.
-=======
-Figure \@ref(fig:plot-counts-by-period) shows the comparison of frequency for the major class of ornaments between different time periods at Kiwulan. The result of chi-square test for the number of ornaments (chi-square = `r chisq_test_result_stat`, df = `r chisq_test_result_df`, p = $`r round(chisq_test_result_p_value, 14)`$) shows that there is a non-random difference between the three time periods. It indicates that most ornament types were present before European contact. Ornament frequencies reached a peak during European contact and then dropped during the Chinese contact period, especially for golden beads. This trend can be also seen on other ornaments including agate beads, metal rings, and bells. However, glass beads show a different pattern that indicates a higher frequency in the pre-European contact, and then a decrease in the European contact period and a further decrease in the Chinese contact period. 
->>>>>>> 76c37bfdcaf59b0a8f9fb3727c805fb814056e1e
 
 ```{r tidy-shape-by-period}
 # tidy the data with categories and shapes
@@ -297,8 +258,6 @@ agate_bead_shape <-
   filter(Categories == 'Agate bead',
          Type != 'other')
 
-base_size_multi_plot <- 10
-
 agate_bead_shape_plot <- 
 ggplot(agate_bead_shape) +
   geom_col(aes(reorder(Type, n), n)) +
@@ -306,7 +265,7 @@ ggplot(agate_bead_shape) +
   coord_flip() +
   labs(y = "",
        x = "Agate bead") +
-  theme_minimal(base_size = base_size_multi_plot) +
+  theme_minimal(base_size = 14) +
   theme(strip.background = element_blank(), 
         strip.text = element_blank())
 ```
@@ -330,7 +289,7 @@ ggplot(ring_shape) +
   labs(y = "",
        x = "Metal ring") +
   facet_wrap(~ period) +
-  theme_minimal(base_size = base_size_multi_plot) 
+  theme_minimal(base_size = 14) 
 ```
 
 ```{r bell-fre-plot}
@@ -347,7 +306,7 @@ ggplot(bell_shape) +
   coord_flip() +
   labs(y = "",
        x = "Bell") +
-  theme_minimal(base_size = base_size_multi_plot) +
+  theme_minimal(base_size = 14) +
   theme(strip.background = element_blank(), 
         strip.text = element_blank())
 ```
@@ -365,14 +324,13 @@ ggplot(glass_bead_shape) +
   coord_flip() +
   labs(y = "Frequency",
        x = "Glass bead") +
-  theme_minimal(base_size = base_size_multi_plot) +
+  theme_minimal(base_size = 14) +
   theme(strip.background = element_blank(), 
         strip.text = element_blank())
 ```
 
 ```{r plot-altogether, fig.cap= "Frequency of ornament subtypes showing the changes in frequency across contact periods for metal rings, agate beads, bells, and glass beads."}
 library(cowplot)
-plot_multi_types_by_period <- 
 plot_grid(ring_shape_plot,
           agate_bead_shape_plot, 
           bell_shape_plot, 
@@ -382,17 +340,6 @@ plot_grid(ring_shape_plot,
           axis = "lr",
           rel_widths = 1,
           rel_heights = c(1,1,0.7,0.62))
-
-ggsave(plot = plot_multi_types_by_period,
-       here("analysis", "figures",
-       "plot-multi-types-by-period.png"),
-       width = 190, 
-       height = 150,
-       units = "mm")
-
-knitr::include_graphics(here("analysis", 
-                             "figures", 
-                             "plot-multi-types-by-period.png"))
 ```
 
 ```{r regression}
@@ -428,7 +375,7 @@ spearman_result_rho <- unname(round(spearman_result$estimate, 2))
 spearman_result_p_value <- round(spearman_result$p.value, 2)
 ```
 
-The distribution of frequency for subtypes in each major class are presented in Figure \@ref(fig:plot-altogether). Spearman's correlation test shows that there is no significant relationship between diversity of subtypes and sample size (S = `r spearman_result_stat`, rho = `r spearman_result_rho`, p = $`r spearman_result_p_value`$). This indicates that the increases in diversity can be explained by the effects of culture contact instead of effects of sample size. According to the frequency, agate beads and metal rings have greater quantity and variety of shapes compared to copper bell and glass beads during the European contact period. The greater varieties for agate beads and metal rings might indicate multiple origins due to participation in global trade networks stimulated by the Europeans. In contrast, copper bells and glass beads have less variety, but glass beads have a larger number because they were usually found in a cluster that indicates the original use as strings or necklaces. The common shape for copper bells is the large shape with a wide variety of human faces as a motif, while the common shape for glass beads is a bead with length less than 1 cm that are often identified as Indo-Pacific beads, the most common type that had been widespread in Southeast Asian sites since 300 BC [@Francis2002].
+The distribution of frequency for subtypes in each major class are presented in Figure \@ref(fig:plot-altogether). Spearman's correlation test shows that there is no significant relationship between diversity of subtypes and sample size (S = `r spearman_result_stat`, rho = `r spearman_result_rho`, p-value = `r spearman_result_p_value`). This indicates that the increases in diversity can be explained by the effects of culture contact instead of effects of sample size. According to the frequency, agate beads and metal rings have greater quantity and variety of shapes compared to copper bell and glass beads during the European contact period. The greater varieties for agate beads and metal rings might indicate multiple origins due to participation in global trade networks stimulated by the Europeans. In contrast, copper bells and glass beads have less variety, but glass beads have a larger number because they were usually found in a cluster that indicates the original use as strings or necklaces. The common shape for copper bells is the large shape with a wide variety of human faces as a motif, while the common shape for glass beads is a bead with length less than 1 cm that are often identified as Indo-Pacific beads, the most common type that had been widespread in Southeast Asian sites since 300 BC [@Francis2002].
 
 ```{r plot-all-spatial-pattern, fig.cap= "Spatial pattern of all class of ornament by time periods"}
 library(sf)
@@ -450,7 +397,6 @@ ornaments_period_join <-
   inner_join(AD_data, by = c("Pit_No" = "坑號"))
 
 # plot spatial pattern for all ornaments
-plot_spatial_distribution_all_ornaments_by_period <- 
 ggplot() +
   geom_sf(data = sample_units, fill = NA) +
   geom_sf(data = ornaments_period_join, 
@@ -465,55 +411,81 @@ ggplot() +
         axis.text.x = element_blank(),
         axis.text.y = element_blank(),
         strip.text.x = element_text(size = 11))
-
-ggsave(plot = plot_spatial_distribution_all_ornaments_by_period,
-       here("analysis", "figures",
-       "plot-spatial-distribution-all-ornaments-by-period.png"),
-       width = 190, 
-       height = 50,
-       units = "mm")
-
-knitr::include_graphics(here("analysis", 
-                             "figures", 
-                             "plot-spatial-distribution-all-ornaments-by-period.png"))
 ```
 
-```{r, plot-spatial-pattern-each, fig.cap="Spatial pattern for ornament class by time periods, only those types with more than 5 pieces are shown here"}
+```{r, plot-spatial-pattern-each, fig.cap= "Spatial pattern for ornament class by time periods, only those types with more than 5 pieces are shown here"}
 
-ornaments_period_join_selected_types <- 
+# filter golden bead
+ornaments_period_join_gold <-
   ornaments_period_join %>% 
-  filter(Categories %in% c('Golden bead', 
-                           'Glass bead',
-                           'Agate bead'))
+  filter(Categories %in% 'Golden bead')
 
-plot_spatial_distribution_some_ornaments_by_period <- 
-ggplot() +
+# plot by period
+dis_golden <-
+ggplot(ornaments_period_join_gold) +
   geom_sf(data = sample_units, fill = NA) +
-  geom_sf(data = ornaments_period_join_selected_types, 
+  geom_sf(data = ornaments_period_join_gold, 
           aes(geometry = geometry,
               fill = n), alpha = 0.9) +
-  facet_grid(rows = vars(Categories),
-             cols = vars(period)) +
-  labs(title = "",
+  facet_wrap(~ period) +
+  labs(title = "Golden Beads",
        fill = "frequency") +
   scale_fill_gradient(high = "black", low = "grey") +
-  theme_bw() +
+  theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5),
         axis.text.x = element_blank(),
         axis.text.y = element_blank(),
-        strip.text.x = element_text(size = 8))
+        strip.text.x = element_text(size = 11))
 
-ggsave(plot = plot_spatial_distribution_some_ornaments_by_period,
-       here("analysis", "figures",
-       "plot-spatial-distribution-some-ornaments-by-period.png"),
-       width = 190, 
-       height = 130,
-       units = "mm")
+# filter glass bead
+ornaments_period_join_gold <-
+  ornaments_period_join %>% 
+  filter(Categories %in% 'Glass bead')
 
-knitr::include_graphics(here("analysis", 
-                             "figures", 
-                             "plot-spatial-distribution-some-ornaments-by-period.png"))
+# plot by period
+dis_glass <-
+  ggplot(ornaments_period_join_gold) +
+  geom_sf(data = sample_units, fill = NA) +
+  geom_sf(data = ornaments_period_join_gold, 
+          aes(geometry = geometry,
+              fill = n), alpha = 0.9) +
+  facet_wrap(~ period) +
+  labs(title = "Glass Beads",
+       fill = "frequency") +
+  scale_fill_gradient(high = "black", low = "grey") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        strip.text.x = element_text(size = 11))
 
+# filter agate bead
+ornaments_period_join_gold <-
+  ornaments_period_join %>% 
+  filter(Categories %in% 'Agate bead')
+
+# plot by period
+dis_agate <-
+ggplot(ornaments_period_join_gold) +
+  geom_sf(data = sample_units, fill = NA) +
+  geom_sf(data = ornaments_period_join_gold, 
+          aes(geometry = geometry, 
+              fill = n), alpha = 0.9) +
+  facet_wrap(~ period) +
+  labs(title = "Agate Beads",
+       fill = "frequency") +
+  scale_fill_gradient(high = "black", low = "grey") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        strip.text.x = element_text(size = 11))
+
+plot_grid(dis_golden,
+          dis_glass,
+          dis_agate, 
+          align = "v",
+          nrow = 3)
 ```
 
 ## Changes in patterns of the spatial distribution of ornament types 
@@ -531,9 +503,9 @@ ornaments_period_join_cen <-
   ornaments_period_join_cen_all %>% 
   group_by(period) %>% 
   group_split() %>% 
-  set_names(c("Before European Contact",
-              "European Contact",
-              "Chinese Contact"))
+  set_names(c("Pre-European",
+              "European",
+              "Chinese"))
 ```
 
 ```{r transformation-sptial-data}
@@ -561,9 +533,8 @@ ornaments_point_sp_tmp <- as(ornaments_point_ppp_tmp, "SpatialPoints")
 # kernel density estimation with contour
 kernel_tmp <- density(ornaments_point_ppp_tmp)
 kernel_to_plot <- 
-  plot(kernel_tmp, main = "")
+  plot(kernel_tmp, ...)
   contour(kernel_tmp, add = TRUE)
-  title(..., line = -2, adj = 0.4)
 
 return(list(ornaments_point_ppp = ornaments_point_ppp_tmp,
             kernel_to_plot = kernel_to_plot))
@@ -571,32 +542,14 @@ return(list(ornaments_point_ppp = ornaments_point_ppp_tmp,
 ```
 
 ```{r plot-all-densities, fig.cap= "Kernal density map for ornaments by periods"}
-
+par(mfrow = c(1, 3))
 # apply function to each data frame in the list
 titles <- names(ornaments_period_join_cen)
-
-png(
-  here("analysis", "figures",
-       "plot-kde-maps.png"), 
-    width = 190,
-    height = 63,
-    units = "mm",
-  res = 300)
-
-par(mfrow = c(1, 3),
-    oma = c(1,1,1,1) + 0.1,
-    mar = c(0,0,1,1) + 0.1)
 
 kernels_for_plotting <- 
   map2(ornaments_period_join_cen, 
        titles,
       ~density_analysis(.x, main = .y))
-
-invisible(dev.off())
-
-knitr::include_graphics(here("analysis", 
-                             "figures", 
-                             "plot-kde-maps.png"))
 ```
 
 ## Point pattern analysis of ornament distribution
@@ -640,27 +593,16 @@ return(the_plot)
 }
 ```
 
-```{r hypo-test-distribution, fig.cap= "Histograms of simulated ANN values with the blue line indicating the observed value"}
+```{r hypo-test-distribution, fig.cap= "Histogram of simulated ANN values with the blue line indicating the observed value"}
 
 # make the blue lines thicker to be more visible
-png(
-  here("analysis", "figures",
-       "plot-kde-ann-histograms.png"), 
-    width = 90,
-    height = 150,
-    units = "mm",
-  res = 300)
 par(mfrow = c(3, 1))
 invisible(
 map2(kernels_for_plotting, 
     titles,
     ~invisible(nndist_hypo_testing(.x, 
-                         main = .y))))
-invisible(dev.off())
-
-knitr::include_graphics(here("analysis", 
-                             "figures", 
-                             "plot-kde-ann-histograms.png"))
+                         main = .y)))
+)
 ```
 
 To test this hypothesis about the randomness of spatial locations, I used a Monte Carlo method to simulate average nearest-neighbor distances (ANN). Our null hypothesis is that the distribution of ornaments is consistent with a completely random process. We simulated the locations of ornaments across the space 1000 times for each time period. The observed data was compared to the random patterns generated by simulated processes to determine if our data are randomly distributed or not. Figure \@ref(fig:hypo-test-distribution) shows the distributions of the ANN distances calculated on 1000 simulations of ornament locations. The results show that 100% of the simulated values are much greater than our observed ANN value during the European contact period, which means the ornaments have non-random clustered distributions. A similar, but less extreme, result is also observed during the pre-European period. The observed distribution of ornaments is more similar to the random distributions during the Chinese contact period, with about one third of the simulated values are greater than our observed ANN value. This testing reveals that the clustered distributions of ornaments during the pre-European and European contact periods might reflect the presence of different social groups. Moreover, the clustering of ornaments during the European contact period is highly non-random, potentially indicating that some of the social changes leading to a concentration of power to control the distribution of ornaments at Kiwulan.
