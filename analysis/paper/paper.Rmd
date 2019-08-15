@@ -10,9 +10,9 @@ output:
 bibliography: references.bib
 csl: "../templates/journal-of-archaeological-science.csl" # Insert path for the bib-style
 abstract: |
-  Text of abstract
+  European expansion to Asia since 16th century made a great impact on local indigenous people, where indigenous societies faced forced contact with imperial powers that often transformed their economic, cultural, and socio-political systems. In East Asia, direct European colonial rule on local communities was much less pronounced than it in island Southeast Asia and Oceania. However, the question of long-lasting indirect impacts on indigenous peoples in the periphery of colonial control remains largely unanswered. Here I use northeastern Taiwan as an example to explore the indirect European colonial impacts on local societies by examining trade ornaments excavated at Kiwualn site (1400-1900 AD), a large late Iron Age settlement that encountered different episodes of culture contact. The cultural context, variety, and spatial distribution of trade ornaments were examined in terms of three time episodes, before European contact, European contact, and Chinese contact. The results show that there is a greater amount and diversity of ornament types during the European contact period, and the spatial pattern of ornaments indicates non-random clusters that hints uneven distribution. Those ornaments may carry an exotic and powerful image that signals wealth and trading connections with Europeans for the inhabitants of Kiwulan. These symbolic values may have stimulated more competition between aggrandizing individuals for prestige and wealth accumulation resulting in an increase in social inequality. This study demonstrates the use of foreign ornaments as a proxy to detect indirect colonial influence on local indigenous populations and inform on social changes relating to trade with colonial groups. Ornaments can give insights into the amplification of social inequality stimulated by European colonization. It also shows the agency of indigenous people to incorporate ornaments into their social system.
 keywords: |
-  keyword 1; keyword 2; keyword 3
+  European contact; trade ornaments; social inequality; indigenous people; East Asia
 highlights: |
   These are the highlights. 
 ---
@@ -522,8 +522,6 @@ knitr::include_graphics(here("analysis",
                              "figures", 
                              "plot-spatial-distribution-some-ornaments-by-period.png"))
 ```
-
-
 
 ## Changes in patterns of the spatial distribution of ornament types 
 
