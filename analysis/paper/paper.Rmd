@@ -10,11 +10,15 @@ output:
 bibliography: references.bib
 csl: "../templates/journal-of-archaeological-science.csl" # Insert path for the bib-style
 abstract: |
-  European expansion to Asia since 16th century made a great impact on local indigenous people, where indigenous societies faced forced contact with imperial powers that often transformed their economic, cultural, and socio-political systems. In East Asia, direct European colonial rule on local communities was much less pronounced than it in island Southeast Asia and Oceania. However, the question of long-lasting indirect impacts on indigenous peoples in the periphery of colonial control remains largely unanswered. Here I use northeastern Taiwan as an example to explore the indirect European colonial impacts on local societies by examining trade ornaments excavated at Kiwualn site (1400-1900 AD), a large late Iron Age settlement that encountered different episodes of culture contact. The cultural context, variety, and spatial distribution of trade ornaments were examined in terms of three time episodes, before European contact, European contact, and Chinese contact. The results show that there is a greater amount and diversity of ornament types during the European contact period, and the spatial pattern of ornaments indicates non-random clusters that hints uneven distribution. Those ornaments may carry an exotic and powerful image that signals wealth and trading connections with Europeans for the inhabitants of Kiwulan. These symbolic values may have stimulated more competition between aggrandizing individuals for prestige and wealth accumulation resulting in an increase in social inequality. This study demonstrates the use of foreign ornaments as a proxy to detect indirect colonial influence on local indigenous populations and inform on social changes relating to trade with colonial groups. Ornaments can give insights into the amplification of social inequality stimulated by European colonization. It also shows the agency of indigenous people to incorporate ornaments into their social system.
+  The direct impact of European colonization since 16th century on local indigenous people has been widely discussed. In East Asia, direct European colonial rule on local communities was much less pronounced. However, the question of long-lasting indirect impacts on indigenous peoples in the periphery of colonial control remains largely unanswered. Using trade ornaments recovered from Kiwualn site (1400-1900 AD) in northeastern Taiwan, this research explores the indirect European colonial impacts on local societies by examining cultural context, variety, and spatial distribution of trade ornaments in terms of three time episodes relating different scales of culture contact. The results indicate the diversity of ornaments was greater and their spatial distribution was non-random during the European contact period that hints the increasing social inequality in a colonial context. This study demonstrates the use of foreign ornaments as a proxy to detect indirect colonial influence on local indigenous populations and inform on social changes relating to trade with colonial groups. Ornaments can give insights into the amplification of social inequality stimulated by European colonization. It also shows the agency of indigenous people to incorporate ornaments into their social system.
 keywords: |
   Historical archaeology; European colonization; Trade ornaments; Exchange networks; Taiwan; Monte Carlo simulation
 highlights: |
-  These are the highlights. 
+  1. Indirect impact of European colonization on indigenous peoples in the periphery of colonial control was rarely discussed.
+  2. Evidence of the quantity, variety, and spatial distribution of trade ornaments in both local cultural and colonial context is provided.
+  3. Results of hypothesis testing point to greater amount and diversity of ornament types with non-random, and most highly concentrated spatial clusters during the European contact.
+  4. Ornaments may carry an exotic and powerful image that signals wealth and trading connections with colonists that resulted in an increase in social inequality due to competition of wealth accumulation between individuals.
+  5. Ornaments can be a good proxy to detect indirect colonial influence on local indigenous populations and inform on social changes relating to trade with colonial groups.
 ---
 
 <!-- This is the format for text comments that will be ignored during renderings. Do not put R code in these comments because it will not be ignored. -->
@@ -39,7 +43,7 @@ image_width_2_col_inch = 190/25.4 # image Double column w = 190 mm
 
 The direct impacts of European colonialism on indigenous communities in East Asia were much less pronounced than island Southeast Asia and Oceania. Direct European colonial rule throughout East Asia was rare and limited, and the question of long-lasting indirect impacts on local indigenous communities remains largely unanswered. Understanding the indirect effects of colonialism are important for detecting colonial impacts on indigenous peoples in the periphery of colonial control [@Trabert2017]. In many parts of the world, the introduction of foreign trade goods by colonial traders into local indigenous societies caused substantial transformations of indigenous economic, cultural, and socio-political systems [@Dietler2005; @Dietler1997; @Junker1993; @Mitchell2000; @Silliman2005]. Studying the consumption of foreign goods can improve our understanding of the negotiations between colonized and colonizer, and the resistance and accommodations of indigenous people through their daily cultural practices [@Dietler2015; @Given2004; @Mullins2011; @Rubertone2000; @Scaramelli2005; @Silliman2001; @Torrence2000; @TorrenceandClarke2000; @Voss2005].
 
-Prior to contact with the Europeans in the early 17th century, Taiwan had been involved in both regional and long-distance East and Southeast Asian trade systems since the tenth century, and encountered large waves of Han Chinese immigration after 17th century when Taiwan was incorporated into the territories of Qing Dynasty of China [@Liu2017; @Andrade2007, ch. 11]. The exchange network in northern Taiwan was influenced by long-distance trade between Fuzhou or Quanzhou in China and Ryukyu in Japan since the 15th century due to its location on shipping routes [@Chen2005]. This intensified in the 17th century with the arrival of the Europeans and their trade goods [@Wang2007]. 
+Prior to contact with the Europeans in the early 17th century, Taiwan had been involved in both regional and long-distance East and Southeast Asian trade systems since the 10th century, and encountered large waves of Han Chinese immigration after 17th century when Taiwan was incorporated into the territories of Qing Dynasty of China [@Liu2017; @Andrade2007, ch. 11]. The exchange network in northern Taiwan was influenced by long-distance trade between Fuzhou or Quanzhou in China and Ryukyu in Japan since the 15th century due to its location on shipping routes [@Chen2005]. This intensified in the 17th century with the arrival of the Europeans and their trade goods [@Wang2007]. 
 
 Taiwan became part of global trade systems during the early 17th century due to western European expansions that connected Europe and Asia. Despite the colonization of Taiwan by the Spanish and Dutch from 1624 to 1662, there has been little discussion of the archaeology of indigenous responses to the European colonization. @Berrocal2018 examined both archaeological and historical records of Heping Dao in northern Taiwan. This was the location of the colony of San Salvador founded by the Spanish in 1626 and taken over by the Dutch in 1642. Berrocal et al. uncovered parts of the foundation of a Spanish church and a European cemetery that indicate the evidence of European occupation. These remains indicate a direct impact on the local indigenous populations through their modification of the local landscape. In contrast to Heping Dao, Yilan in Northeastern Taiwan is physically isolated and there are no traces of European settlement. Yilan, also called "Kavalan" by local indigenous people, is an alluvial plain circumscribed by the Pacific and mountains on the sides. The rugged Hsuehshan Range to the west and Central Range to the south of the Yilan Plain that made it not easily accessible to the European colonists and the colonial control was weaker compared to other parts of this region [@Andrade2007; @Kang2012]. This makes Yilan an especially unique location for exploring indirect colonial effects on local indigenous settlements because of isolation. 
 
@@ -99,7 +103,7 @@ kwl_upper %>%
                 na.rm = TRUE))
 ```
 
-```{r, KWL-sam-area, fig.cap = "Map showing the largest section of excavation areas at Kiwulan, and the distribution of forty squares sampled in this paper presented in red with square ID number. Each square is 4 x 4 m", fig.width=image_width_2_col_inch}
+```{r, KWL-sam-area, fig.cap = "Map showing the largest section of excavation areas at Kiwulan, and the distribution of forty squares sampled in this paper presented in red with square ID number. Small dots represent the location of post-holes. Each square is 4 x 4 m", fig.width=image_width_2_col_inch}
 # add to the map and scale and north arrow. Check it out after knitting 
 library(sf)
 library(cartography)
@@ -134,15 +138,11 @@ ggplot(sample_units) +
   geom_sf(color = 'red') +
   geom_sf_text(aes(label = `坑號`), size = 2.5, 
                alpha = 0.9, fontface = "bold") +
-  geom_sf(data = post, color = 'blue', size = 0.2, alpha = 0.5) +
+  geom_sf(data = post, color = 'blue', size = 0.2, alpha = 0.4) +
   theme_minimal() +
   blank() +
     north(AD_data, scale = 0.2, symbol = 3)
   #theme_void()
-
-#1. Need to say that this is a map of excavation areas at Kiwulan, because the reader cannot see the site name anywhere in this figure.
-#2. Need to add in here that each square is 4 x 4 m
-#3. and say which way north is. Or add to the map and scale and north arrow.
 
 ggsave(plot = KWL_excavation_map, 
        here("analysis", "figures", "KWL-excavation-map.png"), width = 190, units = "mm")
@@ -154,7 +154,7 @@ Kiwulan (Figure \@ref(fig:KWL-map)) is located at northern Yilan and was a rescu
 
 The chronology of Kiwulan can be divided into two phases represented by a Lower Layer Culture (700 - 1200 AD) and a Upper Layer Culture (1400 - 1900 AD) with a sterile layer in between. This chronology is based on the stratigraphy and a series of 32 radiocarbon dates [@Chen2007]. This paper focuses on the Upper Layer Culture spanning from the late Iron Age to the historical period starting from the 17th century with European contact in Taiwan.
 
-Previous researchers divided the Upper Layer Culture component into six layers spanning from the 14th century to the 19th century with hundred year intervals according to the radiocarbon dates, excavation depth, and types of diagnostic porcelains such as blue and white porcelains [@Hsieh2009; @Wang2011]. The layers were assigned numbers from 1 to 6 where L1 corresponds to the youngest layer and L6, the bottom layer, refers to the oldest layer. However, because the specific methods of assigning layers to a time period was not documented in detail for the previous chronology, I reexamined the excavation records to produce a new chronology for the sampled squares. For each sampled square I separated excavation units into three episodes of time: pre-European contact period (L5 and L6), European contact period (L4), and Chinese contact period (L2 and L1).
+Previous researchers divided the Upper Layer Culture component into six layers spanning from the 14th century to the 19th century with hundred year intervals according to the radiocarbon dates, excavation depth, consistency of contexts, and types of diagnostic porcelains such as blue and white porcelains [@Hsieh2009; @Wang2011]. The layers were assigned numbers from 1 to 6 where L1 corresponds to the youngest layer and L6, the bottom layer, refers to the oldest layer. However, because the specific methods of assigning layers to a time period was not documented in detail for the previous chronology, I reexamined the excavation records to produce a new chronology for the sampled squares. For each sampled square I separated excavation units into three episodes of time: pre-European contact period (L5 and L6), European contact period (L4), and Chinese contact period (L2 and L1).
 
 I identify the start of European contact at Kiwulan at 1632, when the local villages were attacked by the Spanish who took revenge on an incident happened earlier that year [@Borao2001, pp. 163]. Later in 1647, the Dutch attacked the indigenous villages and forced them to accept colonial rules and economic demands by paying annual tribute [@Andrade2007]. According to Dutch census reports in 1650, Kiwulan was the largest indigenous settlement in the plain, with a population of 840 adults [@Nakamura1938, pp. 12]. In the archaeological record, the approximate indicators of the start of European contact at Kiwulan are the appearance of An-ping jars and stonewares (martavans/martaban) that were largely introduced to Taiwan during the early 17th century. They are frequently found in European shipwrecks from this period for transporting water, wine or other fluids on the long voyages. The jar shapes found at Kiwulan are typical of those found elsewhere in V.O.C sites occupied during the 17th century [@Berrocal2018, pp.917; @Cort2017, pp.282; @Grave2013; @Ketel2011; @Klose2018, pp.131]. I used the presence and absence of An-ping jars and stonewares, together with the radiocarbon dates, to identify excavation units associated with the pre-European and post-European periods. 
 
@@ -444,29 +444,30 @@ spearman_result_rho <- unname(round(spearman_result$estimate, 2))
 spearman_result_p_value <- round(spearman_result$p.value, 2)
 ```
 
-
 The distribution of frequency for subtypes in each major class are presented in Figure \@ref(fig:plot-altogether). Spearman's correlation test shows that there is no significant relationship between diversity of subtypes and sample size (S = `r spearman_result_stat`, rho = `r spearman_result_rho`, p = $`r spearman_result_p_value`$). This indicates that the increases in diversity can be explained by the effects of culture contact instead of effects of sample size. According to the frequency, agate beads and metal rings have greater quantity and variety of shapes compared to copper bell and glass beads during the European contact period. The greater varieties for agate beads and metal rings might indicate multiple origins due to participation in global trade networks stimulated by the Europeans. In contrast, copper bells and glass beads have less variety, but glass beads have a larger number because they were usually found in a cluster that indicates the original use as strings or necklaces. The common shape for copper bells is the large shape with a wide variety of human faces as a motif, while the common shape for glass beads is a bead with length less than 1 cm that are often identified as Indo-Pacific beads, the most common type that had been widespread in Southeast Asian sites since 300 BC [@Francis2002].
 
 ```{r plot-all-spatial-pattern, fig.cap= "Spatial pattern of all class of ornament by time periods"}
 library(sf)
+library(viridis)
 
 # read in the spatial data
 AD_data <- invisible(st_read(here("analysis", "data", "raw_data", "AD_withdata.shp"), quiet = TRUE))
 units_40 <- invisible(read.csv(here("analysis", "data", "raw_data", "kwl-list-of-sampling-squares.csv")))
+
 # tidy spatial data for 40 sampling units
 sample_units <-
   AD_data %>%
   semi_join(units_40, by = c (`坑號` = "the_sq"))
-# join two dataset to get coordinate
 
+# join two dataset to get coordinate
 ornaments_period_join <-
   ornaments_period %>%
   mutate(period = as.factor(period)) %>% # seems need this line first
   group_by(Pit_No, period) %>%
   count(Categories) %>%
   inner_join(AD_data, by = c("Pit_No" = "坑號"))
-# plot spatial pattern for all ornaments
 
+# plot spatial pattern for all ornaments
 plot_spatial_distribution_all_ornaments_by_period <- 
 ggplot() +
   geom_sf(data = sample_units, fill = NA) +
@@ -476,7 +477,7 @@ ggplot() +
           alpha = 0.9) +
   facet_wrap(~ period) +
   labs(fill = "frequency") +
-  scale_fill_gradient(high = "black", low = "grey") +
+  scale_fill_viridis(direction = -1) +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5),
         axis.text.x = element_blank(),
@@ -490,8 +491,7 @@ ggsave(plot = plot_spatial_distribution_all_ornaments_by_period,
        height = 50,
        units = "mm")
 knitr::include_graphics(here("analysis", 
-                             "figures", 
-                             "plot-spatial-distribution-all-ornaments-by-period.png"))
+                             "figures", "plot-spatial-distribution-all-ornaments-by-period.png"))
 ```
 
 ```{r, plot-spatial-pattern-each, fig.cap="Spatial pattern for ornament class by time periods, only those types with more than 5 pieces are shown here"}
@@ -501,7 +501,7 @@ ornaments_period_join_selected_types <-
                            'Glass bead',
                            'Agate bead'))
 
-plot_spatial_distribution_some_ornaments_by_period <- 
+plot_spatial_distribution_some_ornaments_by_period <-
 ggplot() +
   geom_sf(data = sample_units, fill = NA) +
   geom_sf(data = ornaments_period_join_selected_types, 
@@ -511,7 +511,7 @@ ggplot() +
              cols = vars(period)) +
   labs(title = "",
        fill = "frequency") +
-  scale_fill_gradient(high = "black", low = "grey") +
+  scale_fill_viridis(direction = -1) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5),
         axis.text.x = element_blank(),
@@ -526,8 +526,7 @@ ggsave(plot = plot_spatial_distribution_some_ornaments_by_period,
        units = "mm")
 
 knitr::include_graphics(here("analysis", 
-                             "figures", 
-                             "plot-spatial-distribution-some-ornaments-by-period.png"))
+                             "figures", "plot-spatial-distribution-some-ornaments-by-period.png"))
 ```
 
 ## Changes in patterns of the spatial distribution of ornament types 
@@ -601,7 +600,6 @@ knitr::include_graphics(here("analysis",
                              "plot-kde-maps.png"))
 ```
 
-
 ## Point pattern analysis of ornament distribution
 
 I used point pattern analysis to examine whether the distribution of ornaments was uneven in non-random ways that could reflect changes in social inequality. Point pattern analysis is a way to assess whether the distribution of sites or artifacts represent some “hotspots” produced by non-random processes, implying the influence of social processes [@Bevan2016; @Ducke2015]. Hotspots in the pattern of ornaments could indicate changes in social organization due to culture contact. To explore ornament distributions I used the intensity approach that focuses on the average density of points across space. During excavation, ornament locations were only recorded to the square (4 x 4 m). To prepare the location data for point pattern analysis, I assigned each ornament to a random coordinate pair located in square it was recovered from. The next step was to subset the ornaments into three groups for three time periods. Finally I computed the kernel densities for each time period for comparison.
@@ -609,6 +607,7 @@ I used point pattern analysis to examine whether the distribution of ornaments w
 Kernel density estimations (KDE) estimate the probability of the density of ornaments across space by creating a continuous, smooth density surface across space. Here we use KDE to visualize core areas of ornaments and surrounding neighborhoods [@Bonnier2019; @Cortegoso2016]. Density values of artifacts per square meter were calculated for each cell.
 
 The results show that there is one major core area during the pre-European contact period, multiple core areas during European contact period, and a single core during the Chinese contact period (Figure \@ref(fig:plot-all-densities)). Those maps present three consistent sub-regions with a core area that shifts over time. The distribution might indicate different social groups who possessed more ornaments. The multiple groups during European contact period might reflect more unequal consumption of ornaments across the site, relative to other periods. However, the generation of core areas might be biased due to small sample size, for example, a few ornaments found at one single square during the Chinese period could create an obvious hot spot. To further evaluate the pattern, we test the hypothesis that the distribution of ornaments is not randomly distributed to determine if social processes might explain ornament distributions.
+
 ```{r function for ANN values}
 # function for hypothesis testing
 nndist_hypo_testing <- function(x, n = 1e3L,  ... ) {
@@ -677,8 +676,8 @@ Examination of the indirect influence of colonialism can reveal how peripheral a
 This study demonstrates that foreign ornaments can be a proxy to detect indirect colonial influence on local indigenous populations. Ornaments can give insights into the amplification of social inequality stimulated by European colonization. It also shows the agency of indigenous people to incorporate ornaments into their social system. Future work could extend this approach to studies of other trade goods such as ceramics. We have introduced here the corporate/network model for understanding the dynamics of social inequality at Kiwulan, and future tests of this should include analysis of pottery production and standardization, and mortuary practices.
 
 # Acknowledgements
-
 <!-- The following line inserts a page break when the output is MS Word. For page breaks in PDF, use \newpage on its own line.  -->
+
 ##### pagebreak
 
 # References 
