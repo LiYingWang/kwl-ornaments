@@ -12,13 +12,12 @@ csl: "../templates/journal-of-archaeological-science.csl" # Insert path for the 
 abstract: |
   The direct impact of European colonization since 16th century on local indigenous people has been widely discussed. In East Asia, direct European colonial rule on local communities was much less pronounced. However, the question of long-lasting indirect impacts on indigenous peoples in the periphery of colonial control remains largely unanswered. Using trade ornaments recovered from Kiwualn site (1400-1900 AD) in northeastern Taiwan, this research explores the indirect European colonial impacts on local societies by examining cultural context, variety, and spatial distribution of trade ornaments in terms of three time episodes relating different scales of culture contact. The results indicate the diversity of ornaments was greater and their spatial distribution was non-random during the European contact period that hints the increasing social inequality in a colonial context. This study demonstrates the use of foreign ornaments as a proxy to detect indirect colonial influence on local indigenous populations and inform on social changes relating to trade with colonial groups. Ornaments can give insights into the amplification of social inequality stimulated by European colonization. It also shows the agency of indigenous people to incorporate ornaments into their social system.
 keywords: |
-  Historical archaeology; European colonization; Trade ornaments; Exchange networks; Taiwan; Monte Carlo simulation
+  Historical archaeology; Iron Age; European colonization; Trade ornaments; Exchange networks; Taiwan; Monte Carlo simulation
 highlights: |
-  1. Indirect impact of European colonization on indigenous peoples in the periphery of colonial control was rarely discussed.
-  2. Evidence of the quantity, variety, and spatial distribution of trade ornaments in both local cultural and colonial context is provided.
-  3. Results of hypothesis testing point to greater amount and diversity of ornament types with non-random, and most highly concentrated spatial clusters during the European contact.
-  4. Ornaments may carry an exotic and powerful image that signals wealth and trading connections with colonists that resulted in an increase in social inequality due to competition of wealth accumulation between individuals.
-  5. Ornaments can be a good proxy to detect indirect colonial influence on local indigenous populations and inform on social changes relating to trade with colonial groups.
+  1. Evidence of the quantity, variety, and spatial distribution of trade ornaments in both local cultural and colonial context is provided.
+  2. Results of hypothesis testing point to greater amount and diversity of ornament types with non-random, and most highly concentrated spatial clusters during the European contact.
+  3. Trade ornament as a prestige good may result in an increase in social inequality due to competition of wealth accumulation between individuals.
+  4. Trade ornament can be a good proxy to detect indirect colonial influence on local indigenous populations and inform on social changes relating to trade with colonial groups.
 ---
 
 <!-- This is the format for text comments that will be ignored during renderings. Do not put R code in these comments because it will not be ignored. -->
@@ -676,6 +675,9 @@ Examination of the indirect influence of colonialism can reveal how peripheral a
 This study demonstrates that foreign ornaments can be a proxy to detect indirect colonial influence on local indigenous populations. Ornaments can give insights into the amplification of social inequality stimulated by European colonization. It also shows the agency of indigenous people to incorporate ornaments into their social system. Future work could extend this approach to studies of other trade goods such as ceramics. We have introduced here the corporate/network model for understanding the dynamics of social inequality at Kiwulan, and future tests of this should include analysis of pottery production and standardization, and mortuary practices.
 
 # Acknowledgements
+
+I would like to thank the Yilan County Cultural Affairs Bureau in Taiwan for permitting access to the ornaments used in this study. I thank Shui-jin Chiu, Shu-hui Jian, Jiun-hao Lai, and the staff in archaeology lab for their invaluable assistance in preparing samples for analysis. I also thank Yu-pei Chen for the discussion regarding the site at the earliest stage of fieldwork. This work was supported in part by the Fritz Graduate Fellowship and travel grants from the Department of Anthropology at University of Washington. I especially thank Ben Marwick for providing academic support during this project, helping me with polishing figures with R langauge, and providing feedback on early drafts of this manuscript. 
+
 <!-- The following line inserts a page break when the output is MS Word. For page breaks in PDF, use \newpage on its own line.  -->
 
 ##### pagebreak
