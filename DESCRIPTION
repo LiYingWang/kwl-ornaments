@@ -29,5 +29,6 @@ Imports:
     raster (>= 2.9-5),
     readxl (>= 1.3.1),
     spatstat,
-    viridis
+    viridis,
+    ggsn
 Remotes: benmarwick/wordcountaddin
