@@ -34,8 +34,13 @@ ggplot(data = world) +
   geom_sf() +
   geom_rect(xmin = 120.7, xmax = 122.2, ymin = 24.2, ymax = 25.5,
             fill = NA, colour = "red", size = 0.5) +
-  geom_shadowtext(data= world_points, aes(x = X, y = Y, label = name),
-                  size = 4, position = position_nudge(y = - 1.7)) +
+  geom_shadowtext(data= world_points,
+                  aes(x = X, y = Y,
+                      label = name),
+                  color='black',
+                  bg.colour='white',
+                  size = 4,
+                  position = position_nudge(y = - 1.7, x = 0.5)) +
   coord_sf(xlim = c(100, 142), ylim = c(7, 43), expand = FALSE) + #add datum = NA to remove
   scale_x_continuous(breaks = seq(100, 140, by = 20)) +
   scale_y_continuous(breaks = seq(15, 40, by = 10)) +
