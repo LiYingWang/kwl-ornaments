@@ -236,7 +236,7 @@ Ornaments from 40 sampling squares were excavated in-situ in different archaeolo
 
 # Reproducibility and open source materials 
 
-To enable re-use of materials and improve reprodicibility and transparency [@Marwick2017], the entire R code [@Rlanguage2019] used for all the analysis and visualizations contained in this paper is included in XXX.XXX. Also in this version-controlled compendium [@Marwick2018] are the raw data for all the tests reported here. All of the figures, tables, and statistical test results presented here can be independently reproduced with the code and data in this repository. The code is released under the MIT license, the data as CC-0, and figures as CC-BY, to enable maximum re-use. 
+To enable re-use of materials and improve reprodicibility and transparency [@Marwick2017], the entire R code [@Rlanguage2019] used for all the analysis and visualizations contained in this paper is included in DOI 10.17605/OSF.IO/R8YGA. Also in this version-controlled compendium [@Marwick2018] are the raw data for all the tests reported here. All of the figures, tables, and statistical test results presented here can be independently reproduced with the code and data in this repository. The code is released under the MIT license, the data as CC-0, and figures as CC-BY, to enable maximum re-use. 
 
 ```{r, plot-counts-by-period, fig.cap = "Frequency of the major ornament across different time periods."}
 ### delete one plot
@@ -681,7 +681,7 @@ This study demonstrates that foreign ornaments can be a proxy to detect indirect
 
 # Acknowledgments
 
-I would like to thank the Yilan County Cultural Affairs Bureau in Taiwan for permitting access to the ornaments used in this study. I thank Shui-jin Chiu, Shu-hui Jian, Jiun-yao  Lai, and the staff in archaeology lab for their invaluable assistance in preparing samples for analysis. I also thank Yu-pei Chen for the discussion regarding the site at the earliest stage of fieldwork. This work was supported in part by the Fritz Graduate Fellowship and travel grants from the Department of Anthropology at University of Washington. I would also like to thank Ben Fitzhugh and Peter Lape for their insightful comments on the early draft. I especially thank Ben Marwick for providing academic support during this project, helping me with polishing figures with R langauge, and providing feedback on early drafts of this manuscript. 
+I would like to thank the Yilan County Cultural Affairs Bureau in Taiwan for permitting access to the ornaments used in this study. I thank Shui-jin Chiu, Shu-hui Jian, Jiun-yao  Lai, and the staff in archaeology lab for their invaluable assistance in preparing samples for analysis. I also thank Yu-pei Chen for the discussion regarding the site at the earliest stage of fieldwork. This work was supported in part by the Fritz Graduate Fellowship and travel grants from the Department of Anthropology at University of Washington. I would also like to thank Ben Fitzhugh and Peter Lape for their insightful comments on the early draft. I especially thank Ben Marwick for providing academic support during this project, helping me with polishing figures with R language, and providing feedback on early drafts of this manuscript. 
 
 <!-- The following line inserts a page break when the output is MS Word. For page breaks in PDF, use \newpage on its own line.  -->
 
