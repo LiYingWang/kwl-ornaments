@@ -580,7 +580,7 @@ return(list(ornaments_point_ppp = ornaments_point_ppp_tmp,
 }
 ```
 
-```{r plot-all-densities, fig.cap= "Kernal density map for ornaments by periods. Used the bandwidth based on Silverman(1986)'s rule of thumb."}
+```{r plot-all-densities, fig.cap= "Kernal density map for ornaments by periods. Used the bandwidth based on Silverman (1986)'s rule of thumb."}
 # apply function to each data frame in the list
 titles <- names(ornaments_period_join_cen)
 png(
