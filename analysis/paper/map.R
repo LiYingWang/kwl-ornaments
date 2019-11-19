@@ -1,5 +1,5 @@
 library(ggplot2)
-theme_set(theme_bw())
+theme_set(theme_bw(base_size = 6))
 library(sf)
 library(rnaturalearth)
 library(rnaturalearthdata)
@@ -39,7 +39,7 @@ ggplot(data = world) +
                       label = name),
                   color='black',
                   bg.colour='white',
-                  size = 4,
+                  size = 2,
                   position = position_nudge(y = - 1.7, x = 0.5)) +
   coord_sf(xlim = c(100, 142), ylim = c(7, 43), expand = FALSE) + #add datum = NA to remove
   scale_x_continuous(breaks = seq(100, 140, by = 20)) +
@@ -69,7 +69,7 @@ tw_map +
             aes(x = lon,
                 y = lat,
                 label = location),
-            size = 4,
+            size = 2,
             position = position_nudge(y = 0.05),
             check.overlap = TRUE) +
   geom_shadowtext(data = site_location %>%
@@ -77,7 +77,7 @@ tw_map +
                   aes(x = lon,
                       y = lat,
                       label = location),
-                  size = 4,
+                  size = 2,
                   position = position_nudge(y = 0.07, x = 0.1),
                   check.overlap = TRUE) +
   coord_sf(xlim = c(120.95, 122.05),
@@ -91,6 +91,7 @@ tw_map +
     # important details on the map
     lon = 121.0,
     lat = 24.45,
+    legend_size = 2,
     # distance of one section of scale bar, in km
     distance_lon = 20,
     # height of the scale bar, in km
@@ -106,7 +107,7 @@ tw_map +
     # distance between scale bar & base of N arrow, in km
     arrow_distance = 8,
     # size of letter 'N' on N arrow, in km
-    arrow_north_size = 5) +
+    arrow_north_size = 4) +
   theme(axis.title.x = element_blank(),
         axis.title.y = element_blank())
 
@@ -126,9 +127,10 @@ ggplot() +
                     ymax = 1) +
   theme_void()
 
-ggsave(here("analysis", "figures", "kiwulan-location-map.png"),
-       width = 190,
-       height = 90,
+ggsave(here("analysis", "figures", "kiwulan-location-map.jpg"),
+       width = 135,
+       height = 60,
+       dpi = 300,
        units = "mm")
 
 # add the location of Keelung, Tamsui, and Heping dau
