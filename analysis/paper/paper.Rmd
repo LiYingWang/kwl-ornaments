@@ -56,7 +56,7 @@ In 1642, the Dutch Vereenigde Oostindische Compagnie (VOC) defeated the Spanish 
 
 Chinese historical records from 1829, 1837, and 1852 during the Qing dynasty (1616-1911) contain some notes on the purposes of ornaments from Yilan [@Chen1963, pp. 228, 308; @Ke1993, pp. 11, 126; @Yao1996, pp. 77]. According to those records, indigenous people in Yilan wore ornaments in ceremonial contexts to display their wealth and status. Among those ornaments, fish-shaped necklaces made of metal threads had high value due to their delicacy and the materials invested in production. These were usually possessed by wealthy people. Other people wore carnelian beads or glass beads on their head or neck to participate in ceremonies. In 1895, at the beginning of Japanese colonisation, an academic field survey for plains indigenous groups reported that golden necklaces were not used in Yilan at that time, but elderly people still used beads [@Ino1996, pp. 227-232]. In sum, we find multiple sources describing how ornaments represent high status or specialised social roles in indigenous communities in Yilan. Compared to the European period, there are fewer mentions of beads in Chinese period and the descriptions are limited to clothing, but generally confirm the role of beads as status markers. However, we must recognize the inherent biases in historical records and fragmented nature of texts selected by written record keepers that might lead to misinterpretations of artifacts [@Galloway2006]. Inconsistent and incomplete descriptions from different written sources lacking contexts are the problems need to be compared and examined by studying the ornaments in archaeological contexts. 
 
-Currently the ornaments found in northeast Taiwan in early historical period, including glass beads, stone beads, and metal ornaments, were considered as imported materials from other regions due to a lack of evidence of beadmaking waste, metal working, or accessible local raw materials. The chemical composition analysis for glass beads shows high content of lead, coupled with the winding/folding technique, suggest a Chinese beadmaking tradition [@Cheng2008; @Gan2006; @Wang2018]. Although there is wide varity of metal ornaments such as bells, bracelets, rings, and pendants, the common compositions of metal ornaments are brass and copper with a small number made from lead and tin that indicate multiple origins mostly likely from Southeast Asia [@Chen2011]. There is no clear evidence shows the European origin of beads, however, the large amount of golden beads at Kiwulan might be related to the colonial presence of the Europeans through economic activities because similar beads were found at Luzon, northern Philippines, a part of the trading route of the Spanish between 16-19th century [@Wang2007]. Northeast Taiwan from the late Iron age to early historical period was involved in complex exchange network both in a regional and global scale. 
+Currently the ornaments found in northeast Taiwan in early historical period, including glass beads, stone beads, and metal ornaments, were considered as imported materials from other regions due to a lack of evidence of beadmaking waste, metal working, or accessible local raw materials. The chemical composition analysis for glass beads shows high content of lead, coupled with the winding/folding technique, suggest a Chinese beadmaking tradition [@Cheng2008; @Gan2006; @Wang2018]. Although there is wide variety of metal ornaments such as bells, bracelets, rings, and pendants, the common compositions of metal ornaments are brass and copper with a small number made from lead and tin that indicate multiple origins mostly likely from Southeast Asia [@Chen2011]. There is no clear evidence shows the European origin of beads, however, the large amount of golden beads at Kiwulan might be related to the colonial presence of the Europeans through economic activities because similar beads were found at Luzon, northern Philippines, a part of the trading route of the Spanish between 16-19th century [@Wang2007]. Northeast Taiwan from the late Iron age to early historical period was involved in complex exchange network both in a regional and global scale. 
 
 # Excavations at Kiwulan in northeast Taiwan
 
@@ -160,10 +160,65 @@ The archaeological indicators of the start of the European influence at Kiwulan 
 The European colonial presence in northern Taiwan ended in 1662 when the Dutch were defeated by the kingdom of Tungning founded by Koxinga from China. Later in 1683, the Qing dynasty ruled over Taiwan and a large wave of Han Chinese migrated to Yilan during the late 18th century. The archaeological signature of the Chinese period at Kiwulan is the large amount and diversity of Chinese porcelains in many forms such as bowls, plates, and cups. Other indicators include opium pipe-bowls and distinctive architectural bricks and tiles used by Chinese [@Hsieh2009]. Chinese migrations to Yilan were also recorded in official Chinese records written in the early 19th century recording the first immigrant in 1768 [@Chen1963; @Ke1993].
 
 ```{r C14-table-data}
-C14 <- readxl::read_excel(here("analysis", "data", "raw_data", "KWL_C14_dates.xlsx"))
-knitr::kable(C14,
+kw_dates <- readxl::read_excel(here("analysis", "data", "raw_data", "KWL_C14_dates.xlsx"))
+table_kw_dates <-
+  kw_dates %>% 
+  select(-se, -rce)
+  
+knitr::kable(table_kw_dates,
              caption = "Radiocarbon dates on charcoals from Kiwulan")
+```
 
+```{r C14-data, fig.cap= "Summed probability distributions for dates from Kiwulan. The y-axis represents summed probability and the x-axis is the date in calendar years. Produced with the BChronDensity() function in program R's Bchron package (Parnell et al. 2008). IntCal13 Atmospheric curve."}
+
+# subset dates with error value
+kw_dates_with_error <- 
+  kw_dates %>% 
+  filter(!is.na(se))
+
+# convert rce to numeric
+kw_dates_with_error$rce <- as.numeric(kw_dates_with_error$rce)
+
+# make some kind of ID
+kw_dates_with_error$id <- with(kw_dates_with_error,
+                               paste0(Square,"-",Layer))
+
+# Use Bchron to clibrate
+library(Bchron)
+
+kw_dates_with_error_calibrated <- 
+  with(kw_dates_with_error,
+       BchronCalibrate(
+         ages = rce,
+         ageSds = se,
+         ids = id,
+         calCurves = rep('intcal13',
+                         length(kw_dates_with_error$rce))
+       ))
+
+# have a look at the output
+summary(kw_dates_with_error_calibrated)
+par(mfrow = c(2, 3))
+plot(kw_dates_with_error_calibrated)
+
+# we can combine all the calibrated dates into a single plot, like this
+kw_ages_densities <- 
+  with(kw_dates_with_error,
+       BchronDensity(
+         ages = rce,
+         ageSds = se,
+         calCurves = rep('intcal13',
+                         length(kw_dates_with_error$rce))
+       ))
+
+#plot it
+plot(kw_ages_densities,
+     xlab= "Years BC")
+
+# to describe in your text, ?BchronDensity
+# "We used the Bchron R package to compute a non-parametric phase model 
+# on the radiocarbon ages via Gaussian Mixture density estimation (Parnell et al. 2008).
+# FIgure X shows the results of this analysis... indicating that the peak period of occupation is around 600 BC"
 ```
 
 # The ornaments
@@ -713,7 +768,7 @@ The archaeological contexts show that ornaments were rarely found in middens and
 
 How might these results fit into a bigger picture of social change at periphery of colonial systems? We may get some insight into the general pathways that led to social inequality in northeastern Taiwan by considering how people have achieved and maintained power in a wide variety of societies [@Drennan2010; @Feinman2000; @Ames2010; @Bowles2010]. For example, the corporate/network model proposed by @Feinman2000 expands traditional hierarchical complexity to provide a comparative basis for distinct strategies for power. In the network mode, inequality develops when individuals accumulate wealth through their individual networks and people use their wealth to attract factions, control resources, and monopolize trade networks. In contrast, the corporate mode stresses shared power across different groups and sectors, integrative ceremonies and rituals, and large cooperative labour tasks [@Feinman2000; @Siegel1999]. This provides an interpretation that Yilan social organisation went from corporate mode before the European arrival, then transitioned to network mode during the European presence. The small number of ornaments, and less concentrated distribution during the pre-European period is consistent with shared power and wealth of the corporate mode. The long-distance trade network introduced by Europeans resulted in the appearance of a network mode due to competition among ambitious individuals for prestige, wealth, or power through collecting trade goods [@Brumfiel1994; @Clark1994]. Because of the weak direct control from the European colonizers in northeast Taiwan, local leaders may have had the flexibility to manipulate European colonial images, expand personal power, and monopolize the high-value trade goods [@Kang2012]. 
 
-Another scenario could be that the increasing number and concentrated spatial pattern of ornaments indicate cultural resistance against the European intrusion by using them to show social identity and emphasize the local custom that had existed before European contact. Resistance could be presented in many forms. For example, @Rubertone discussed a mid-17th century Narragansett Indian cemetery where a large amount of native-made shell beads supposed to be tributes for the European were found in the graves as an act of political resistance against the colonial demands. Similarly, the frequent presence of ornaments across the dwelling area during the European suggests ornaments might be intentionally displayed in daily life to reinforce the original cultural tradition. During the Chinese period in the 19th century, the decreasing frequency and diversity of ornaments show a decline in the production, use and discard of ornaments at Kiwulan. This might reflect the smaller scale of exchange networks, with limited sources of ornaments, and limited opportunities for individuals to accumulate wealth, or population decrease. It is also possible that some ornaments were treated as heirlooms, such as carnelian beads and golden beads, that passed from one generation to the next. This might suggest that the ornaments found in Chinese period were old item continuously used till then. Further analysis about the source for ornaments from different periods will be helpful to understand their origin and reginal circulation. 
+Another scenario could be that the increasing number and concentrated spatial pattern of ornaments indicate cultural resistance against the European intrusion by using them to show social identity and emphasize the local custom that had existed before European contact. Resistance could be presented in many forms. For example, @Rubertone discussed a mid-17th century Narragansett Indian cemetery where a large amount of native-made shell beads supposed to be tributes for the European were found in the graves as an act of political resistance against the colonial demands. Similarly, the frequent presence of ornaments across the dwelling area during the European suggests ornaments might be intentionally displayed in daily life to reinforce the original cultural tradition. During the Chinese period in the 19th century, the decreasing frequency and diversity of ornaments show a decline in the production, use and discard of ornaments at Kiwulan. This might reflect the smaller scale of exchange networks, with limited sources of ornaments, and limited opportunities for individuals to accumulate wealth, or population decrease. It is also possible that some ornaments were treated as heirlooms, such as carnelian beads and golden beads, that passed from one generation to the next. This might suggest that the ornaments found in Chinese period were old item continuously used until then. Further analysis about the source for ornaments from different periods will be helpful to understand their origin and reginal circulation. 
 
 # Conclusion
 
@@ -721,7 +776,7 @@ Examination of the indirect influence of colonialism can reveal how peripheral a
 
 We are still far from understanding the full variety of colonial impacts on peripheral indigenous communities. The Kiwulan ornaments suggest that foreign ornaments can be a proxy to detect indirect colonial influence on local indigenous populations. Ornaments give insights into the amplification of social inequality stimulated by European colonisation. It also shows the agency of indigenous people to incorporate ornaments into their social system and use them in their daily lives to display or intensify status differences. Future work could extend this approach to studies of other trade goods such as ceramics. We have introduced here the corporate/network model for understanding the dynamics of social inequality at Kiwulan, and future tests of this should include analysis of pottery production and standardisation, and mortuary practices.
 
-# Acknowledgments
+# Acknowledgements
 
 I would like to thank the Yilan County Cultural Affairs Bureau in Taiwan for permitting access to the ornaments used in this study. I thank Shui-jin Chiu, Shu-hui Jian, Jiun-yao Lai, and the staff in archaeology lab for their invaluable assistance in preparing samples for analysis. I also thank Yu-pei Chen for the discussion regarding the site at the earliest stage of fieldwork. This work was supported in part by the Fritz Graduate Fellowship and travel grants from the Department of Anthropology at University of Washington. I would also like to thank Ben Fitzhugh and Peter Lape for their insightful comments on the early draft. I especially thank Ben Marwick for providing academic support during this project, helping me with polishing figures with R language, and providing feedback on early drafts of this manuscript. 
 
