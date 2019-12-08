@@ -161,6 +161,8 @@ The European colonial presence in northern Taiwan ended in 1662 when the Dutch w
 
 ```{r C14-table-data}
 kw_dates <- readxl::read_excel(here("analysis", "data", "raw_data", "KWL_C14_dates.xlsx"))
+cal_kw_dates <- readr::read_csv(here("analysis", "data", "raw_data", "kwl_cal_dates.csv"))
+
 table_kw_dates <-
   kw_dates %>% 
   mutate(`Depth related to sea level (cm)` = paste0(Depth1, " to ", Depth2)) %>% 
@@ -171,13 +173,14 @@ table_kw_dates <-
                                  "European", 
                                  "post-European"))) %>% 
   arrange(Period) %>% 
-  select("Pit-Layer", "Depth related to sea level (cm)", Period, "Date BP", "Calibrated date", "Details")
+  left_join(cal_kw_dates, "Pit-Layer") %>% 
+  select("Period", "Pit-Layer", "Depth related to sea level (cm)", "Date BP", "Calibrated date (95% conf. level)", "Details")
 
 knitr::kable(table_kw_dates,
-             caption = "Radiocarbon dates on charcoals from Kiwulan")
+             caption = "Radiocarbon dates on charcoals from Kiwulan (Chen 2007). Recalibrated using IntCal13 Atmospheric curve.")
 ```
 
-```{r C14-data, fig.cap= "Summed probability distributions for dates from Kiwulan. The y-axis represents summed probability and the x-axis is the date in calendar years. Produced with the BChronDensity() function in program R's Bchron package (Parnell et al. 2008). IntCal13 Atmospheric curve."}
+```{r C14-data, fig.cap= "Summed probability distributions for dates from Kiwulan. The y-axis represents summed probability and the x-axis is the date in calendar years. Produced with the BChronDensity() function in program R's Bchron package (Parnell et al. 2008)."}
 
 # subset dates with error value
 kw_dates_with_error <- 
@@ -203,6 +206,20 @@ kw_dates_with_error_calibrated <-
          calCurves = rep('intcal13',
                          length(kw_dates_with_error$rce))
        ))
+
+# get and summarise the 95% credible interval for each sample into a dataframe
+kw_age_samples <- sampleAges(kw_dates_with_error_calibrated)
+kw_age_cali_df <- as.data.frame(t(apply(kw_age_samples, 2, 
+                                        quantile, prob=c(0.025,0.975))))
+
+# tidy the dataframe 
+kw_age_cali_df_tidy <-
+  kw_age_cali_df %>% 
+  rownames_to_column(var = "Pit-Layer") %>% 
+  mutate(`Calibrated date (95% conf. level)`= paste0(`2.5%`," - ", `97.5%`))
+
+# save the dataframe
+write.csv(kw_age_cali_df_tidy, here("analysis/data/raw_data/kwl_cal_dates.csv"))
 
 # have a look at the output
 summary(kw_dates_with_error_calibrated)
