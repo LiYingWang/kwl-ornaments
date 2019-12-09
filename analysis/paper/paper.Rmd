@@ -159,28 +159,9 @@ The archaeological indicators of the start of the European influence at Kiwulan 
 
 The European colonial presence in northern Taiwan ended in 1662 when the Dutch were defeated by the kingdom of Tungning founded by Koxinga from China. Later in 1683, the Qing dynasty ruled over Taiwan and a large wave of Han Chinese migrated to Yilan during the late 18th century. The archaeological signature of the Chinese period at Kiwulan is the large amount and diversity of Chinese porcelains in many forms such as bowls, plates, and cups. Other indicators include opium pipe-bowls and distinctive architectural bricks and tiles used by Chinese [@Hsieh2009]. Chinese migrations to Yilan were also recorded in official Chinese records written in the early 19th century recording the first immigrant in 1768 [@Chen1963; @Ke1993].
 
-```{r C14-table-data}
-kw_dates <- readxl::read_excel(here("analysis", "data", "raw_data", "KWL_C14_dates.xlsx"))
-cal_kw_dates <- readr::read_csv(here("analysis", "data", "raw_data", "kwl_cal_dates.csv"))
-
-table_kw_dates <-
-  kw_dates %>% 
-  mutate(`Depth related to sea level (cm)` = paste0(Depth1, " to ", Depth2)) %>% 
-  mutate(`Pit-Layer` = paste0(Square, "-", Layer)) %>% 
-  mutate(Period = as.factor(Period)) %>% 
-  mutate(Period = factor(Period,
-                       level = c("pre-European", 
-                                 "European", 
-                                 "post-European"))) %>% 
-  arrange(Period) %>% 
-  left_join(cal_kw_dates, "Pit-Layer") %>% 
-  select("Period", "Pit-Layer", "Depth related to sea level (cm)", "Date BP", "Calibrated date (95% conf. level)", "Details")
-
-knitr::kable(table_kw_dates,
-             caption = "Radiocarbon dates on charcoals from Kiwulan (Chen 2007). Recalibrated using IntCal13 Atmospheric curve.")
-```
-
 ```{r C14-data, fig.cap= "Summed probability distributions for dates from Kiwulan. The y-axis represents summed probability and the x-axis is the date in calendar years. Produced with the BChronDensity() function in program R's Bchron package (Parnell et al. 2008)."}
+
+kw_dates <- readxl::read_excel(here("analysis", "data", "raw_data", "KWL_C14_dates.xlsx"))
 
 # subset dates with error value
 kw_dates_with_error <- 
@@ -244,6 +225,26 @@ plot(kw_ages_densities,
 # "We used the Bchron R package to compute a non-parametric phase model 
 # on the radiocarbon ages via Gaussian Mixture density estimation (Parnell et al. 2008).
 # FIgure X shows the results of this analysis... indicating that the peak period of occupation is around 600 BC"
+```
+
+```{r C14-table-data}
+cal_kw_dates <- readr::read_csv(here("analysis", "data", "raw_data", "kwl_cal_dates.csv"))
+
+table_kw_dates <-
+  kw_dates %>% 
+  mutate(`Depth related to sea level (cm)` = paste0(Depth1, " to ", Depth2)) %>% 
+  mutate(`Pit-Layer` = paste0(Square, "-", Layer)) %>% 
+  mutate(Period = as.factor(Period)) %>% 
+  mutate(Period = factor(Period,
+                       level = c("pre-European", 
+                                 "European", 
+                                 "post-European"))) %>% 
+  arrange(Period) %>% 
+  left_join(cal_kw_dates, "Pit-Layer") %>% 
+  select("Period", "Pit-Layer", "Depth related to sea level (cm)", "Date BP", "Calibrated date (95% conf. level)", "Details")
+
+knitr::kable(table_kw_dates,
+             caption = "Radiocarbon dates on charcoals from Kiwulan (Chen 2007). Calibrated using IntCal13 Atmospheric curve.")
 ```
 
 # The ornaments
