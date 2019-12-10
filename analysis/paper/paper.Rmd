@@ -31,6 +31,7 @@ knitr::opts_chunk$set(
   echo = FALSE,
   comment = "#>",
   cache = TRUE,
+  dpi = 300,
   fig.path = "../figures/"
 )
 # prepare for Antiquity https://antiquity.ac.uk/submit-paper
@@ -159,7 +160,7 @@ The archaeological indicators of the start of the European influence at Kiwulan 
 
 The archaeological signature of the Chinese period at Kiwulan is the large amount and diversity of Chinese porcelains in many forms such as bowls, plates, and cups. Other indicators include opium pipe-bowls and distinctive architectural bricks and tiles used by Chinese [@Hsieh2009]. Chinese migrations to Yilan were also recorded in official Chinese records written in the early 19th century recording the first immigrant in 1768 [@Chen1963; @Ke1993].
 
-```{r C14-data, fig.cap= "Summed probability distributions for dates from Kiwulan. The y-axis represents summed probability and the x-axis is the date in calendar years. Produced with the BChronDensity() function in program R's Bchron package (Parnell et al. 2008)."}
+```{r C14-data, fig.cap= "Summed probability distributions for dates from Kiwulan. The dark line represents the summed probabilities of all radiocarbon ages, and the grey lines in the background are the probabilities of individual ages. Grey rectangles indicate the approximate chronology of the major archaeological components of the deposit. Ages calibrated with the Bchron package (Parnell et al. 2008). "}
 
 kw_dates <- readxl::read_excel(here("analysis", "data", "raw_data", "KWL_C14_dates.xlsx"))
 
@@ -199,10 +200,6 @@ kw_age_cali_df_tidy <-
   rownames_to_column(var = "Pit-Layer") %>% 
   mutate(`Calibrated date (95% conf. level)`= paste0(`2.5%`," - ", `97.5%`))
 
-# have a look at the output
-par(mfrow = c(2, 3))
-plot(kw_dates_with_error_calibrated)
-
 # we can combine all the calibrated dates into a single plot, like this
 kw_ages_densities <- 
   with(kw_dates_with_error,
@@ -212,17 +209,13 @@ kw_ages_densities <-
          ageSds = se,
          calCurves = rep('intcal13',
                          length(kw_dates_with_error$rce))
-<<<<<<< HEAD
        ,
        store_density=TRUE))
   )
-=======
-       ))
-invisible(dev.off())
->>>>>>> 4e072237c7e28786c9abd8f3b385777cb8ce7a6e
 
-#plot it
-plot(kw_ages_densities)
+
+# plot it
+# plot(kw_ages_densities)
 
 kw_ages_densities_df <- 
   tibble(ageGrid = kw_ages_densities$ageGrid,
@@ -237,10 +230,14 @@ kw_ages_densities_dfs <-
 lower_component <- c(1300, 800)
 upper_component <- c(600, 100)
 
+lines_for_periods <- 
+  tibble(bx = c(324,   # start of Euro contact, 1626 AD
+               182),  # start of Chinese contact, 1768 AD
+          by = c(0, 0),
+          byend = c(0.00175),
+          bxend = bx)
+
 ggplot() +
-    geom_vline(xintercept = c(324,   # start of Euro contact, 1626 AD
-                            182),  # start of Chinese contact, 1768 AD
-                            colour = "red") +
     geom_area(data = kw_ages_densities_dfs,
             aes(ageGrid,
                 dens_to_one,
@@ -251,21 +248,30 @@ ggplot() +
   geom_line(data = kw_ages_densities_df,
             aes(ageGrid,
                 densities)) +
-  annotate("rect", xmin = 100, xmax = 600, # upper_component
-                   ymin = 0, ymax = Inf,
+  geom_segment(data = lines_for_periods,
+              aes(x = bx, 
+                  y = by, 
+                  xend = bxend, 
+                  yend = byend),
+               colour = c("red", "blue")) +
+  annotate("rect", xmin = 100, xmax = 600, 
+                   ymin = 0, ymax = lines_for_periods$byend[1],
            fill = "grey80",
            alpha = 0.3) +
-    annotate("text", x = 350, y = 0.007,
-           label = "Upper component") +
+    annotate("text", x = 350, y = 0.0022,
+           label = "Upper component",
+           size = 2) +
     annotate("rect", xmin = 1300, xmax = 800,
-                   ymin = 0, ymax = Inf,
+                   ymin = 0, ymax = lines_for_periods$byend[1],
            fill = "grey80",
            alpha = 0.3) +
-      annotate("text", x = 1050, y = 0.007,
-           label = "Lower component")  +
-  theme_minimal(base_size = 14) +
+      annotate("text", x = 1050, y = 0.00220,
+           label = "Lower component",
+           size = 2)  +
+  theme_minimal(base_size = 8) +
   xlab("calibrated years BP") +
-  ylab("Density") 
+  ylab("Density") +
+  coord_fixed(ratio = 400000)
 
 # to describe in your text, ?BchronDensity
 # "We used the Bchron R package to compute a non-parametric phase model 
@@ -274,8 +280,6 @@ ggplot() +
 ```
 
 ```{r C14-table-data}
-cal_kw_dates <- readr::read_csv(here("analysis", "data", "raw_data", "kwl_cal_dates.csv"))
-
 table_kw_dates <-
   kw_dates %>% 
   mutate(`Depth related to sea level (cm)` = paste0(Depth1, " to ", Depth2)) %>% 
@@ -286,7 +290,7 @@ table_kw_dates <-
                                  "European", 
                                  "post-European"))) %>% 
   arrange(Period) %>% 
-  left_join(cal_kw_dates, "Pit-Layer") %>% 
+  left_join(kw_age_cali_df_tidy, "Pit-Layer") %>% 
   dplyr::select("Period", "Pit-Layer", "Depth related to sea level (cm)", "Date BP", "Calibrated date (95% conf. level)", "Details")
 
 knitr::kable(table_kw_dates,
