@@ -199,9 +199,6 @@ kw_age_cali_df_tidy <-
   rownames_to_column(var = "Pit-Layer") %>% 
   mutate(`Calibrated date (95% conf. level)`= paste0(`2.5%`," - ", `97.5%`))
 
-# save the dataframe
-write.csv(kw_age_cali_df_tidy, here("analysis/data/raw_data/kwl_cal_dates.csv"))
-
 # have a look at the output
 summary(kw_dates_with_error_calibrated)
 par(mfrow = c(2, 3))
@@ -210,16 +207,61 @@ plot(kw_dates_with_error_calibrated)
 # we can combine all the calibrated dates into a single plot, like this
 kw_ages_densities <- 
   with(kw_dates_with_error,
-       BchronDensity(
+       rrtools:::quietly( # suppress the progress bar
+         BchronDensity(
          ages = rce,
          ageSds = se,
          calCurves = rep('intcal13',
                          length(kw_dates_with_error$rce))
-       ))
+       ,
+       store_density=TRUE))
+  )
 
 #plot it
-plot(kw_ages_densities,
-     xlab= "Years BC")
+plot(kw_ages_densities)
+
+kw_ages_densities_df <- 
+  tibble(ageGrid = kw_ages_densities$ageGrid,
+         densities = kw_ages_densities$densities)
+
+kw_ages_densities_dfs <- 
+  map_df(kw_ages_densities$calAges, 
+      ~tibble(ageGrid = .x$ageGrid, 
+              densities = .x$densities), .id = 'date') %>% 
+  mutate(dens_to_one = densities / sum(densities))
+
+lower_component <- c(1300, 800)
+upper_component <- c(600, 100)
+
+ggplot() +
+    geom_vline(xintercept = c(324,   # start of Euro contact, 1626 AD
+                            182),  # start of Chinese contact, 1768 AD
+                            colour = "red") +
+    geom_area(data = kw_ages_densities_dfs,
+            aes(ageGrid,
+                dens_to_one,
+                group = date),
+            fill = "grey80",
+            alpha = 0.4,
+            position = 'identity') +
+  geom_line(data = kw_ages_densities_df,
+            aes(ageGrid,
+                densities)) +
+  annotate("rect", xmin = 100, xmax = 600, # upper_component
+                   ymin = 0, ymax = Inf,
+           fill = "grey80",
+           alpha = 0.3) +
+    annotate("text", x = 350, y = 0.007,
+           label = "Upper component") +
+    annotate("rect", xmin = 1300, xmax = 800,
+                   ymin = 0, ymax = Inf,
+           fill = "grey80",
+           alpha = 0.3) +
+      annotate("text", x = 1050, y = 0.007,
+           label = "Lower component")  +
+  theme_minimal(base_size = 14) +
+  xlab("calibrated years BP") +
+  ylab("Density") 
 
 # to describe in your text, ?BchronDensity
 # "We used the Bchron R package to compute a non-parametric phase model 
