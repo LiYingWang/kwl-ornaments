@@ -160,7 +160,7 @@ The archaeological indicators of the start of the European influence at Kiwulan 
 
 The archaeological signature of the Chinese period at Kiwulan is the large amount and diversity of Chinese porcelains in many forms such as bowls, plates, and cups. Other indicators include opium pipe-bowls and distinctive architectural bricks and tiles used by Chinese [@Hsieh2009]. Chinese migrations to Yilan were also recorded in official Chinese records written in the early 19th century recording the first immigrants in 1768 [@Chen1963; @Ke1993].
 
-```{r C14-data, fig.cap= "Summed probability distributions for dates from Kiwulan. The dark line represents the summed probabilities of all radiocarbon ages, and the grey lines in the background are the probabilities of individual ages. Grey rectangles indicate the approximate chronology of the major archaeological components of the deposit. Ages calibrated with the Bchron package (Parnell et al. 2008). "}
+```{r C14-data, fig.cap= "Summed probability distributions for dates from Kiwulan. The dark line represents the summed probabilities of all radiocarbon ages, and the grey lines in the background are the probabilities of individual ages. Grey rectangles indicate the approximate chronology of the major archaeological components of the deposit. For the upper component, the blue line indicates the start of European presence, while the red line is the Chinese presence. Ages calibrated with the Bchron package (Parnell et al. 2008). "}
 
 kw_dates <- readxl::read_excel(here("analysis", "data", "raw_data", "KWL_C14_dates.xlsx"))
 
@@ -279,15 +279,15 @@ ggplot() +
 ```{r C14-table-data}
 table_kw_dates <-
   kw_dates %>% 
-  mutate(`Depth related to sea level (cm)` = paste0(Depth1, " to ", Depth2)) %>% 
+  mutate(`Above mean sea level (cm)` = paste0(Depth1, " to ", Depth2)) %>% 
   mutate(`Pit-Layer` = paste0(Square, "-", Layer)) %>% 
   left_join(kw_age_cali_df_tidy, "Pit-Layer") %>% 
   mutate(ave = (`2.5%` + `97.5%`) / 2) %>% 
   mutate(ave = ifelse(is.na(ave), 200, ave)) %>%  
   arrange(ave) %>% 
-  dplyr::select("Period", "Pit-Layer", "Depth related to sea level (cm)", "Date BP", "Calibrated date (95% conf. level)", "Details") %>% 
+  dplyr::select("Pit-Layer", "Above mean sea level (cm)", "Date BP", "Calibrated date (95% conf. level)", "Details") %>% 
   mutate(`Calibrated date (95% conf. level)` = 
-           ifelse(is.na(`Calibrated date (95% conf. level)`), "-", `Calibrated date (95% conf. level)`))
+           ifelse(is.na(`Calibrated date (95% conf. level)`), "—", `Calibrated date (95% conf. level)`))
 
 knitr::kable(table_kw_dates,
              caption = "Radiocarbon dates on charcoals from Kiwulan (Chen 2007). Calibrated using IntCal13 Atmospheric curve.")
