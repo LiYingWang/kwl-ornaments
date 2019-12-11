@@ -208,11 +208,8 @@ kw_ages_densities <-
          ages = rce,
          ageSds = se,
          calCurves = rep('intcal13',
-                         length(kw_dates_with_error$rce))
-       ,
-       store_density=TRUE))
-  )
-
+                         length(kw_dates_with_error$rce)),
+         store_density=TRUE)))
 
 # plot it
 # plot(kw_ages_densities)
@@ -231,7 +228,7 @@ lower_component <- c(1300, 800)
 upper_component <- c(600, 100)
 
 lines_for_periods <- 
-  tibble(bx = c(324,   # start of Euro contact, 1626 AD
+  tibble(bx = c(324,  # start of Euro contact, 1626 AD
                182),  # start of Chinese contact, 1768 AD
           by = c(0, 0),
           byend = c(0.00175),
@@ -253,7 +250,7 @@ ggplot() +
                   y = by, 
                   xend = bxend, 
                   yend = byend),
-               colour = c("red", "blue")) +
+              colour = c("red", "blue")) +
   annotate("rect", xmin = 100, xmax = 600, 
                    ymin = 0, ymax = lines_for_periods$byend[1],
            fill = "grey80",
@@ -290,8 +287,7 @@ table_kw_dates <-
   arrange(ave) %>% 
   dplyr::select("Period", "Pit-Layer", "Depth related to sea level (cm)", "Date BP", "Calibrated date (95% conf. level)", "Details") %>% 
   mutate(`Calibrated date (95% conf. level)` = 
-           ifelse(is.na(Calibrated date `(95% conf. level)`), "-", "Calibrated date (95% conf. level"))
-
+           ifelse(is.na(`Calibrated date (95% conf. level)`), "-", `Calibrated date (95% conf. level)`))
 
 knitr::kable(table_kw_dates,
              caption = "Radiocarbon dates on charcoals from Kiwulan (Chen 2007). Calibrated using IntCal13 Atmospheric curve.")
