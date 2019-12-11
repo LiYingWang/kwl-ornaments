@@ -186,8 +186,7 @@ kw_dates_with_error_calibrated <-
          ageSds = se,
          ids = id,
          calCurves = rep('intcal13',
-                         length(kw_dates_with_error$rce))
-       ))
+                         length(kw_dates_with_error$rce))))
 
 # get and summarise the 95% credible interval for each sample into a dataframe
 kw_age_samples <- sampleAges(kw_dates_with_error_calibrated)
@@ -285,7 +284,7 @@ table_kw_dates <-
   mutate(ave = (`2.5%` + `97.5%`) / 2) %>% 
   mutate(ave = ifelse(is.na(ave), 200, ave)) %>%  
   arrange(ave) %>% 
-  dplyr::select("Pit-Layer", "Above mean sea level (cm)", "Date BP", "Calibrated date (95% conf. level)", "Details") %>% 
+  dplyr::select("Lab code", "Pit-Layer", "Above mean sea level (cm)", "Date BP", "Calibrated date (95% conf. level)", "Details") %>% 
   mutate(`Calibrated date (95% conf. level)` = 
            ifelse(is.na(`Calibrated date (95% conf. level)`), "—", `Calibrated date (95% conf. level)`))
 
