@@ -70,6 +70,31 @@ kwl_lp_clean <-
 kwl_upper <-
   readxl::read_excel(here("analysis", "data", "raw_data", "Kiwulan_Ornament_Upper.xlsx"))
 
+## clean the ornament data and assign periods
+ornaments_period <-
+  kwl_upper %>%
+  filter(!is.na(`6-layers`)) %>%
+  mutate(period = case_when(
+    `6-layers` %in% 1:2 ~ "Chinese Presence",
+    `6-layers` == 4 ~ "European Presence",
+    `6-layers` %in% 5:6 ~ "Before European Contact",
+    TRUE ~ "other"
+  )) %>%
+  filter(period != "other") %>%
+  mutate(period = factor(period,
+                         level = c("Before European Contact",
+                                   "European Presence",
+                                   "Chinese Presence"))) %>%
+  mutate(Length = as.numeric(`Length(mm)`),
+         Thick = as.numeric(`Thick(mm)`),
+         Width = as.numeric(`Width(mm)`),
+         Perforation1 = as.numeric(`Perforation1(mm)`)) %>%
+  rowwise() %>%
+  mutate(Perforation_average =
+           mean(c(`Perforation1`,`Perforation2(mm)`),
+                na.rm = TRUE))
+
+#
 kwl_lp_clean_summary <-
   kwl_lp_clean %>%
   group_by(end) %>%
