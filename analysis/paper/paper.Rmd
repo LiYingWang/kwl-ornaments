@@ -306,7 +306,7 @@ table_kw_dates <-
 
 
 kableExtra::kable(table_kw_dates,
-             caption = "Radiocarbon ages from charcoal samples excavated from Kiwulan (Chen 2007), calibrated using IntCal13 Atmospheric curve. The codes in the context column refer to the excavator's feature labels, cf. ADD CITATION TO THE REPORT HERE")
+             caption = "Radiocarbon ages from charcoal samples excavated from Kiwulan (Chen 2007), calibrated using IntCal13 Atmospheric curve. The codes in the context column refer to the excavator's feature labels, cf. Chen 2007")
 ```
 
 # The personal ornaments
