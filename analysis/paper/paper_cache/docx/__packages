@@ -12,6 +12,7 @@ forcats
 sf
 cartography
 ggsn
+Bchron
 cowplot
 viridisLite
 viridis
@@ -22,5 +23,3 @@ spatstat
 sp
 maptools
 raster
-Bchron
-kableExtra
