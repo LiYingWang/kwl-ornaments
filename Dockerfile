@@ -15,7 +15,7 @@ RUN . /etc/environment \
   && sudo apt-get install libudunits2-dev libgeos-dev  libgdal-dev libproj-dev -y \
 
   # install some R pkgs that are only on GitHub
-  && R -e "remotes::install_github(c('benmarwick/wordcountaddin', 'benmarwick/wrrtools'))" \
+  && R -e "remotes::install_github(c('benmarwick/wordcountaddin', 'benmarwick/rrtools'))" \
 
   # build this compendium package
   && R -e "devtools::install('/kwl-ornaments', dep=TRUE)" \
