@@ -278,18 +278,18 @@ ggplot() +
 ```{r C14-table-data}
 table_kw_dates <-
   kw_dates %>% 
-  mutate(`Above mean sea level (cm)` = paste0(Depth1, " to ", Depth2)) %>% 
+  mutate(`Above mean sea level (cm)` = paste0(Depth1, " to ", Depth2)) %>%
   mutate(`Pit-Layer` = paste0(Square, "-", Layer)) %>% 
   left_join(kw_age_cali_df_tidy, "Pit-Layer") %>% 
-  mutate(ave = (`2.5%` + `97.5%`) / 2) %>% 
+  mutate(ave = (`2.5%` + `97.5%`)/ 2) %>% 
   mutate(ave = ifelse(is.na(ave), 200, ave)) %>%  
   arrange(ave) %>% 
-  dplyr::select("Lab code", "Pit-Layer", "Above mean sea level (cm)", "Date BP", "Calibrated date (95% conf. level)", "Details") %>% 
+  dplyr::select(`Lab code`, `Pit-Layer`, `Above mean sea level (cm)`, `Date BP`, `Calibrated date (95% conf. level)`, Context) %>% 
   mutate(`Calibrated date (95% conf. level)` = 
            ifelse(is.na(`Calibrated date (95% conf. level)`), "—", `Calibrated date (95% conf. level)`))
 
 knitr::kable(table_kw_dates,
-             caption = "Radiocarbon dates on charcoals from Kiwulan (Chen 2007). Calibrated using IntCal13 Atmospheric curve.")
+             caption = "Radiocarbon dates on charcoals from Kiwulan (Chen 2007). Calibrated using IntCal13 Atmospheric curve. In the context column, original numbering system from excavation report is used, such M009 means burial No.9 ")
 ```
 
 # The personal ornaments
