@@ -7,7 +7,7 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
     bookdown::word_document2:
       fig_caption: yes
-      reference_docx: "../templates/template.docx" # Insert path for the DOCX file
+      #reference_docx: "../templates/template.docx" # Insert path for the DOCX file
 bibliography: references.bib
 csl: "../templates/antiquity.csl" # Insert path for the bib-style
 abstract: |
@@ -39,6 +39,9 @@ knitr::opts_chunk$set(
 # not exceed 6000 words excluding figures, tables, highlights 
 image_width_1_col_inch = 90/25.4 # image Single column	w = 90 mm 
 image_width_2_col_inch = 190/25.4 # image Double column w = 190 mm 
+
+# to make the table work, cf. https://github.com/haozhu233/kableExtra/issues/308
+options(kableExtra.auto_format = FALSE)
 ```
 
 # Introduction
@@ -160,7 +163,7 @@ The archaeological indicators of the start of the European influence at Kiwulan 
 
 The archaeological signature of the Chinese period at Kiwulan is the large amount and diversity of Chinese porcelains in many forms such as bowls, plates, and cups. Other indicators include opium pipe-bowls and distinctive architectural bricks and tiles used by Chinese [@Hsieh2009]. Chinese migrations to Yilan were also recorded in official Chinese records written in the early 19th century recording the first immigrants in 1768 [@Chen1963; @Ke1993].
 
-```{r C14-data, fig.cap= "Summed probability distributions for dates from Kiwulan. The dark line represents the summed probabilities of all radiocarbon ages, and the grey lines in the background are the probabilities of individual ages. Grey rectangles indicate the approximate chronology of the major archaeological components of the deposit. For the upper component, the blue line indicates the start of European presence, while the red line is the Chinese presence. Ages calibrated with the Bchron package (Parnell et al. 2008). "}
+```{r C14-data, fig.cap= "Summed probability distributions for dates from Kiwulan. The dark line represents the summed probabilities of all radiocarbon ages, and the grey lines in the background are the probabilities of individual ages. Grey rectangles indicate the approximate chronology of the major archaeological components of the deposit. For the upper component, the blue line indicates the start of European presence, while the red line is the Chinese presence. Ages calibrated with the Bchron package (Parnell et al. 2008).", cache=TRUE}
 
 kw_dates <- readxl::read_excel(here("analysis", "data", "raw_data", "KWL_C14_dates.xlsx"))
 
@@ -197,7 +200,8 @@ kw_age_cali_df <- as.data.frame(t(apply(kw_age_samples, 2,
 kw_age_cali_df_tidy <-
   kw_age_cali_df %>% 
   rownames_to_column(var = "Pit-Layer") %>% 
-  mutate(`Calibrated date (95% conf. level)`= paste0(`2.5%`," - ", `97.5%`))
+  mutate_at(vars(`2.5%`, `97.5%`), round, 0) %>% 
+  mutate(`Calibrated date (95% conf. level)`= paste0(`2.5%`,"-", `97.5%`))
 
 # we can combine all the calibrated dates into a single plot, like this
 kw_ages_densities <- 
@@ -278,18 +282,25 @@ ggplot() +
 ```{r C14-table-data}
 table_kw_dates <-
   kw_dates %>% 
+  mutate(`Lab code` = str_remove(`Lab code`, " ")) %>% 
   mutate(`Above mean sea level (cm)` = paste0(Depth1, " to ", Depth2)) %>%
   mutate(`Pit-Layer` = paste0(Square, "-", Layer)) %>% 
   left_join(kw_age_cali_df_tidy, "Pit-Layer") %>% 
   mutate(ave = (`2.5%` + `97.5%`)/ 2) %>% 
   mutate(ave = ifelse(is.na(ave), 200, ave)) %>%  
   arrange(ave) %>% 
-  dplyr::select(`Lab code`, `Pit-Layer`, `Above mean sea level (cm)`, `Date BP`, `Calibrated date (95% conf. level)`, Context) %>% 
+  dplyr::select(`Lab code`, `Pit-Layer`, 
+                `Above mean sea level (cm)`, 
+                `Date BP`, 
+                `Calibrated date (95% conf. level)`, 
+                Context) %>% 
   mutate(`Calibrated date (95% conf. level)` = 
-           ifelse(is.na(`Calibrated date (95% conf. level)`), "—", `Calibrated date (95% conf. level)`))
+           ifelse(is.na(`Calibrated date (95% conf. level)`), 
+                  "", 
+                  `Calibrated date (95% conf. level)`))
 
-knitr::kable(table_kw_dates,
-             caption = "Radiocarbon dates on charcoals from Kiwulan (Chen 2007). Calibrated using IntCal13 Atmospheric curve. In the context column, original numbering system from excavation report is used, such M009 means burial No.9 ")
+kableExtra::kable(table_kw_dates,
+             caption = "Radiocarbon ages from charcoal samples excavated from Kiwulan (Chen 2007), calibrated using IntCal13 Atmospheric curve. The codes in the context column refer to the excavator's numbering system, cf. ADD CITATION TO THE REPORT HERE")
 ```
 
 # The personal ornaments
