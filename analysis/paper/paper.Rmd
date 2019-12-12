@@ -165,11 +165,11 @@ The archaeological signature of the Chinese period at Kiwulan is the large amoun
 
 ```{r C14-data, fig.cap= "Summed probability distributions for dates from Kiwulan. The dark line represents the summed probabilities of all radiocarbon ages, and the grey lines in the background are the probabilities of individual ages. Grey rectangles indicate the approximate chronology of the major archaeological components of the deposit. For the upper component, the blue line indicates the start of European presence, while the red line is the Chinese presence. Ages calibrated with the Bchron package (Parnell et al. 2008).", cache=TRUE}
 
-kw_dates <- readxl::read_excel(here("analysis", "data", "raw_data", "KWL_C14_dates.xlsx"))
+kw_dates <- readxl::read_excel(here("analysis", "data", "raw_data", "KWL_C14_dates.xlsx")) 
 
 # subset dates with error value
 kw_dates_with_error <- 
-  kw_dates %>% 
+  kw_dates  %>% 
   filter(!is.na(se))
 
 # convert rce to numeric
@@ -280,27 +280,33 @@ ggplot() +
 ```
 
 ```{r C14-table-data}
+# column names should follow Radiocarbon journal style:  https://www-cambridge-org.offcampus.lib.washington.edu/core/journals/radiocarbon/information/instructions-contributors
+
 table_kw_dates <-
   kw_dates %>% 
-  mutate(`Lab code` = str_remove(`Lab code`, " ")) %>% 
+  mutate(`Lab code` = str_remove(`Lab code`, " "),
+         `Uncalibrated Age BP` = `Date BP`) %>% 
   mutate(`Above mean sea level (cm)` = paste0(Depth1, " to ", Depth2)) %>%
   mutate(`Pit-Layer` = paste0(Square, "-", Layer)) %>% 
   left_join(kw_age_cali_df_tidy, "Pit-Layer") %>% 
   mutate(ave = (`2.5%` + `97.5%`)/ 2) %>% 
   mutate(ave = ifelse(is.na(ave), 200, ave)) %>%  
   arrange(ave) %>% 
-  dplyr::select(`Lab code`, `Pit-Layer`, 
-                `Above mean sea level (cm)`, 
-                `Date BP`, 
-                `Calibrated date (95% conf. level)`, 
-                Context) %>% 
-  mutate(`Calibrated date (95% conf. level)` = 
+  mutate(`Calibrated Age BP (95% credible interval)` = 
            ifelse(is.na(`Calibrated date (95% conf. level)`), 
                   "", 
-                  `Calibrated date (95% conf. level)`))
+                  `Calibrated date (95% conf. level)`)) %>% 
+  mutate(`Uncalibrated Age BP` = str_remove_all(`Uncalibrated Age BP`, "yr")) %>% 
+  dplyr::select(`Lab code`, 
+                `Pit-Layer`, 
+                `Above mean sea level (cm)`, 
+                `Uncalibrated Age BP`, 
+                `Calibrated Age BP (95% credible interval)`, 
+                Context) 
+
 
 kableExtra::kable(table_kw_dates,
-             caption = "Radiocarbon ages from charcoal samples excavated from Kiwulan (Chen 2007), calibrated using IntCal13 Atmospheric curve. The codes in the context column refer to the excavator's numbering system, cf. ADD CITATION TO THE REPORT HERE")
+             caption = "Radiocarbon ages from charcoal samples excavated from Kiwulan (Chen 2007), calibrated using IntCal13 Atmospheric curve. The codes in the context column refer to the excavator's feature labels, cf. ADD CITATION TO THE REPORT HERE")
 ```
 
 # The personal ornaments
