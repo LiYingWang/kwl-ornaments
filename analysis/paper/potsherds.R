@@ -1,4 +1,5 @@
 library(tidyverse)
+library(stringr)
 
 # read data
 kwl_lp <-
@@ -64,7 +65,11 @@ kwl_lp_clean <-
            into = c("start", "end"),
            sep = "~") %>%
   mutate_at(vars(start, end),
-            as.numeric)
+            as.numeric) %>%
+  mutate(`編號\n/層位`= ifelse(nchar(`編號\n/層位`) == 1,
+                           paste0("0", `編號\n/層位`),
+                           `編號\n/層位`)) %>%
+  mutate(join_id = paste0(`編號\n/ 現象號(P)`,"-",`編號\n/層位`))
 
 ## read ornament data
 kwl_upper <-
