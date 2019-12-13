@@ -1,5 +1,6 @@
 library(tidyverse)
 library(stringr)
+library(here)
 
 # read data
 kwl_lp <-
@@ -98,6 +99,20 @@ ornaments_period <-
   rename(potsherds_weight = "重量小計") %>%
   group_by(join_id, period, potsherds_weight) %>%
   count(Layer)
+
+orn_pot_summary <-
+ornaments_period %>%
+  group_by(period) %>%
+  summarise(sum_pot = sum(potsherds_weight, na.rm = TRUE),
+            sum_orn = sum(n, na.rm = TRUE))
+
+orn_pot_summary %>%
+  uncount( sum_pot ) %>%
+  uncount(sum_orn)
+
+
+library(infer)
+
 
 #
 kwl_lp_clean_summary <-
