@@ -76,7 +76,7 @@ kwl_lp_clean <-
 kwl_upper <-
   readxl::read_excel(here("analysis", "data", "raw_data", "Kiwulan_Ornament_Upper.xlsx"))
 
-## clean the ornament data and assign periods
+## clean the ornament data, assign periods
 ornaments_period <-
   kwl_upper %>%
   filter(!is.na(`6-layers`)) %>%
@@ -94,10 +94,16 @@ ornaments_period <-
   mutate(join_id = paste0(Pit_No,"-",Layer)) %>%
   filter(Categories != "Unknown Metal") %>%
   mutate(Categories = fct_lump(Categories,
-                               n = 5)) %>%
+                               n = 5))
+
+## join with potsherds data
+ornaments_potsherds <-
+  ornaments_period %>%
   left_join(kwl_lp_clean, "join_id") %>%
   rename(potsherds_weight = "重量小計") %>%
+  mutate(potsherds_weight = as.numeric(potsherds_weight)) %>%
   group_by(join_id, period, potsherds_weight) %>%
+<<<<<<< HEAD
   count(Layer)
 
 orn_pot_summary <-
@@ -152,6 +158,31 @@ ggplot() +
        x = "Depth (cm)",
        y = "Weights of Sherds") +
   theme_minimal()
+=======
+  count(Layer) %>%
+  select(-Layer) %>%
+  rename(ornament_piece = "n") %>%
+  group_by(period) %>%
+  summarise(sum_pot= sum(potsherds_weight, na.rm = TRUE),
+            sum_orna= sum(ornament_piece, na.rm = TRUE))
+>>>>>>> 7cefae231a6aeb11260475c9d015e4864bdb20da
 
-ggsave("pottery-per-level.png", w = 7, h = 5.5, dpi = 600)
+## plot
+plot_ornaments_potsherds <-
+  ornaments_potsherds %>%
+  pivot_longer(-period,
+               names_to = "variable",
+               values_to = "value") %>%
+  ggplot() +
+  geom_col(aes(variable, value)) +
+  facet_wrap(~ period) +
+  scale_y_log10() +
+  labs(x = "Artifact",
+       y = "Amount") +
+  theme_minimal(base_size = 10)
 
+## test
+chisq.test(ornaments_potsherds)
+library(Hmisc)
+rcorr(ornaments_potsherds, type="pearson")
+t.test(ornaments_potsherds$sum_orna, ornaments_potsherds$sum_pot)
