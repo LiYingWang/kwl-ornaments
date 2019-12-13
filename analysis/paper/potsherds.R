@@ -90,14 +90,14 @@ ornaments_period <-
                          level = c("Before European Contact",
                                    "European Presence",
                                    "Chinese Presence"))) %>%
-  mutate(Length = as.numeric(`Length(mm)`),
-         Thick = as.numeric(`Thick(mm)`),
-         Width = as.numeric(`Width(mm)`),
-         Perforation1 = as.numeric(`Perforation1(mm)`)) %>%
-  rowwise() %>%
-  mutate(Perforation_average =
-           mean(c(`Perforation1`,`Perforation2(mm)`),
-                na.rm = TRUE))
+  mutate(join_id = paste0(Pit_No,"-",Layer)) %>%
+  filter(Categories != "Unknown Metal") %>%
+  mutate(Categories = fct_lump(Categories,
+                               n = 5)) %>%
+  left_join(kwl_lp_clean, "join_id") %>%
+  rename(potsherds_weight = "重量小計") %>%
+  group_by(join_id, period, potsherds_weight) %>%
+  count(Layer)
 
 #
 kwl_lp_clean_summary <-
