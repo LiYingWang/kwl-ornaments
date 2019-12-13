@@ -103,16 +103,16 @@ ornaments_potsherds <-
   rename(potsherds_weight = "重量小計") %>%
   mutate(potsherds_weight = as.numeric(potsherds_weight)) %>%
   group_by(join_id, period, potsherds_weight) %>%
-<<<<<<< HEAD
-  count(Layer)
-
-orn_pot_summary <-
-ornaments_period %>%
+  count(Layer) %>%
+  select(-Layer) %>%
+  rename(ornament_piece = "n") %>%
   group_by(period) %>%
-  summarise(sum_pot = sum(potsherds_weight, na.rm = TRUE),
-            sum_orn = sum(n, na.rm = TRUE))
+  summarise(sum_pot= sum(potsherds_weight, na.rm = TRUE),
+            sum_orna= sum(ornament_piece, na.rm = TRUE))
 
-orn_pot_summary %>%
+
+
+ornaments_potsherds %>%
   uncount( sum_pot ) %>%
   uncount(sum_orn)
 
@@ -158,22 +158,16 @@ ggplot() +
        x = "Depth (cm)",
        y = "Weights of Sherds") +
   theme_minimal()
-=======
-  count(Layer) %>%
-  select(-Layer) %>%
-  rename(ornament_piece = "n") %>%
-  group_by(period) %>%
-  summarise(sum_pot= sum(potsherds_weight, na.rm = TRUE),
-            sum_orna= sum(ornament_piece, na.rm = TRUE))
->>>>>>> 7cefae231a6aeb11260475c9d015e4864bdb20da
 
 ## plot
-plot_ornaments_potsherds <-
+ornaments_potsherds_long <-
   ornaments_potsherds %>%
   pivot_longer(-period,
                names_to = "variable",
-               values_to = "value") %>%
-  ggplot() +
+               values_to = "value")
+
+
+  ggplot(ornaments_potsherds_long) +
   geom_col(aes(variable, value)) +
   facet_wrap(~ period) +
   scale_y_log10() +
@@ -181,8 +175,38 @@ plot_ornaments_potsherds <-
        y = "Amount") +
   theme_minimal(base_size = 10)
 
-## test
-chisq.test(ornaments_potsherds)
-library(Hmisc)
-rcorr(ornaments_potsherds, type="pearson")
-t.test(ornaments_potsherds$sum_orna, ornaments_potsherds$sum_pot)
+  ggplot(ornaments_potsherds_long) +
+    geom_col(aes(period,
+                 fill = variable,
+                 value
+                 )) +
+    scale_y_log10() +
+    labs(x = "Artifact",
+         y = "Amount") +
+    theme_minimal(base_size = 10)
+
+  ggplot(ornaments_potsherds) +
+    geom_point(aes(sum_pot ,
+                 sum_orna,
+                 colour = period),
+    size = 10) +
+    labs(x = "Pottery (kg)",
+         y = "Ornaments (n)") +
+    theme_minimal(base_size = 10)
+
+
+
+## test: can we predict the number of ornaments using the mass of pottery?
+# yes, seems like it
+
+fit <- (glm(formula = sum_orna ~ sum_pot,
+            family = "poisson",
+            data = ornaments_potsherds))
+
+summary(fit)
+
+
+
+
+
+
