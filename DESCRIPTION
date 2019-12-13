@@ -31,5 +31,6 @@ Imports:
     spatstat,
     viridis,
     ggsn,
-    kableExtra
+    kableExtra,
+    Bchron
 Remotes: benmarwick/wordcountaddin
