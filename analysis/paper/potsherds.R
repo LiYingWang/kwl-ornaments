@@ -192,8 +192,6 @@ ornaments_potsherds_long <-
          y = "Ornaments (n)") +
     theme_minimal(base_size = 10)
 
-
-
 ## test: can we predict the number of ornaments using the mass of pottery?
 # yes, seems like it
 
@@ -202,16 +200,17 @@ fit <- (glm(formula = sum_orna ~ sum_pot,
             data = ornaments_potsherds))
 summary(fit)
 
+
 fit_null <- (glm(formula = sum_orna ~ 1,
             family = "poisson",
             data = ornaments_potsherds))
 
 with(anova(fit_null, fit),pchisq(Deviance,Df,lower.tail=FALSE)[2])
 
+pval <- unname(coef(summary(fit))[,'Pr(>|z|)'][2])
+# how to print with a reasonable number of significant figures:
+signif(pval, 4)
 
-
-
-
-
-
-
+beta <- unname(coef(summary(fit))[,'Estimate'][2])
+# how to print with a reasonable number of significant figures:
+signif(beta, 4)

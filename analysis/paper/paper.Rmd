@@ -411,7 +411,6 @@ knitr::include_graphics(here("analysis", "figures", "ornament.png"))
 ```
 
 Ornaments were found in a variety of archaeological contexts including post-holes area, burials, and middens. This study focuses on `r sam_post_hole` ornaments from 40 sampling squares located at the dwelling place of Kiwulan, indicated by aligned post-holes with _in-situ_ posts (Figure \@ref(fig:KWL-sam-area)). Occupation floors were not identified during excavation. We choose these units because they were stratigraphically intact and undisturbed by modern construction activity, compared to excavation squares on the periphery of the site. There are 35 burials in the sampling area, one third of the total number of burials at Kiwulan. Ornaments are commonly used as grave goods in burials, with the total number of ornaments in burials including 3,173. The high number of ornaments in these burials is due to the presence of bead strands or patterned bands of beads, which sometimes contains thousands of beads in an individual burial [@Chen2007]. We exclude burials from this analysis because most of them date to the pre-European period (n = 26), limiting the usefulness of comparisons between the periods. In addition to `r sam_post_hole`  ornaments from dwelling place contexts and 3,173 from burial contexts, there are 27 ornaments found in midden contexts. We focus on ornaments from the dwelling place contexts (Figure \@ref(fig:plot-all-ornaments-count), Table \@ref(tab:tidy-data-for-table)) because these give us the greatest spatial and temporal representation across the three time periods, and so are most informative on social inequality indicated by uneven distributions of ornaments. 
-
 # Reproducibility and open source materials 
 
 To enable re-use of materials and improve reproducibility and transparency [@Marwick2017], the entire R code [@Rlanguage2019] used for all the analysis and visualisations contained in this paper is included in http://doi.org/10.17605/OSF.IO/R8YGA. Also in this version-controlled compendium [@Marwick2018] are the raw data for all the visualisations and tests reported here. All of the figures, tables, and statistical test results presented here can be independently reproduced with the code and data in this repository. The code is released under the MIT license, the data as CC-0, and figures as CC-BY, to enable maximum re-use. 
@@ -489,12 +488,17 @@ fit <- (glm(formula = sum_orna ~ sum_pot,
             family = "poisson",
             data = ornaments_potsherds))
 
-linear_pvalue <- round(coef(summary(fit))[,'Pr(>|z|)'][2], 
-                       abs(floor(log10(coef(summary(fit))[,'Pr(>|z|)'][2])-2)))
+pval <- unname(coef(summary(fit))[,'Pr(>|z|)'][2])
+# how to print with a reasonable number of significant figures:
+pval_print <- signif(pval, 4)
+
+beta <- unname(coef(summary(fit))[,'Estimate'][2])
+# how to print with a reasonable number of significant figures:
+beta_print <- signif(beta, 4)
 
 ```
 
-Figure \@ref(fig:plot-counts-by-period) shows the comparison of frequencies of the major classes of ornaments for different time periods at Kiwulan. The difference in frequencies between the three time periods reflect significant differences in the use of ornaments (chi-square = `r chisq_test_result_stat`, df = `r chisq_test_result_df`, p-value = $`r chisq_test_result_p_value`$). Most ornament types were present before European contact. Ornament frequencies reached a peak during the European period and then dropped during the Chinese period, especially gold-foil beads. This trend can be also seen on other ornaments including carnelian beads, metal rings, and bells. However, glass beads show a different pattern that indicates a higher frequency in the pre-European contact, and then a decrease in the European period and a further decrease in the Chinese period. When comparing with locally made pottery that could reflect Kiwulan population, the proportion of ornaments relative to the total mass of pottery remains the same, showing the general decreasing pattern in the Chinese period (Poisson regression model, p-value = $`r linear_pvalue`$). 
+Figure \@ref(fig:plot-counts-by-period) shows the comparison of frequencies of the major classes of ornaments for different time periods at Kiwulan. The difference in frequencies between the three time periods reflect significant differences in the use of ornaments (chi-square = `r chisq_test_result_stat`, df = `r chisq_test_result_df`, p-value = $`r chisq_test_result_p_value`$). Most ornament types were present before European contact. Ornament frequencies reached a peak during the European period and then dropped during the Chinese period, especially gold-foil beads. This trend can be also seen on other ornaments including carnelian beads, metal rings, and bells. However, glass beads show a different pattern that indicates a higher frequency in the pre-European contact, and then a decrease in the European period and a further decrease in the Chinese period. To model the number of ornaments as a function of the mass of ceramics in each period, a Poisson GLM with a log link function was used. The model reveals that ceramic abundance strongly predicts the number of ornaments (β = `r beta_print`, p = `r pval_print`). If ceramic abundance is a suitable proxy for population at Kiuwan due to its basic role as cooking vessels, then ornament quantities per period may be influenced by the number of people living at the site.
 
 ```{r tidy-shape-by-period}
 # tidy the data with categories and shapes
