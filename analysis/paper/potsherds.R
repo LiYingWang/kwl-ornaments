@@ -110,15 +110,13 @@ ornaments_potsherds <-
   summarise(sum_pot= sum(potsherds_weight, na.rm = TRUE),
             sum_orna= sum(ornament_piece, na.rm = TRUE))
 
-
-
 ornaments_potsherds %>%
   uncount( sum_pot ) %>%
   uncount(sum_orn)
 
+write.csv(ornaments_potsherds, here("analysis", "data", "raw_data", "Kwl_Ornament_potsherds.csv"))
 
 library(infer)
-
 
 #
 kwl_lp_clean_summary <-
@@ -202,8 +200,15 @@ ornaments_potsherds_long <-
 fit <- (glm(formula = sum_orna ~ sum_pot,
             family = "poisson",
             data = ornaments_potsherds))
-
 summary(fit)
+
+fit_null <- (glm(formula = sum_orna ~ 1,
+            family = "poisson",
+            data = ornaments_potsherds))
+
+with(anova(fit_null, fit),pchisq(Deviance,Df,lower.tail=FALSE)[2])
+
+
 
 
 
