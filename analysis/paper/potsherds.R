@@ -209,6 +209,10 @@ pval <- unname(coef(summary(fit))[,'Pr(>|z|)'][2])
 # how to print with a reasonable number of significant figures:
 signif(pval, 4)
 
+beta <- unname(coef(summary(fit))[,'Estimate'][2])
+# how to print with a reasonable number of significant figures:
+signif(beta, 4)
+
 
 
 
