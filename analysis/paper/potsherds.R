@@ -205,6 +205,9 @@ fit <- (glm(formula = sum_orna ~ sum_pot,
 
 summary(fit)
 
+pval <- unname(coef(summary(fit))[,'Pr(>|z|)'][2])
+# how to print with a reasonable number of significant figures:
+signif(pval, 4)
 
 
 
