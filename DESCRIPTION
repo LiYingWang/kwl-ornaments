@@ -32,5 +32,6 @@ Imports:
     viridis,
     ggsn,
     kableExtra,
-    Bchron
+    Bchron,
+    stats
 Remotes: benmarwick/wordcountaddin
