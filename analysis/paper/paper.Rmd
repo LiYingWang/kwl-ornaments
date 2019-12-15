@@ -56,7 +56,7 @@ One of the most commonly traded types of object in this region were ornaments su
 
 The island of Taiwan lies at the junction of mainland China, Southeast Asia, and Northeast Asia in the Pacific Ocean. The prehistory of Taiwan island could be roughly divided into three major periods, palaeolithic (c. 27,000 BP- 5000BP), Neolithic (c. 6500- 2000BP), and Iron age (c. 2000- 400BP) with slightly regional differences in onset of each period and variations in style of artifacts and assemblages [@Liu2011; @Chen2017]. It is generally accepted that Taiwan entered the historical period in the early 17th century due to the colonial activities of the Spanish and the Dutch who played an important role in keeping written records about Taiwan. The European colonial presence in Taiwan ended in 1662 when the Dutch were defeated by the kingdom of Tungning, founded by Koxinga from China. Later in 1683, Taiwan was incorporated into the Qing dynasty in China and a large wave of Han Chinese migrated to Taiwan during the late 18th century. Because of natural safe harbors, northeast Taiwan was involved in a regional trade network through cross-culture interactions with Chinese merchants since the 14th century, and later the global trade network with the Europeans in the 17th century brought more trade goods circulated in Southeast Asia into Taiwan [@Chen2005; @Liu2017]. Although located on the periphery of regional trade centers, Yilan was connected to trade networks via visits of other indigenous groups, Chinese merchants, and Europeans, via sea.
 
-The European presence in northern Taiwan started with the Spanish who founded Fort San Salvador at Keelung in 1626, and Fort San Domingo in 1629 at Tamsui. They sent missionaries to local indigenous settlements in this region [@Blusse2000, pp. 343] and kept records about their observations of indigenous communities. A Dominican priest in 1632 reported that the Taparri, an indigenous tribe from northern Taiwan, exchanged carnelian beads with other indigenous groups. This form of exchange was widespread and even the Spanish soldiers used carnelian beads as bargaining chips for gambling [@LiandWu2006, pp. 132-149]. The use of beads as prestige goods is further indicated by their role in bride price payments, and compenzation to resolve disputes [@LiandWu2006, pp. 132-149]. Other records mention that the female shamans in the tribe would use carnelian beads as magical items in ritual healing practices [@Borao2009, pp. 122-151]. Records of an indigenous funeral document the use of carnelian beads in ritual contexts, with more carnelian beads, pottery, and cloth placed into the graves of more influential people to indicate their family's higher status [@LiandWu2006, pp. 153]. While a full critical analysis of these historical accounts remains to be produced, we take them to minimally indicate that carnelian beads were already treated as prestige goods in Yilan before the arrival of Europeans. In 1642, the Dutch Vereenigde Oostindische Compagnie (VOC) defeated the Spanish and took over their forts in northern Taiwan. They introduced a feudal system in an attempt to control the indigenous communities by asking indigenous leaders to attend an annual ceremony for demonstrating their loyalty and paying tributes [@Andrade2007, ch. 9; @Kang2016, ch. 4]. The Dutch provided beads and other goods based on negotations with indigenous communities to secure alliances in the annual ceremony or during travelling [@Kang2016, ch. 6]. We might predict that the activities of the Dutch feudal system to build and maintain alliances resulted in an increase in the amount and diversity of ornaments in northeastern indigenous communities during this period.
+The European presence in northern Taiwan started with the Spanish who founded Fort San Salvador at Keelung in 1626, and Fort San Domingo in 1629 at Tamsui. They sent missionaries to local indigenous settlements in this region [@Blusse2000, pp. 343] and kept records about their observations of indigenous communities. A Dominican priest in 1632 reported that the Taparri, an indigenous tribe from northern Taiwan, exchanged carnelian beads with other indigenous groups. This form of exchange was widespread and even the Spanish soldiers used carnelian beads as bargaining chips for gambling [@LiandWu2006, pp. 132-149]. The use of beads as prestige goods is further indicated by their role in bride price payments, and compensation to resolve disputes [@LiandWu2006, pp. 132-149]. Other records mention that the female shamans in the tribe would use carnelian beads as magical items in ritual healing practices [@Borao2009, pp. 122-151]. Records of an indigenous funeral document the use of carnelian beads in ritual contexts, with more carnelian beads, pottery, and cloth placed into the graves of more influential people to indicate their family's higher status [@LiandWu2006, pp. 153]. While a full critical analysis of these historical accounts remains to be produced, we take them to minimally indicate that carnelian beads were already treated as prestige goods in Yilan before the arrival of Europeans. In 1642, the Dutch Vereenigde Oostindische Compagnie (VOC) defeated the Spanish and took over their forts in northern Taiwan. They introduced a feudal system in an attempt to control the indigenous communities by asking indigenous leaders to attend an annual ceremony for demonstrating their loyalty and paying tributes [@Andrade2007, ch. 9; @Kang2016, ch. 4]. The Dutch provided beads and other goods based on negotations with indigenous communities to secure alliances in the annual ceremony or during travelling [@Kang2016, ch. 6]. We might predict that the activities of the Dutch feudal system to build and maintain alliances resulted in an increase in the amount and diversity of ornaments in northeastern indigenous communities during this period.
 
 Chinese historical records from 1829, 1837, and 1852 during the Qing dynasty (1616-1911) contain some notes on the purposes of ornaments from Yilan [@Chen1963, pp. 228, 308; @Ke1993, pp. 11, 126; @Yao1996, pp. 77]. According to those records, indigenous people in Yilan wore ornaments in ceremonial contexts to display their wealth and status. Among those ornaments, fish-shaped necklaces made of metal threads had high value due to their delicacy and the exotic materials invested in production. These were usually possessed by wealthy people. Other people wore carnelian beads or glass beads on their head or neck to participate in ceremonies. In 1895, at the beginning of Japanese colonization, an academic field survey for plains indigenous groups reported that fish-shaped metal necklaces necklaces were not used in Yilan at that time, but elderly people still used beads [@Ino1996, pp. 227-232]. Although these historical records are fragmentary and may contain some biases [@Galloway2006] that have not yet been studied in detail, we find consistency among multiple sources in their descriptions of how ornaments represent high status or specialized social roles in indigenous communities in Yilan. Compared to the European period, there are fewer documentary mentions of beads in the Chinese period and the descriptions are limited to clothing, but these generally confirm the role of beads as status markers. 
 
@@ -234,9 +234,10 @@ lines_for_periods <-
   tibble(bx = c(324,  # start of Euro contact, 1626 AD
                182),  # start of Chinese contact, 1768 AD
           by = c(0, 0),
-          byend = c(0.00175),
+          byend = c(0.0020),
           bxend = bx)
 
+kwl_ages_curve <-
 ggplot() +
     geom_area(data = kw_ages_densities_dfs,
             aes(ageGrid,
@@ -245,27 +246,27 @@ ggplot() +
             fill = "grey80",
             alpha = 0.4,
             position = 'identity') +
-  geom_line(data = kw_ages_densities_df,
+    geom_line(data = kw_ages_densities_df,
             aes(ageGrid,
                 densities)) +
-  geom_segment(data = lines_for_periods,
+    geom_segment(data = lines_for_periods,
               aes(x = bx, 
                   y = by, 
                   xend = bxend, 
                   yend = byend),
               colour = c("red", "blue")) +
-  annotate("rect", xmin = 100, xmax = 600, 
+    annotate("rect", xmin = 100, xmax = 600, 
                    ymin = 0, ymax = lines_for_periods$byend[1],
            fill = "grey80",
            alpha = 0.3) +
-    annotate("text", x = 350, y = 0.0022,
+    annotate("text", x = 350, y = 0.0026,
            label = "Upper component",
            size = 2) +
     annotate("rect", xmin = 1300, xmax = 800,
                    ymin = 0, ymax = lines_for_periods$byend[1],
            fill = "grey80",
            alpha = 0.3) +
-      annotate("text", x = 1050, y = 0.00220,
+    annotate("text", x = 1050, y = 0.0026,
            label = "Lower component",
            size = 2)  +
   theme_minimal(base_size = 8) +
@@ -273,10 +274,22 @@ ggplot() +
   ylab("Density") +
   coord_fixed(ratio = 400000)
 
-# to describe in your text, ?BchronDensity
-# "We used the Bchron R package to compute a non-parametric phase model 
+# see ?BchronDensity. "We used the Bchron R package to compute a non-parametric phase model 
 # on the radiocarbon ages via Gaussian Mixture density estimation (Parnell et al. 2008).
-# FIgure X shows the results of this analysis... indicating that the peak period of occupation is around 600 BC"
+# indicating that the peak period of occupation is around 600 BC"
+
+ggsave(plot = kwl_ages_curve,
+       here("analysis", "figures",
+       "plot-c14-ages-distribution.jpg"),
+       width = 120, 
+       dpi = 300,
+       height = 60,
+       units = "mm")
+
+knitr::include_graphics(here("analysis", 
+                             "figures", 
+                             "plot-c14-ages-distribution.jpg"))
+
 ```
 
 ```{r C14-table-data}
