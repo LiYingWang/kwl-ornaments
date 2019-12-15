@@ -331,6 +331,9 @@ kableExtra::kable(table_kw_dates,
 ornaments_count <-
   ornaments_period %>% 
   filter(Categories != "Unknown Metal") %>%
+  mutate(Categories = ifelse(Categories == "Agate bead", "Carnelian bead", Categories),
+         Categories = ifelse(Categories == "Golden bead", "Gold-foil bead", Categories),
+         Categories = ifelse(Categories == "Bell", "Metal bell", Categories)) %>%
   ungroup() %>% # need to upgroup because of rowwise or factor in previous chunk?
   mutate(Categories = fct_lump(Categories, 
                                n = 5)) %>% 
@@ -368,7 +371,10 @@ ornaments_period %>%
          Type = ifelse(Type == "glass bead", "medium (1-2 cm)", Type),
          Type = ifelse(Type == "small I", "plain small", Type),
          Type = ifelse(Type == "small II", "thin small", Type),
-         Type = ifelse(Type == "large thin string", "thin large", Type))
+         Type = ifelse(Type == "large thin string", "thin large", Type),
+         Categories = ifelse(Categories == "Agate bead", "Carnelian bead", Categories),
+         Categories = ifelse(Categories == "Golden bead", "Gold-foil bead", Categories),
+         Categories = ifelse(Categories == "Bell", "Metal bell", Categories))
 ornaments_shape <-
   ornaments_period_clean %>% 
   group_by(period, Categories, Type) %>% 
@@ -405,7 +411,7 @@ glass_bead_n <-
 
 agate_bead_n <- 
   ornaments_count %>% 
-  filter(Categories == "Agate bead") %>% 
+  filter(Categories == "Carnelian bead") %>% 
   pull(n)
 
 metal_ring_n <- 
@@ -415,7 +421,7 @@ metal_ring_n <-
 
 metal_bell_n <- 
   ornaments_count %>% 
-  filter(Categories == "Bell") %>% 
+  filter(Categories == "Metal bell") %>% 
   pull(n)
 ```
 
@@ -432,7 +438,7 @@ To enable re-use of materials and improve reproducibility and transparency [@Mar
 ### delete one plot
 # categories of ornaments by period
 ornaments_count <-
-  ornaments_period %>% 
+  ornaments_period_clean %>% 
   filter(!is.na(`6-layers`),
          Categories != "Unknown Metal") %>%
   ungroup() %>% 
@@ -535,7 +541,7 @@ ornaments_shape_count <-
 # plot for different shape of agate bead by period
 agate_bead_shape <-
   ornaments_shape_count %>% 
-  filter(Categories == 'Agate bead',
+  filter(Categories == 'Carnelian bead',
          Type != 'other')
 base_size_multi_plot <- 8
 agate_bead_shape_plot <- 
@@ -575,7 +581,7 @@ ggplot(ring_shape) +
 # plot for different shape of metal bell by period
 bell_shape <-
   ornaments_shape_count %>% 
-  filter(Categories == 'Bell',
+  filter(Categories == 'Metal bell',
          Type != 'unclassified')
 bell_shape_plot <-
 ggplot(bell_shape) +
@@ -583,7 +589,7 @@ ggplot(bell_shape) +
   facet_wrap(~ period) +
   coord_flip() +
   labs(y = "",
-       x = "Bell") +
+       x = " Metal bell") +
   theme_minimal(base_size = base_size_multi_plot) +
   theme(strip.background = element_blank(), 
         strip.text = element_blank())
@@ -677,7 +683,7 @@ sample_units <-
 
 # join two dataset to get coordinate
 ornaments_period_join <-
-  ornaments_period %>%
+  ornaments_period_clean %>%
   mutate(period = as.factor(period)) %>% # seems need this line first
   group_by(Pit_No, period) %>%
   count(Categories) %>%
@@ -719,7 +725,7 @@ ornaments_period_join_selected_types <-
   ornaments_period_join %>% 
   filter(Categories %in% c('Gold-foil bead', 
                            'Glass bead',
-                           'Agate bead'))
+                           'Carnelian bead'))
 
 plot_spatial_distribution_some_ornaments_by_period <-
 ggplot() +
