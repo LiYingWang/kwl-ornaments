@@ -49,11 +49,23 @@ Version=1.0.3
 Source=CRAN
 Hash=084336e3a1a0d358337525d7a394bb8b
 
+[R/Package/RgoogleMaps]
+Package=RgoogleMaps
+Version=1.4.5
+Source=CRAN
+Hash=67a8c72e97bfb7a965fdc7757824ff35
+
 [R/Package/assertthat]
 Package=assertthat
 Version=0.2.1
 Source=CRAN
 Hash=19fb3d0ad048b4eb1a05cacffbae1f66
+
+[R/Package/bitops]
+Package=bitops
+Version=1.0-6
+Source=CRAN
+Hash=62408262624d9f8e436f51ca901424e2
 
 [R/Package/callr]
 Package=callr
@@ -145,6 +157,18 @@ Version=2.0.1
 Source=CRAN
 Hash=8b389e971e00a574360051d7dd84d823
 
+[R/Package/foreign]
+Package=foreign
+Version=0.8-72
+Source=CRAN
+Hash=646c8f8861ef8e1d6e9e8eb0b3912495
+
+[R/Package/ggmap]
+Package=ggmap
+Version=3.0.0
+Source=CRAN
+Hash=d68d8ab1cc5a542bb53a0a0b80b355b6
+
 [R/Package/ggplot2]
 Package=ggplot2
 Version=3.2.1
@@ -153,15 +177,9 @@ Hash=635db021d29f3523c4f88e82d0c01c5e
 
 [R/Package/ggsn]
 Package=ggsn
-Version=0.5.2
-Source=GitHub
-RemoteType=github
-RemoteHost=api.github.com
-RemoteRepo=ggsn
-RemoteUsername=oswaldosantos
-RemoteRef=master
-RemoteSha=ede12edfc1f3ea3a04c062fac3222dbb9ad53a1d
-Hash=c4363c2daf03ac9f4a0b105fccb51905
+Version=0.5.0
+Source=CRAN
+Hash=5dac964d4792c3b6317bd6e641c66229
 
 [R/Package/glue]
 Package=glue
@@ -199,6 +217,12 @@ Version=0.5.1
 Source=CRAN
 Hash=dcb6c5420db24f57a4777fa0c6a0eac4
 
+[R/Package/jpeg]
+Package=jpeg
+Version=0.1-8.1
+Source=CRAN
+Hash=cbd431993842f3c5dae7e171a9f5dcb4
+
 [R/Package/kableExtra]
 Package=kableExtra
 Version=1.1.0
@@ -234,6 +258,12 @@ Package=magrittr
 Version=1.5
 Source=CRAN
 Hash=dee1d97cffddfd3ed969e224bd0826d0
+
+[R/Package/maptools]
+Package=maptools
+Version=0.9-9
+Source=CRAN
+Hash=368c614b419070fd2753fa5ad9b31b93
 
 [R/Package/markdown]
 Package=markdown
@@ -277,6 +307,18 @@ Version=2.0.3
 Source=CRAN
 Hash=587295d4cdb937d4e3cf19bd46829326
 
+[R/Package/plyr]
+Package=plyr
+Version=1.8.5
+Source=CRAN
+Hash=c1328731c23c368454a1ebf3dfec68db
+
+[R/Package/png]
+Package=png
+Version=0.1-7
+Source=CRAN
+Hash=2facb7d8929420c91d1ddc8d4636f787
+
 [R/Package/purrr]
 Package=purrr
 Version=0.3.3
@@ -288,6 +330,12 @@ Package=readr
 Version=1.3.1
 Source=CRAN
 Hash=60167b7ec3de99e76ff406aaf0f83bb4
+
+[R/Package/rjson]
+Package=rjson
+Version=0.2.20
+Source=CRAN
+Hash=d3349736ec0f60d05591c316b926382e
 
 [R/Package/rlang]
 Package=rlang
@@ -331,6 +379,12 @@ Version=0.7-7
 Source=CRAN
 Hash=8544364b75661f709f5a31cbd0716ea2
 
+[R/Package/sp]
+Package=sp
+Version=1.3-2
+Source=CRAN
+Hash=19bcc842106d0a24c3d92138d83d8f21
+
 [R/Package/stringi]
 Package=stringi
 Version=1.4.3
@@ -348,6 +402,18 @@ Package=tibble
 Version=2.1.3
 Source=CRAN
 Hash=a8d41bd284e21ab7e776d228dc5bac91
+
+[R/Package/tidyr]
+Package=tidyr
+Version=1.0.0
+Source=CRAN
+Hash=8b597bb9db2885612b6bafbc2f83bd08
+
+[R/Package/tidyselect]
+Package=tidyselect
+Version=0.2.5
+Source=CRAN
+Hash=dc3fcbc21f04b293e0794e24982cf357
 
 [R/Package/tinytex]
 Package=tinytex
