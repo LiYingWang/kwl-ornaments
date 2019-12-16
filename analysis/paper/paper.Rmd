@@ -30,7 +30,7 @@ knitr::opts_chunk$set(
   message = FALSE,
   echo = FALSE,
   comment = "#>",
-  cache = TRUE,
+  cache = FALSE,
   dpi = 300,
   fig.path = "../figures/"
 )
@@ -162,7 +162,7 @@ The archaeological indicators of the start of the European influence at Kiwulan 
 
 The archaeological signature of the Chinese period at Kiwulan is the large amount and diversity of Chinese porcelains in many forms such as bowls, plates, and cups. Other indicators include opium pipe-bowls and distinctive architectural bricks and tiles used by Chinese [@Hsieh2009]. Chinese migrations to Yilan were also recorded in official Chinese records written in the early 19th century recording the first immigrants in 1768 [@Chen1963; @Ke1993].
 
-```{r C14-data, fig.cap= "Summed probability distributions for dates from Kiwulan. The dark line represents the summed probabilities of all radiocarbon ages, and the grey lines in the background are the probabilities of individual ages. Grey rectangles indicate the approximate chronology of the major archaeological components of the deposit. For the upper component, the blue line indicates the start of European presence, while the red line is the Chinese presence. Ages calibrated with the Bchron package (Parnell et al. 2008)", cache = TRUE}
+```{r C14-data, fig.cap= "Summed probability distributions for dates from Kiwulan. The dark line represents the summed probabilities of all radiocarbon ages, and the grey lines in the background are the probabilities of individual ages. Grey rectangles indicate the approximate chronology of the major archaeological components of the deposit. For the upper component, the blue line indicates the start of European presence, while the red line is the Chinese presence. Ages calibrated with the Bchron package (Parnell et al. 2008)"}
 
 kw_dates <- readxl::read_excel(here("analysis", "data", "raw_data", "KWL_C14_dates.xlsx")) 
 
@@ -609,7 +609,8 @@ ggplot(glass_bead_shape) +
         strip.text = element_blank())
 ```
 
-```{r plot-altogether, fig.cap= "Frequency of ornament subtypes showing the changes in frequency across time periods for metal rings, carnelian beads, bells, and glass beads"}
+
+```{r plot-altogether, fig.cap= "Frequency of ornament subtypes showing the changes in frequency across time periods for metal rings, carnelian beads, bells, and glass beads", eval = TRUE}
 library(cowplot)
 plot_multi_types_by_period <- 
 plot_grid(ring_shape_plot,
