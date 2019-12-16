@@ -611,12 +611,12 @@ ggplot(glass_bead_shape) +
 ```
 
 
-```{r plot-altogether, fig.cap= "Frequency of ornament subtypes showing the changes in frequency across time periods for metal rings, carnelian beads, bells, and glass beads", eval = TRUE}
+```{r plot-altogether, fig.cap= "Frequency of ornament subtypes showing the changes in frequency across time periods for metal rings, carnelian beads, bells, and glass beads"}
 library(cowplot)
 plot_multi_types_by_period <- 
 plot_grid(ring_shape_plot,
-          #agate_bead_shape_plot, 
-          #bell_shape_plot, 
+          agate_bead_shape_plot, 
+          bell_shape_plot, 
           glass_bead_plot,
           ncol=1,
           align = "h",
