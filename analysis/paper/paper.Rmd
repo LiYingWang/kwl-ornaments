@@ -178,7 +178,7 @@ kw_dates_with_error$rce <- as.numeric(kw_dates_with_error$rce)
 kw_dates_with_error$id <- with(kw_dates_with_error,
                                paste0(Square,"-",Layer))
 
-# Use Bchron to clibrate
+                               # Use Bchron to clibrate
 library(Bchron)
 
 kw_dates_with_error_calibrated <- 
@@ -428,6 +428,7 @@ knitr::include_graphics(here("analysis", "figures", "ornament.png"))
 ```
 
 Ornaments were found in a variety of archaeological contexts including post-holes area, burials, and middens. This study focuses on `r sam_post_hole` ornaments from 40 sampling squares located at the dwelling place of Kiwulan, indicated by aligned post-holes with _in-situ_ posts (Figure \@ref(fig:KWL-sam-area)). Occupation floors were not identified during excavation. We choose these units because they were stratigraphically intact and undisturbed by modern construction activity, compared to excavation squares on the periphery of the site. There are 35 burials in the sampling area, one third of the total number of burials at Kiwulan. Ornaments are commonly used as grave goods in burials, with the total number of ornaments in burials including 3,173. The high number of ornaments in these burials is due to the presence of bead strands or patterned bands of beads, which sometimes contains thousands of beads in an individual burial [@Chen2007]. We exclude burials from this analysis because most of them date to the pre-European period (n = 26), limiting the usefulness of comparisons between the periods. In addition to `r sam_post_hole`  ornaments from dwelling place contexts and 3,173 from burial contexts, there are 27 ornaments found in midden contexts. We focus on ornaments from the dwelling place contexts (Figure \@ref(fig:plot-all-ornaments-count), Table \@ref(tab:tidy-data-for-table)) because these give us the greatest spatial and temporal representation across the three time periods, and so are most informative on social inequality indicated by uneven distributions of ornaments. 
+
 # Reproducibility and open source materials 
 
 To enable re-use of materials and improve reproducibility and transparency [@Marwick2017], the entire R code [@Rlanguage2019] used for all the analysis and visualizations contained in this paper is included in http://doi.org/10.17605/OSF.IO/R8YGA. Also in this version-controlled compendium [@Marwick2018] are the raw data for all the visualizations and tests reported here. All of the figures, tables, and statistical test results presented here can be independently reproduced with the code and data in this repository. The code is released under the MIT license, the data as CC-0, and figures as CC-BY, to enable maximum re-use. 
@@ -613,8 +614,8 @@ ggplot(glass_bead_shape) +
 library(cowplot)
 plot_multi_types_by_period <- 
 plot_grid(ring_shape_plot,
-          agate_bead_shape_plot, 
-          bell_shape_plot, 
+          #agate_bead_shape_plot, 
+          #bell_shape_plot, 
           glass_bead_plot,
           ncol=1,
           align = "h",
