@@ -1,12 +1,12 @@
 Package: kwlornaments
-Title: What the Package Does (One Line, Title Case)
+Title: Compendium of R code and data for KWL ornaments
 Version: 0.0.0.9000
 Authors@R:
-    person(given = "First",
-           family = "Last",
+    person(given = "Liying",
+           family = "Wang",
            role = c("aut", "cre"),
-           email = "first.last@example.com")
-Description: What the package does (one paragraph)
+           email = "liying15@uw.edu")
+Description: Compendium of R code and data for KWL ornaments
 License: MIT + file LICENSE
 ByteCompile: true
 Encoding: UTF-8
