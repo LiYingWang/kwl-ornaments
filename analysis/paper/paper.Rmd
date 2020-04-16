@@ -669,7 +669,7 @@ The distribution of frequencies for subtypes in each major class is presented in
 
 ## Changes in patterns of the spatial distribution of ornament types 
 
-```{r plot-all-spatial-pattern, fig.cap= "Spatial pattern of all class of ornament by time periods"}
+```{r plot-all-spatial-pattern, fig.cap= "Spatial densities of all class of ornament by time periods"}
 library(sf)
 library(viridis)
 
@@ -721,7 +721,7 @@ knitr::include_graphics(here("analysis",
                              "figures", "plot-spatial-distribution-all-ornaments-by-period.jpg"))
 ```
 
-```{r, plot-spatial-pattern-each, fig.cap="Spatial pattern for ornament class by time periods, only those types with more than 5 pieces are shown here"}
+```{r, plot-spatial-pattern-each, fig.cap="Spatial densities for ornament class by time periods, only those types with more than 5 pieces are shown here"}
 ornaments_period_join_selected_types <- 
   ornaments_period_join %>% 
   filter(Categories %in% c('Gold-foil bead', 
@@ -757,7 +757,7 @@ knitr::include_graphics(here("analysis",
                              "figures", "plot-spatial-distribution-some-ornaments-by-period.jpg"))
 ```
 
-Figure \@ref(fig:plot-all-spatial-pattern) presents the spatial distribution of all ornaments from the research area for each time period. Before the European arrival, a greater amount of ornaments were found at the northern and middle parts of the research area. During the European period, ornaments were more widespread, with some clusters on the northern part. During the Chinese period the distribution is more even again. Figure \@ref(fig:plot-spatial-pattern-each) presents the distribution for the major ornament classes individually, some clusters across the area can be observed during the European period, such as gold-foil beads and carnelian beads. However, there seems to be no consistent pattern across those different ornaments. Each class shows its own pattern where the squares with higher numbers of ornaments distributed separately and independently. For example, a cluster of gold-foil beads was found at the northern part, while a cluster of carnelian beads was found in the middle part. In contrast, there are multiple clusters of metal rings that are distributed separately across the research area. Copper bells were usually found individually and appear randomly distributed across the area. In the Chinese period, both the amount and density of different classes of ornaments decreased.
+Figure \@ref(fig:plot-all-spatial-pattern) presents the spatial distribution of all ornaments from the research area for each time period. For deposits predating the European arrival, a greater amount of ornaments were found at the northern and middle parts of the research area. In European period deposits, ornaments were more widespread, with some clusters on the northern part. In units dating to the Chinese period the distribution is more even without clear clusters. Figure \@ref(fig:plot-spatial-pattern-each) presents the distribution for the major ornament classes individually, some clusters across the area can be observed during the European period, such as gold-foil beads and carnelian beads. However, there seems to be no consistent pattern across those different ornaments. Each class shows its own pattern where the squares with higher numbers of ornaments distributed separately and independently. For example, a cluster of gold-foil beads was found at the northern part, while a cluster of carnelian beads was found in the middle part. In contrast, there are multiple clusters of metal rings that are distributed separately across the research area. Copper bells were usually found individually and appear randomly distributed across the area. In the Chinese period, both the amount and density of different classes of ornaments decreased.
 
 ## Point pattern analysis of ornament distribution
 
@@ -860,7 +860,7 @@ return(the_plot)
 }
 ```
 
-```{r hypo-test-distribution, fig.cap= "Histograms of simulated ANN values from 1000 simulations for three time periods. X-axis values represent ANN expected value under a completely random process resulted from simulated pattern. Each sample distribution presents the null hypothesis with the blue line indicating the observed ANN value"}
+```{r hypo-test-distribution, fig.cap= "Histograms of simulated ANN values from 1000 simulations for three time periods. X-axis values represent ANN expected value under a completely random process resulted from a simulated pattern. Each sample distribution presents the null hypothesis with the blue line indicating the observed ANN value"}
 
 # make the blue lines thicker to be more visible
 jpeg(
@@ -882,7 +882,7 @@ knitr::include_graphics(here("analysis",
                              "plot-kde-ann-histograms.jpg"))
 ```
 
-To test for randomness in spatial locations, we used a Monte Carlo method to simulate average nearest-neighbour distances (ANN). Figure \@ref(fig:hypo-test-distribution) shows the observed ANN distances with the distributions of the ANN distances calculated on 1000 simulations of random ornament locations. The results show that 100% of the simulated values are much greater than our observed ANN value during the European period, which means the ornaments have non-randomly clustered distributions. A similar, but less extreme, result is also observed during the pre-European period. The observed distribution of ornaments is more similar to the random distributions during the Chinese period, with about one third of the simulated values are greater than our observed ANN value. The Chinese period has fewer artifacts in any category, likely reflecting a smaller population at Kiwulan at this time, making spatial patterns and hotspots difficult to discern with confidence. This testing reveals clustering of ornaments during the European period is highly non-random, potentially indicating different degrees of access to foreign ornaments or a concentration of power to control the distribution of ornaments at Kiwulan during this period.
+To test for randomness in spatial locations, we used a Monte Carlo method to simulate average nearest-neighbour distances (ANN). Figure \@ref(fig:hypo-test-distribution) shows the observed ANN distances with the distributions of the ANN distances calculated on 1000 simulations of random ornament locations. The results show that 100% of the simulated values are much greater than our observed ANN value during the European period, which means the ornaments have non-randomly clustered distributions. A similar, but less extreme, result is also observed during the pre-European period. The observed distribution of ornaments is more similar to the random distributions during the Chinese period, with about one third of the simulated values are greater than our observed ANN value. The Chinese period has fewer artifacts in any category, likely reflecting a smaller population at Kiwulan at this time, making spatial patterns and hotspots difficult to discern with confidence. This testing reveals that clustering of ornaments during the European period is highly non-random, potentially indicating different degrees of access to foreign ornaments or a concentration of power to control the distribution of ornaments at Kiwulan during this period.
 
 # Discussion 
 
