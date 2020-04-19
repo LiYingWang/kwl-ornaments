@@ -2,15 +2,16 @@
 Version=0.5.0-61
 
 [R]
-Version=3.6.1
+Version=3.6.3
 Repositories=
 	CRAN=https://cran.rstudio.com/
 
 [Bioconductor]
-Repositories=BioCsoft=https://bioconductor.org/packages/3.9/bioc
-	BioCann=https://bioconductor.org/packages/3.9/data/annotation
-	BioCexp=https://bioconductor.org/packages/3.9/data/experiment
-	BioCworkflows=https://bioconductor.org/packages/3.9/workflows
+Repositories=
+	BioCsoft=https://bioconductor.org/packages/3.10/bioc
+	BioCann=https://bioconductor.org/packages/3.10/data/annotation
+	BioCexp=https://bioconductor.org/packages/3.10/data/experiment
+	BioCworkflows=https://bioconductor.org/packages/3.10/workflows
 	CRAN=https://cran.rstudio.com/
 
 [R/Package/BH]
@@ -345,9 +346,9 @@ Hash=d963fc6d77b53554f438d82ef8cbea62
 
 [R/Package/rmarkdown]
 Package=rmarkdown
-Version=1.18
+Version=2.0
 Source=CRAN
-Hash=d215e8f618a90708d146520701059baa
+Hash=d643959bd36a4bdd63d0c490e20a12ed
 
 [R/Package/rstudioapi]
 Package=rstudioapi
