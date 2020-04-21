@@ -82,9 +82,9 @@ Hash=faaf466d75e952abc274d1c0b1d91228
 
 [R/Package/cli]
 Package=cli
-Version=2.0.0
+Version=2.0.2
 Source=CRAN
-Hash=4c5d44297794d49a83ef04fa045a1522
+Hash=ad09a20ef22a37821c922cfa3978df1a
 
 [R/Package/clipr]
 Package=clipr
@@ -340,9 +340,9 @@ Hash=d3349736ec0f60d05591c316b926382e
 
 [R/Package/rlang]
 Package=rlang
-Version=0.4.2
+Version=0.4.5
 Source=CRAN
-Hash=d963fc6d77b53554f438d82ef8cbea62
+Hash=06c992bbca11c557891193289cb02d30
 
 [R/Package/rmarkdown]
 Package=rmarkdown
