@@ -289,7 +289,7 @@ ggsave(plot = kwl_ages_curve,
        "plot-c14-ages-distribution.jpg"),
        width = 120, 
        dpi = 300,
-       height = 60,
+       height = 62,
        units = "mm")
 
 knitr::include_graphics(here("analysis", 
