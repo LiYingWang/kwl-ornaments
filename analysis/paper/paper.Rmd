@@ -676,7 +676,7 @@ spearman_result_rho <- unname(round(spearman_result$estimate, 2))
 spearman_result_p_value <- round(spearman_result$p.value, 5)
 ```
 
-Figure \@ref(fig:plot-altogether) shows the distribution of frequencies for subtypes in each major class. Spearman's correlation test shows that there is no significant relationship between diversity of subtypes and sample size (S = `r spearman_result_stat`, rho = `r spearman_result_rho`, p = $`r spearman_result_p_value`$). This indicates that the increases in diversity can be explained by the effects of culture interaction instead of the effects of sample size. Carnelian beads and metal rings have greater quantity and variety of shapes compared to copper bells and glass beads during the European period. The greater varieties for carnelian beads and metal rings might indicate multiple origins due to participation in large scale trade networks stimulated by the European presence. In contrast, copper bells have less variety, typically >2 cm long with a wide variety of human faces as a motif. Although glass beads have less variety in size, presenting as small (0.5-1 cm) or medium (1-2 cm), they have a wide variety of colors or patterns mostly made by a winding technique and with high lead content indicating possibly from China [@Cheng2008]. Although we are not certain of the specific origin of these beads, research suggest that these glass beads and metal ornaments have similar production techniques and composition to those found in China [@Chen2011; @Wang2018]. There seem to be no obvious changes in the sources of glass beads or metal ornaments at different periods in the upper component of Kiwulan (1350-1850 AD). However, the glass beads found from the lower component (650-1150 AD) are mostly Indo-Pacific beads, widespread in Southeast Asian sites from 300 BC until the early 2nd millennium [@Francis2002; @Wang2018].  
+Figure \@ref(fig:plot-altogether) shows the distribution of frequencies for subtypes in each major class. Spearman's correlation test shows that there is no significant relationship between diversity of subtypes and sample size (S = `r spearman_result_stat`, rho = `r spearman_result_rho`, p = $`r spearman_result_p_value`$). This indicates that the increases in diversity can be explained by the effects of culture interaction instead of the effects of sample size. Carnelian beads and metal rings have greater quantity and variety of shapes compared to copper bells and glass beads during the European period. The greater varieties for carnelian beads and metal rings might indicate multiple origins due to participation in large scale trade networks stimulated by the European presence. In contrast, copper bells have less variety, typically >2 cm long with a wide variety of human faces as a motif. Although glass beads have less variety in size, presenting as small (0.5-1 cm) or medium (1-2 cm), they have a wide variety of colors or patterns mostly made by a winding technique and with high lead content indicating possibly from China [@Cheng2008]. Although we are not certain of the specific origin of all kinds of beads, research suggest that glass beads and metal ornaments have similar production techniques and composition to those found in China, while gold-foil beads may relate to the economic activities of the Spanish in the South China Sea region [@Chen2011; @Wang2018]. There seem to be no obvious changes in the sources of glass beads or metal ornaments at different phases in the upper component of Kiwulan (1350-1850 AD). However, the glass beads from the lower component (650-1150 AD) demonstrate the composition of m-Na-Al glass and soda plant ash glass that are subtypes of the Indo-Pacific beads, frequently seen in Southeast Asia[@Carter2016; @Francis2002; @Wang2014]. A transition in the origin of glass beads from mainly Southeast Asia to multiple regions including China might indicate different trading networks. A regional network in South China Sea in the earlier period and later involved in larger scale trading network stimulated by the Europeans and the Chinese [@Hung2016; @Wang2007]. 
 
 ## Changes in patterns of the spatial distribution of ornament types 
 
@@ -703,9 +703,12 @@ ornaments_period_join <-
 
 # plot spatial pattern for all ornaments
 plot_spatial_distribution_all_ornaments_by_period <- 
-ggplot() +
+  ornaments_period_join %>% 
+  group_by(period, Pit_No, geometry) %>% 
+  summarize(n = sum(n)) %>% 
+  ggplot() +
   geom_sf(data = sample_units, fill = NA) +
-  geom_sf(data = ornaments_period_join, 
+  geom_sf(data = ornaments_period_join_all_type_across_periods, 
           aes(geometry = geometry, 
               fill =n), 
           alpha = 0.9) +
