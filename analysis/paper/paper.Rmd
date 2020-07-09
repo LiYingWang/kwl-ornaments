@@ -705,13 +705,21 @@ ornaments_period_join <-
   mutate(period = as.factor(period)) %>% # seems need this line first
   group_by(Pit_No, period) %>%
   count(Categories) %>%
+  ungroup %>% 
   inner_join(AD_data, by = c("Pit_No" = "坑號"))
 
 # create df for all types of ornaments by units and period
 ornaments_period_join_all_type_across_periods <-
   ornaments_period_join %>% 
-  group_by(period, Pit_No, geometry) %>% 
-  summarize(n = sum(n))
+  group_by(period, 
+           Pit_No
+           #,geometry
+          ) %>% 
+  summarize(n = sum(n)) %>% 
+  ungroup %>% 
+  inner_join(AD_data %>% 
+               select(坑號, geometry), by = c("Pit_No" = "坑號"))
+  
 
 # plot spatial pattern for all ornaments
 plot_spatial_distribution_all_ornaments_by_period <- 
