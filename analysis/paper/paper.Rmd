@@ -332,7 +332,7 @@ table_kw_dates <-
 
 
 kableExtra::kable(table_kw_dates,
-             caption = "Radiocarbon ages from charcoal samples excavated from Kiwulan (Chen 2007), calibrated using IntCal13 Atmospheric curve. All depth is recorded in centimeters above mean sea level. The codes in the context column refer to the excavator's feature labels, cf. Chen 2007")
+             caption = "Radiocarbon ages from charcoal samples excavated from Kiwulan (Chen 2007), calibrated using IntCal20 Atmospheric curve. All depth is recorded in centimeters above mean sea level. The codes in the context column refer to the excavator's feature labels, cf. Chen 2007")
 ```
 
 # The personal ornaments
@@ -933,7 +933,7 @@ By focusing on the distribution patterns in a settlement site, the Kiwulan ornam
 
 # Acknowledgements
 
-We would like to thank the Yilan County Cultural Affairs Bureau in Taiwan for permitting access to the ornaments used in this study. We thank Shui-jin Chiu, Shu-hui Jian, Jiun-yao Lai, and the staff in archaeology lab for their invaluable assistance in preparing samples for analysis. We also thank Yu-pei Chen for the discussion regarding the site at the earliest stage of fieldwork. This work was supported in part by the Chester Fritz Graduate Fellowship and travel grants from the Department of Anthropology at University of Washington. We thank Ben Fitzhugh and Peter Lape for their insightful comments on an early draft. We also acknowledge comments from anonymous reviewers that have greatly improved this manuscript.
+We would like to thank the Yilan County Cultural Affairs Bureau in Taiwan for permitting access to the ornaments used in this study. We thank Shui-jin Chiu, Shu-hui Jian, Jiun-yao Lai, and the staff in archaeology lab for their invaluable assistance in preparing samples for analysis. We also thank Yu-pei Chen for the discussion regarding the site at the earliest stage of fieldwork. This work was supported in part by the Chester Fritz Graduate Fellowship and travel grants from the Department of Anthropology at University of Washington and the Doctoral Dissertation Fellowship from the Chiang Ching-kuo Foundation for International Scholarly Exchange (Project #DF009-A-18). We thank Ben Fitzhugh and Peter Lape for their insightful comments on an early draft. We also acknowledge comments from anonymous reviewers that have greatly improved this manuscript.
 
 # References 
 <!-- The following line ensures the references appear here for the MS Word or HTML output files, rather than right at the end of the document (this will not work for PDF files):  -->
