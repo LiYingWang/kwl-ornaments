@@ -193,7 +193,10 @@ kw_dates_with_error$rce <- as.numeric(kw_dates_with_error$rce)
 kw_dates_with_error$id <- with(kw_dates_with_error,
                                paste0(Square,"-",Layer))
 
-                               # Use Bchron to calibrate
+# Use Bchron to calibrate
+# need github version to get intcal20
+# if(!require(remotes)) install.packages('remotes')
+# remotes::install_github('andrewcparnell/Bchron')
 library(Bchron)
 
 kw_dates_with_error_calibrated <- 
@@ -297,7 +300,7 @@ ggsave(plot = kwl_ages_curve,
        "plot-c14-ages-distribution.jpg"),
        width = 120, 
        dpi = 300,
-       height = 62,
+       height = 100,
        units = "mm")
 
 knitr::include_graphics(here("analysis", 
