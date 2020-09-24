@@ -78,7 +78,7 @@ kwl_upper <- readxl::read_excel(here("analysis", "data", "raw_data", "Kiwulan_Or
 ```
 
 ```{r tidy-data, eval = TRUE}
-# summarise the ornaments by layers
+# summarize the ornaments by layers
 # L5 and L6 represent pre-European contact period, 
 # L4 was the time of European contact, and 
 # L2 and L1 was the period of Chinese contact. 
