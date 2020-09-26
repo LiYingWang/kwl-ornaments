@@ -13,7 +13,7 @@ csl: "../templates/antiquity.csl" # Insert path for the bib-style
 abstract: |
   Long-lasting indirect impacts on Indigenous peoples in the periphery of colonial control are poorly understood, especially in East Asia. Trade ornaments from Kiwulan (1350–1850 CE) in northeastern Taiwan show indirect impacts of European colonial activities on local societies. The diversity of ornaments was greater during the period of European presence compared to previous periods, and their spatial distribution was more clustered in the residential area. The change reflects an increased use of ornaments and an uneven distribution of ornaments in a pericolonial context. This may hint at increased social inequality resulting from European colonial influence. Trade ornaments give insights into the increased social inequality stimulated by a European colonial presence, and show the agency of Indigenous people to incorporate ornaments into their social system.
 keywords: |
-  Historical archaeology; European colonial period; Trade ornaments; Exchange networks; spatial pattern; East Asia; Taiwan
+  Historical archaeology; pericolonial archaeology; Trade ornaments; Exchange networks; spatial pattern; East Asia; Taiwan
 highlights: |
   1. Evidence of the quantity, variety, and spatial distribution of trade ornaments in both local cultural and colonial context is provided.
   2. Results of hypothesis testing point to greater amount and diversity of ornament types with non-random, and most highly concentrated spatial clusters during the European presence.
