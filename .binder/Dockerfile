@@ -1,4 +1,4 @@
-FROM rocker/binder:latest
+FROM rocker/binder:4.0.0
 LABEL maintainer="bmarwick"
 USER root
 COPY . ${HOME}
