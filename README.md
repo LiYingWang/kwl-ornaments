@@ -6,17 +6,17 @@ kwlornaments
 
 This repository contains the data and code for our paper:
 
-> Wang, L. Y. and Marwick, B. (2020). Ornaments as indicators of social changes resulting from indirect effects of colonialism in northeastern Taiwan. *Archaeological Research in Asia* 24. <https://doi.org/10.1016/j.ara.2020.100226>
+> Wang, L.-Y. and Marwick, B. (2020). Ornaments as indicators of social changes resulting from indirect effects of colonialism in northeastern Taiwan. *Archaeological Research in Asia* 24. <https://doi.org/10.1016/j.ara.2020.100226>
 
 Our pre-print is online here:
 
-> Wang, L. Y. and Marwick, B. (2020). Ornaments as indicators of social changes resulting from indirect effects of colonialism in northeastern Taiwan. *Archaeological Research in Asia* 24. <https://doi.org/10.1016/j.ara.2020.100226> Online at <http://doi.org/10.17605/OSF.IO/R8YGA>
+> Wang, L.-Y. and Marwick, B. (2020). Ornaments as indicators of social changes resulting from indirect effects of colonialism in northeastern Taiwan. *Archaeological Research in Asia*, Accessed Sep 2020. Online at https://osf.io/preprints/socarxiv/z9p5k/
 
 ### How to cite
 
 Please cite this compendium as:
 
-> Authors, (2019). *Compendium of R code and data for Title of your paper goes here*. Accessed 04 Mar 2019. Online at <https://doi.org/xxx/xxx>
+> Wang, L.-Y. and Marwick, B. (2020). *Ornaments as indicators of social changes resulting from indirect effects of colonialism in northeastern Taiwan*. Accessed Sep 2020. Online at <http://doi.org/10.17605/OSF.IO/R8YGA> 
 
 ### How to download or install
 
