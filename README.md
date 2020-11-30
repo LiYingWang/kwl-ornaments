@@ -6,11 +6,11 @@ kwlornaments
 
 This repository contains the data and code for our paper:
 
-> Authors, (YYYY). *Title of your paper goes here*. Name of journal/book <https://doi.org/xxx/xxx>
+> Wang, L. Y. and Marwick, B. (2020). Ornaments as indicators of social changes resulting from indirect effects of colonialism in northeastern Taiwan. *Archaeological Research in Asia* 24. <https://doi.org/10.1016/j.ara.2020.100226>
 
 Our pre-print is online here:
 
-> Authors, (YYYY). *Title of your paper goes here*. Name of journal/book, Accessed 04 Mar 2019. Online at <https://doi.org/xxx/xxx>
+> Wang, L. Y. and Marwick, B. (2020). Ornaments as indicators of social changes resulting from indirect effects of colonialism in northeastern Taiwan. *Archaeological Research in Asia* 24. <https://doi.org/10.1016/j.ara.2020.100226> Online at <http://doi.org/10.17605/OSF.IO/R8YGA>
 
 ### How to cite
 
